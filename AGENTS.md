@@ -8,7 +8,7 @@
 
 ## Core Rules
 
-- **Types** — Enable TypeScript strict mode and use no `any`.
+- **Types** — Enable TypeScript stricccct mode and use no `any`.
 - **Boundaries** — Keep pages focused on route composition and feature components focused on one concern.
 - **Data** — Keep remote data separate from local interaction state.
 - **Validation** — Validate external data at API and form boundaries.
