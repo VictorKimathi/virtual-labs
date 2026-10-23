@@ -54,7 +54,7 @@ export function AppLayout() {
         <div className="mt-auto rounded-2xl bg-teal-50 p-4 text-sm text-teal-900 dark:bg-teal-950 dark:text-teal-100">
           <p className="font-bold">Explore with curiosity</p>
           <p className="mt-1 text-teal-700 dark:text-teal-200">
-            Learn the idea. Preview the lab. Run the simulation.
+            Preview the lab. Learn the idea. Run the simulation.
           </p>
         </div>
       </aside>

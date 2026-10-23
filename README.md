@@ -1,6 +1,6 @@
 # Virtual Labs
 
-A React + Vite + TypeScript starter for chemistry, physics, and biology. Each subject has a distinct path through a short lesson, a lab introduction, and a simulation workspace.
+A React + Vite + TypeScript starter for chemistry, physics, and biology. Each subject has a distinct path through a lab introduction, a short lesson, and a simulation workspace.
 
 ## Run locally
 
@@ -13,6 +13,8 @@ Requires a supported Node.js version for Vite and Firebase. Run `npm install`, c
 - `/:subjectId/learn/:lessonSlug` — learning content
 - `/:subjectId/labs/:labSlug` — lab introduction
 - `/:subjectId/labs/:labSlug/run` — embedded simulation workspace
+
+Each lab has three adjacent tabs: Introduction → Lesson → Simulation. The subject page starts at the introduction, so the lesson is directly before its simulation.
 
 The three subject IDs are `chemistry`, `physics`, and `biology`. Route modules load lazily. Starter metadata is in `src/features/catalog/data/catalog.ts`.
 

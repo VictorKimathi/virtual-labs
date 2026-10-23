@@ -56,14 +56,14 @@ export default function HomePage() {
         <Step
           icon={<BookOpen className="h-5 w-5" />}
           number="01"
-          title="Learn"
-          detail="Start with the key ideas and a guiding question."
+          title="Preview"
+          detail="See the lab goals and guiding question."
         />
         <Step
           icon={<Telescope className="h-5 w-5" />}
           number="02"
-          title="Prepare"
-          detail="Read the lab goals before opening the simulation."
+          title="Learn"
+          detail="Read the lesson immediately before the simulation."
         />
         <Step
           icon={<Play className="h-5 w-5" />}

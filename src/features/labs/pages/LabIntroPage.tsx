@@ -8,11 +8,13 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { getSubject } from "../../catalog/data/catalog";
 import NotFoundPage from "../../../shared/ui/NotFoundPage";
+import { LabTabs } from "../components/LabTabs";
 
 export default function LabIntroPage() {
   const { subjectId, labSlug } = useParams();
   const subject = getSubject(subjectId);
   const lab = subject?.labs.find((item) => item.slug === labSlug);
+  const lesson = subject?.lessons.find((item) => item.labSlug === labSlug);
   if (!subject || !lab) return <NotFoundPage />;
   return (
     <div className="mx-auto max-w-5xl">
@@ -22,6 +24,12 @@ export default function LabIntroPage() {
       >
         <ArrowLeft className="h-4 w-4" /> {subject.name}
       </Link>
+      <LabTabs
+        subject={subject}
+        lab={lab}
+        lesson={lesson}
+        current="introduction"
+      />
       <div className="mt-8 rounded-3xl bg-slate-900 p-8 text-white dark:bg-slate-800 sm:p-10">
         <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal-300">
           <FlaskConical className="h-4 w-4" /> Lab introduction · {lab.topic}
@@ -59,10 +67,15 @@ export default function LabIntroPage() {
           Simulation provided by {lab.provider}.
         </p>
         <Link
-          to={`/${subject.id}/labs/${lab.slug}/run`}
+          to={
+            lesson
+              ? `/${subject.id}/learn/${lesson.slug}`
+              : `/${subject.id}/labs/${lab.slug}/run`
+          }
           className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-6 py-3 font-bold text-white hover:bg-teal-500"
         >
-          Open simulation <ArrowRight className="h-4 w-4" />
+          {lesson ? "Continue to lesson" : "Open simulation"}{" "}
+          <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </div>

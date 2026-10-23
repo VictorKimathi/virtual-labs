@@ -2,20 +2,23 @@ import { ArrowLeft, ArrowRight, BookOpen, Lightbulb } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { getSubject } from "../../catalog/data/catalog";
 import NotFoundPage from "../../../shared/ui/NotFoundPage";
+import { LabTabs } from "../../labs/components/LabTabs";
 
 export default function LessonPage() {
   const { subjectId, lessonSlug } = useParams();
   const subject = getSubject(subjectId);
   const lesson = subject?.lessons.find((item) => item.slug === lessonSlug);
-  if (!subject || !lesson) return <NotFoundPage />;
+  const lab = subject?.labs.find((item) => item.slug === lesson?.labSlug);
+  if (!subject || !lesson || !lab) return <NotFoundPage />;
   return (
     <div className="mx-auto max-w-4xl">
       <Link
-        to={`/${subject.id}`}
+        to={`/${subject.id}/labs/${lab.slug}`}
         className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-teal-600"
       >
-        <ArrowLeft className="h-4 w-4" /> {subject.name}
+        <ArrowLeft className="h-4 w-4" /> Lab introduction
       </Link>
+      <LabTabs subject={subject} lab={lab} lesson={lesson} current="lesson" />
       <div className="mt-8">
         <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400">
           <BookOpen className="h-4 w-4" /> Learn · {lesson.duration}
@@ -45,14 +48,14 @@ export default function LessonPage() {
         <div>
           <p className="font-bold">Ready to apply this?</p>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-            Preview the lab goals and guiding question.
+            The simulation is the next tab. Test the ideas you just read.
           </p>
         </div>
         <Link
-          to={`/${subject.id}/labs/${lesson.labSlug}`}
+          to={`/${subject.id}/labs/${lab.slug}/run`}
           className="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-5 py-3 font-bold text-white hover:bg-teal-500"
         >
-          Preview lab <ArrowRight className="h-4 w-4" />
+          Run simulation <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
     </div>

@@ -3,21 +3,34 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getSubject } from "../../catalog/data/catalog";
 import NotFoundPage from "../../../shared/ui/NotFoundPage";
+import { LabTabs } from "../components/LabTabs";
 
 export default function LabRunPage() {
   const { subjectId, labSlug } = useParams();
   const subject = getSubject(subjectId);
   const lab = subject?.labs.find((item) => item.slug === labSlug);
+  const lesson = subject?.lessons.find((item) => item.labSlug === labSlug);
   const [loaded, setLoaded] = useState(false);
   if (!subject || !lab) return <NotFoundPage />;
   return (
     <div>
       <Link
-        to={`/${subject.id}/labs/${lab.slug}`}
+        to={
+          lesson
+            ? `/${subject.id}/learn/${lesson.slug}`
+            : `/${subject.id}/labs/${lab.slug}`
+        }
         className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-teal-600"
       >
-        <ArrowLeft className="h-4 w-4" /> Lab introduction
+        <ArrowLeft className="h-4 w-4" />{" "}
+        {lesson ? "Lesson" : "Lab introduction"}
       </Link>
+      <LabTabs
+        subject={subject}
+        lab={lab}
+        lesson={lesson}
+        current="simulation"
+      />
       <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-teal-600 dark:text-teal-400">

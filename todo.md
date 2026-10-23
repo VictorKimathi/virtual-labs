@@ -38,3 +38,4 @@ This is an initialization checklist, not a plan to build a full learning platfor
 - [ ] Add Firebase Auth and saved progress once there is a clear user journey that needs persistence.
 - [ ] Add a content management workflow when editing the local catalog becomes a bottleneck.
 - [ ] Add analytics only after defining useful events and a privacy notice.
+- [ ] Addd swahili and voice speak.
