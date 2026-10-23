@@ -73,9 +73,11 @@ export const labs: Lab[] = [
     strand: "Matter",
     strandSw: "Maada",
     duration: "20 min",
-    intro: "Compare solutions using indicators and the pH scale.",
-    introSw: "Linganisha miyeyusho kwa kutumia viashiria na kipimo cha pH.",
-    available: false,
+    intro:
+      "Test everyday liquids with indicators and place them on the pH scale.",
+    introSw:
+      "Jaribu vimiminika vya kila siku kwa viashiria na uviweke kwenye kipimo cha pH.",
+    available: true,
   },
   {
     id: "separation",
@@ -86,9 +88,25 @@ export const labs: Lab[] = [
     strand: "Mixtures",
     strandSw: "Michanganyiko",
     duration: "20 min",
-    intro: "Choose methods to separate materials based on their properties.",
-    introSw: "Chagua mbinu za kutenganisha vitu kulingana na sifa zake.",
-    available: false,
+    intro:
+      "Choose the right methods to recover iron, sand and salt from one mixture.",
+    introSw:
+      "Chagua mbinu sahihi za kupata chuma, mchanga na chumvi kutoka mchanganyiko mmoja.",
+    available: true,
+  },
+  {
+    id: "titration",
+    title: "Acid–Base Titration",
+    titleSw: "Titreshini ya Asidi na Besi",
+    subject: "chemistry",
+    grade: 11,
+    strand: "Acids, Bases and Salts",
+    strandSw: "Asidi, Besi na Chumvi",
+    duration: "25 min",
+    intro:
+      "Neutralise an unknown alkali with acid and calculate its concentration.",
+    introSw: "Tengua alkali isiyojulikana kwa asidi kisha ukokotoe uzito wake.",
+    available: true,
   },
   {
     id: "plant-cells",

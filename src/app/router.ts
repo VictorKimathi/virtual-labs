@@ -38,6 +38,13 @@ export const router = createBrowserRouter([
         }),
       },
       {
+        path: "labs/:labId/post-assessment",
+        lazy: async () => ({
+          Component: (await import("../features/assessment/pages/QuizPage"))
+            .default,
+        }),
+      },
+      {
         path: "workbench",
         lazy: async () => ({
           Component: (
@@ -65,6 +72,30 @@ export const router = createBrowserRouter([
         lazy: async () => ({
           Component: (
             await import("../features/biology-lab/pages/BiologyLabPage")
+          ).default,
+        }),
+      },
+      {
+        path: "chemistry/indicators",
+        lazy: async () => ({
+          Component: (
+            await import("../features/chemistry-lab/pages/IndicatorLabPage")
+          ).default,
+        }),
+      },
+      {
+        path: "chemistry/titration",
+        lazy: async () => ({
+          Component: (
+            await import("../features/chemistry-lab/pages/TitrationLabPage")
+          ).default,
+        }),
+      },
+      {
+        path: "chemistry/separation",
+        lazy: async () => ({
+          Component: (
+            await import("../features/chemistry-lab/pages/SeparationLabPage")
           ).default,
         }),
       },

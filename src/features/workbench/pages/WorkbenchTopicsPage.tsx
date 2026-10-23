@@ -1,9 +1,12 @@
 import {
   ArrowRight,
+  Filter,
+  FlaskConical,
   Lightbulb,
   Magnet,
   Microscope,
   Sun,
+  TestTubes,
   Zap,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -16,6 +19,9 @@ const topicIcons: Record<string, typeof Zap> = {
   magnetism: Magnet,
   light: Sun,
 };
+
+const chemistryTone =
+  "bg-orange-50 text-subject-chemistry dark:bg-orange-950 dark:text-orange-300";
 
 type Bench = {
   id: string;
@@ -48,6 +54,57 @@ export default function WorkbenchTopicsPage() {
         },
         tone: "bg-blue-50 text-subject-physics dark:bg-blue-950 dark:text-blue-300",
       })),
+    {
+      id: "indicators",
+      to: "/chemistry/indicators",
+      icon: TestTubes,
+      subject: { en: "Chemistry", sw: "Kemia" },
+      kind: { en: "Animated practical", sw: "Jaribio lenye mwendo" },
+      name: { en: "Acid–base indicators", sw: "Viashiria vya asidi na besi" },
+      summary: {
+        en: "Test ten everyday liquids with universal indicator and red cabbage juice.",
+        sw: "Jaribu vimiminika kumi vya kila siku kwa kiashiria cha jumla na juisi ya kabichi nyekundu.",
+      },
+      detail: {
+        en: "10 samples · 2 indicators",
+        sw: "Sampuli 10 · viashiria 2",
+      },
+      tone: chemistryTone,
+    },
+    {
+      id: "titration",
+      to: "/chemistry/titration",
+      icon: FlaskConical,
+      subject: { en: "Chemistry", sw: "Kemia" },
+      kind: { en: "Animated practical", sw: "Jaribio lenye mwendo" },
+      name: { en: "Acid–base titration", sw: "Titreshini ya asidi na besi" },
+      summary: {
+        en: "Run a burette, watch the pH curve and find an unknown concentration.",
+        sw: "Tumia biureti, tazama mkondo wa pH na upate uzito usiojulikana.",
+      },
+      detail: {
+        en: "3 indicators · live pH curve",
+        sw: "Viashiria 3 · mkondo wa pH",
+      },
+      tone: chemistryTone,
+    },
+    {
+      id: "separation",
+      to: "/chemistry/separation",
+      icon: Filter,
+      subject: { en: "Chemistry", sw: "Kemia" },
+      kind: { en: "Animated practical", sw: "Jaribio lenye mwendo" },
+      name: { en: "Separating a mixture", sw: "Kutenganisha mchanganyiko" },
+      summary: {
+        en: "Use a magnet, water, a filter and heat to recover iron, sand and salt.",
+        sw: "Tumia sumaku, maji, kichujio na joto kupata chuma, mchanga na chumvi.",
+      },
+      detail: {
+        en: "4 methods · 3 substances",
+        sw: "Mbinu 4 · dutu 3",
+      },
+      tone: chemistryTone,
+    },
     {
       id: "microscope",
       to: "/sandbox/biology",
@@ -100,7 +157,7 @@ export default function WorkbenchTopicsPage() {
           .
         </p>
       </div>
-      <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {benches.map((bench) => {
           const Icon = bench.icon;
           const body: ReactNode = (

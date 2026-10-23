@@ -1,117 +1,73 @@
 import { ArrowLeft, ArrowRight, CheckCircle2, CircleX } from "lucide-react";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useLanguage } from "../../../app/useLanguage";
 import { getLab } from "../../catalog/data/catalog";
 import NotFoundPage from "../../../shared/ui/NotFoundPage";
-
-const questions = [
-  {
-    en: "What provides electrical energy in a simple circuit?",
-    sw: "Ni nini hutoa nishati ya umeme katika sakiti rahisi?",
-    options: [
-      ["A cell", "Seli"],
-      ["A wire", "Waya"],
-      ["A bulb", "Balbu"],
-      ["A switch", "Swichi"],
-    ],
-    answer: 0,
-  },
-  {
-    en: "Which instrument measures electric current?",
-    sw: "Ni kifaa gani hupima mkondo wa umeme?",
-    options: [
-      ["Voltmeter", "Voltimita"],
-      ["Ammeter", "Amita"],
-      ["Thermometer", "Kipimajoto"],
-      ["Ruler", "Rula"],
-    ],
-    answer: 1,
-  },
-  {
-    en: "What is the unit of resistance?",
-    sw: "Kizio cha ukinzani ni nini?",
-    options: [
-      ["Volt", "Volti"],
-      ["Ampere", "Ampia"],
-      ["Ohm", "Ohmu"],
-      ["Watt", "Wati"],
-    ],
-    answer: 2,
-  },
-  {
-    en: "What happens when the switch is open?",
-    sw: "Nini hutokea swichi ikiwa wazi?",
-    options: [
-      ["Current flows faster", "Mkondo hupita haraka"],
-      ["The circuit is broken", "Sakiti inakatika"],
-      ["Voltage disappears", "Volteji hupotea"],
-      ["The bulb gets brighter", "Balbu hung’aa zaidi"],
-    ],
-    answer: 1,
-  },
-  {
-    en: "If resistance stays constant and voltage rises, what happens to current?",
-    sw: "Ukinzani ukibaki sawa na volteji iongezeke, nini hutokea kwa mkondo?",
-    options: [
-      ["It increases", "Unaongezeka"],
-      ["It decreases", "Unapungua"],
-      ["It stays zero", "Unabaki sifuri"],
-      ["It reverses", "Unageuka"],
-    ],
-    answer: 0,
-  },
-];
+import type { Lab } from "../../catalog/data/catalog.types";
+import { getQuestions, type Phase } from "../data/questions";
+import type { Question } from "../data/questions.types";
 
 export default function QuizPage() {
   const { labId } = useParams();
+  const { pathname } = useLocation();
   const lab = getLab(labId);
+  const phase: Phase = pathname.endsWith("post-assessment") ? "post" : "pre";
+  const questions = lab ? getQuestions(lab.id, phase) : null;
+  if (!lab || !questions) return <NotFoundPage />;
+  return (
+    <Quiz
+      key={`${lab.id}:${phase}`}
+      lab={lab}
+      phase={phase}
+      questions={questions}
+    />
+  );
+}
+
+type QuizProps = { lab: Lab; phase: Phase; questions: Question[] };
+
+function Quiz({ lab, phase, questions }: QuizProps) {
   const { language, tr } = useLanguage();
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
-  if (!lab) return <NotFoundPage />;
-  if (lab.id !== "ohms-law")
-    return (
-      <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 p-6 dark:border-slate-800">
-        <h1 className="text-2xl font-extrabold">
-          {tr("Quiz coming soon", "Maswali yanakuja hivi karibuni")}
-        </h1>
-        <p className="mt-3 text-slate-600 dark:text-slate-300">
-          {tr(
-            "This lab is a preview. Its assessment is being prepared.",
-            "Maabara hii ni muhtasari. Tathmini yake inaandaliwa.",
-          )}
-        </p>
-        <Link
-          to={`/labs/${lab.id}?step=3`}
-          className="mt-5 inline-flex min-h-12 items-center text-kenya-green dark:text-green-400"
-        >
-          {tr("Back to lab", "Rudi maabara")}
-        </Link>
-      </div>
-    );
+  const [missed, setMissed] = useState<number[]>([]);
+
+  const backStep = phase === "pre" ? 3 : 5;
+  const nextStep = phase === "pre" ? 4 : 6;
   const question = questions[index];
   const correct = selected === question.answer;
-  const progressWidth = ["w-1/5", "w-2/5", "w-3/5", "w-4/5", "w-full"][index];
+  const last = index === questions.length - 1;
+  const score = questions.length - missed.length;
+
+  function choose(optionIndex: number) {
+    setSelected(optionIndex);
+    if (optionIndex !== question.answer && !missed.includes(index))
+      setMissed((current) => [...current, index]);
+  }
+
   function move(next: number) {
     setIndex(next);
     setSelected(null);
   }
+
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <Link
-        to={`/labs/${lab.id}?step=3`}
+        to={`/labs/${lab.id}?step=${backStep}`}
         className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-kenya-green dark:text-green-400"
       >
         <ArrowLeft className="h-4 w-4" />
-        {tr("Back to guided lab", "Rudi kwenye maabara")}
+        {tr("Back to lesson", "Rudi kwenye somo")}
       </Link>
       <div>
-        <p className="text-sm font-bold text-kenya-green dark:text-green-400">
-          {tr("PRE-ASSESSMENT", "TATHMINI YA AWALI")}
+        <p className="text-sm font-bold uppercase text-kenya-green dark:text-green-400">
+          {phase === "pre"
+            ? tr("Pre-assessment", "Tathmini ya awali")
+            : tr("Post-assessment", "Tathmini ya mwisho")}
         </p>
         <h1 className="mt-1 text-3xl font-black">
-          {tr("Ohm's Law", "Sheria ya Ohm")}
+          {language === "en" ? lab.title : lab.titleSw}
         </h1>
         <p className="mt-2 text-slate-600 dark:text-slate-300">
           {tr(
@@ -123,35 +79,36 @@ export default function QuizPage() {
       <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8">
         <div className="flex items-center justify-between gap-3">
           <span className="text-sm font-extrabold text-kenya-green dark:text-green-400">
-            {tr("Question", "Swali")} {index + 1} {tr("of", "kati ya")} 5
-          </span>
-          <span className="text-xs text-slate-500">
-            {Math.round(((index + 1) / questions.length) * 100)}%
+            {tr("Question", "Swali")} {index + 1} {tr("of", "kati ya")}{" "}
+            {questions.length}
           </span>
         </div>
-        <div className="mt-3 h-2 rounded-full bg-slate-100 dark:bg-slate-800">
-          <div
-            className={`h-full rounded-full bg-kenya-green ${progressWidth}`}
-          />
+        <div className="mt-3 flex gap-1.5">
+          {questions.map((item, position) => (
+            <span
+              key={item.prompt.en}
+              className={`h-2 flex-1 rounded-full ${position <= index ? "bg-kenya-green" : "bg-slate-100 dark:bg-slate-800"}`}
+            />
+          ))}
         </div>
         <h2 className="mt-7 text-xl font-extrabold leading-8">
-          {language === "en" ? question.en : question.sw}
+          {question.prompt[language]}
         </h2>
         <div className="mt-6 space-y-3">
-          {question.options.map(([en, sw], optionIndex) => {
+          {question.options.map((option, optionIndex) => {
             const chosen = selected === optionIndex;
             return (
               <button
-                key={en}
+                key={option.en}
                 type="button"
-                onClick={() => setSelected(optionIndex)}
+                onClick={() => choose(optionIndex)}
                 aria-pressed={chosen}
                 className={`flex min-h-16 w-full items-center gap-4 rounded-2xl border-2 px-4 py-3 text-left text-base font-semibold transition-colors ${chosen ? (correct ? "border-kenya-green bg-green-50 text-kenya-green dark:bg-green-950 dark:text-green-300" : "border-kenya-red bg-red-50 text-kenya-red dark:bg-red-950 dark:text-red-300") : "border-slate-200 hover:border-slate-400 dark:border-slate-700"}`}
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-extrabold text-slate-700 dark:bg-slate-800 dark:text-slate-200">
                   {String.fromCharCode(65 + optionIndex)}
                 </span>
-                <span className="flex-1">{language === "en" ? en : sw}</span>
+                <span className="flex-1">{option[language]}</span>
                 {chosen &&
                   (correct ? (
                     <CheckCircle2 className="h-5 w-5" />
@@ -168,16 +125,18 @@ export default function QuizPage() {
             className={`mt-5 flex items-center gap-3 rounded-xl p-4 text-sm font-bold ${correct ? "bg-green-50 text-kenya-green dark:bg-green-950 dark:text-green-300" : "bg-red-50 text-kenya-red dark:bg-red-950 dark:text-red-300"}`}
           >
             {correct ? (
-              <CheckCircle2 className="h-5 w-5" />
+              <CheckCircle2 className="h-5 w-5 shrink-0" />
             ) : (
-              <CircleX className="h-5 w-5" />
+              <CircleX className="h-5 w-5 shrink-0" />
             )}
             {correct
-              ? tr("Correct! Well done.", "Sahihi! Hongera.")
-              : tr(
-                  "Try again. Think about what each instrument measures.",
-                  "Jaribu tena. Fikiria kila kifaa hupima nini.",
-                )}
+              ? last
+                ? tr(
+                    `Correct! You got ${score} of ${questions.length} on the first try.`,
+                    `Sahihi! Umepata ${score} kati ya ${questions.length} kwa jaribio la kwanza.`,
+                  )
+                : tr("Correct! Well done.", "Sahihi! Hongera.")
+              : `${tr("Try again.", "Jaribu tena.")} ${question.hint[language]}`}
           </div>
         )}
       </div>
@@ -190,7 +149,7 @@ export default function QuizPage() {
         >
           {tr("Back", "Rudi")}
         </button>
-        {index < questions.length - 1 ? (
+        {!last ? (
           <button
             type="button"
             onClick={() => move(index + 1)}
@@ -202,10 +161,13 @@ export default function QuizPage() {
           </button>
         ) : (
           <Link
-            to={`/labs/${lab.id}?step=4`}
+            to={`/labs/${lab.id}?step=${nextStep}`}
+            aria-disabled={!correct}
             className={`inline-flex min-h-12 items-center gap-2 rounded-xl bg-kenya-green px-5 font-bold text-white ${!correct ? "pointer-events-none opacity-40" : ""}`}
           >
-            {tr("Continue lab", "Endelea na maabara")}{" "}
+            {phase === "pre"
+              ? tr("Continue lesson", "Endelea na somo")
+              : tr("Finish lesson", "Maliza somo")}{" "}
             <ArrowRight className="h-4 w-4" />
           </Link>
         )}

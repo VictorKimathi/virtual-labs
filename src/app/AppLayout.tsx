@@ -10,7 +10,7 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useLanguage } from "./useLanguage";
 import { useTheme } from "./useTheme";
 
@@ -18,6 +18,7 @@ export function AppLayout() {
   const { language, toggleLanguage, tr } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { pathname } = useLocation();
   const navItems = [
     {
       to: "/",
@@ -39,6 +40,7 @@ export function AppLayout() {
       hint: tr("Build and test freely", "Unda na ujaribu huru"),
       icon: FlaskConical,
       end: false,
+      alsoActive: ["/chemistry", "/sandbox"],
     },
     {
       to: "/progress",
@@ -50,14 +52,14 @@ export function AppLayout() {
   ];
   const navigation = (
     <div className="space-y-1 pt-4">
-      {navItems.map(({ to, label, hint, icon: Icon, end }) => (
+      {navItems.map(({ to, label, hint, icon: Icon, end, alsoActive }) => (
         <NavLink
           key={to}
           to={to}
           end={end}
           onClick={() => setMenuOpen(false)}
           className={({ isActive }) =>
-            `flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${isActive ? "bg-green-50 text-kenya-green dark:bg-green-950 dark:text-green-300" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"}`
+            `flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${isActive || alsoActive?.some((prefix) => pathname.startsWith(prefix)) ? "bg-green-50 text-kenya-green dark:bg-green-950 dark:text-green-300" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"}`
           }
         >
           <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
