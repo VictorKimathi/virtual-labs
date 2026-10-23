@@ -1,8 +1,14 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // No user data model exists during initialization. Add collection-specific
-    // authorization rules before enabling Firestore reads or writes.
+    // Subscription requests and payments are written only by Cloud Functions
+    // (admin access), after the amount is set server-side and PayHero confirms
+    // payment. Clients can never read or write them. Staff read them through
+    // the Firebase console.
+    match /schoolSubscriptions/{requestId} {
+      allow read, write: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

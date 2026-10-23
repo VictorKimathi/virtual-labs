@@ -1,4 +1,5 @@
 import {
+  AudioWaveform,
   Atom,
   BookOpen,
   ChartNoAxesColumn,
@@ -7,6 +8,8 @@ import {
   Menu,
   MonitorPlay,
   Moon,
+  Orbit,
+  School,
   Sun,
   X,
 } from "lucide-react";
@@ -51,10 +54,31 @@ export function AppLayout() {
       end: false,
     },
     {
+      to: "/falstad",
+      label: tr("Falstad circuits & waves", "Mizunguko na mawimbi ya Falstad"),
+      hint: tr("Circuit and wave simulators", "Viigaji vya sakiti na mawimbi"),
+      icon: AudioWaveform,
+      end: false,
+    },
+    {
+      to: "/physicshub",
+      label: tr("PhysicsHub simulations", "Uigaji wa PhysicsHub"),
+      hint: tr("Interactive physics models", "Mifano shirikishi ya fizikia"),
+      icon: Orbit,
+      end: false,
+    },
+    {
       to: "/progress",
       label: tr("My progress", "Maendeleo yangu"),
       hint: tr("Scores and badges", "Alama na beji"),
       icon: ChartNoAxesColumn,
+      end: false,
+    },
+    {
+      to: "/schools",
+      label: tr("For schools", "Kwa shule"),
+      hint: tr("Plans from KSh 5,000/month", "Mipango kuanzia KSh 5,000/mwezi"),
+      icon: School,
       end: false,
     },
   ];

@@ -116,6 +116,38 @@ export const router = createBrowserRouter([
         }),
       },
       {
+        path: "falstad",
+        lazy: async () => ({
+          Component: (
+            await import("../features/falstad-simulators/pages/FalstadSimulatorsPage")
+          ).default,
+        }),
+      },
+      {
+        path: "physicshub",
+        lazy: async () => ({
+          Component: (
+            await import("../features/physicshub-simulations/pages/PhysicshubSimulationsPage")
+          ).default,
+        }),
+      },
+      {
+        path: "physicshub/:simId",
+        lazy: async () => ({
+          Component: (
+            await import("../features/physicshub-simulations/pages/PhysicshubSimulationPage")
+          ).default,
+        }),
+      },
+      {
+        path: "schools",
+        lazy: async () => ({
+          Component: (
+            await import("../features/school-subscription/pages/SchoolsPage")
+          ).default,
+        }),
+      },
+      {
         path: "progress",
         lazy: async () => ({
           Component: (await import("../features/progress/pages/ProgressPage"))

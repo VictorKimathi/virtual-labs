@@ -3,7 +3,7 @@ import { useState } from "react";
 
 type Props = { src: string };
 
-export function SimulationThumbnail({ src }: Props) {
+export function RemoteThumbnail({ src }: Props) {
   const [failed, setFailed] = useState(false);
   return (
     <div className="aspect-3/2 w-full overflow-hidden bg-slate-100 dark:bg-slate-800">

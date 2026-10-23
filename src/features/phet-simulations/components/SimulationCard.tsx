@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../../app/useLanguage";
+import { RemoteThumbnail } from "../../../shared/ui/RemoteThumbnail";
 import type { PhetSimulation } from "../phet.types";
-import { SimulationThumbnail } from "./SimulationThumbnail";
 
 type Props = { simulation: PhetSimulation; tags: string[] };
 
@@ -12,7 +12,7 @@ export function SimulationCard({ simulation, tags }: Props) {
       to={`/simulations/${simulation.name}`}
       className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-colors hover:border-kenya-green dark:border-slate-800 dark:bg-slate-900"
     >
-      <SimulationThumbnail src={simulation.thumbnailUrl} />
+      <RemoteThumbnail src={simulation.thumbnailUrl} />
       <span className="flex flex-1 flex-col p-4">
         <span className="flex items-start justify-between gap-2">
           <span className="text-lg font-extrabold leading-snug">

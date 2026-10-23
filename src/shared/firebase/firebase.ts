@@ -1,6 +1,4 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -25,11 +23,22 @@ export function getFirebaseApp() {
   return getApps().length ? getApp() : initializeApp(firebaseConfig);
 }
 
-export function getFirebaseAuth() {
+export async function getFirebaseAuth() {
+  const { getAuth } = await import("firebase/auth");
   return getAuth(getFirebaseApp());
 }
-export function getFirebaseDb() {
+
+export async function getFirebaseDb() {
+  const { getFirestore } = await import("firebase/firestore");
   return getFirestore(getFirebaseApp());
+}
+
+// Must match the region in functions/src/index.ts.
+const FUNCTIONS_REGION = "us-central1";
+
+export async function getFirebaseFunctions() {
+  const { getFunctions } = await import("firebase/functions");
+  return getFunctions(getFirebaseApp(), FUNCTIONS_REGION);
 }
 
 export async function getFirebaseAnalytics() {

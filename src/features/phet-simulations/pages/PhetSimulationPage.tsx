@@ -1,9 +1,9 @@
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useLanguage } from "../../../app/useLanguage";
+import { EmbeddedSimulation } from "../../../shared/ui/EmbeddedSimulation";
 import { CatalogError } from "../components/CatalogError";
 import { CatalogSkeleton } from "../components/CatalogSkeleton";
-import { SimulationPlayer } from "../components/SimulationPlayer";
 import { usePhetCatalog } from "../hooks/usePhetCatalog";
 
 const backLinkClass =
@@ -64,7 +64,11 @@ export default function PhetSimulationPage() {
               <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
-          <SimulationPlayer key={simulation.name} simulation={simulation} />
+          <EmbeddedSimulation
+            key={simulation.name}
+            title={simulation.title}
+            src={simulation.runUrl}
+          />
           <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
             {tr(
               "Simulation by PhET Interactive Simulations, University of Colorado Boulder, licensed under CC-BY 4.0.",

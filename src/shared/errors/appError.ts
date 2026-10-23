@@ -1,5 +1,10 @@
 export type AppErrorCode =
-  "network" | "server" | "invalid-data" | "not-found" | "unknown";
+  | "network"
+  | "server"
+  | "invalid-data"
+  | "not-found"
+  | "rate-limited"
+  | "unknown";
 
 type UserMessage = { en: string; sw: string };
 
@@ -19,6 +24,10 @@ const userMessages: Record<AppErrorCode, UserMessage> = {
   "not-found": {
     en: "We could not find what you were looking for.",
     sw: "Hatukupata ulichokuwa unatafuta.",
+  },
+  "rate-limited": {
+    en: "A payment prompt was just sent to this number. Wait a minute, then try again.",
+    sw: "Ombi la malipo limetumwa kwa nambari hii sasa hivi. Subiri dakika moja kisha ujaribu tena.",
   },
   unknown: {
     en: "Something went wrong. Please try again.",
