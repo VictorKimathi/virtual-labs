@@ -1,0 +1,3 @@
+# Physics 3D Lab
+
+A lazy-loaded React Three Fiber scene renders a workbench and six primitive-based apparatus models. Learners can drag equipment from the left panel into the scene, click to add with a keyboard or touch device, select and reposition placed objects, orbit/zoom the camera, remove items, and reset the bench. When WebGL or scene loading fails, a 2D equipment bench keeps adding, selecting, and removing equipment available and offers a 3D retry. Run animates the bulb and shows illustrative readouts when the sample equipment set is present. Wiring and calculated circuit behaviour remain future work.

@@ -1,71 +1,90 @@
-import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
+import {
+  Atom,
+  BookOpen,
+  ChartNoAxesColumn,
+  FlaskConical,
+  House,
+  Menu,
+  Moon,
+  Sun,
+  X,
+} from "lucide-react";
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { subjects } from "../features/catalog/data/catalog";
-import { SubjectIcon } from "../shared/ui/SubjectIcon";
+import { useLanguage } from "./useLanguage";
 import { useTheme } from "./useTheme";
 
 export function AppLayout() {
+  const { language, toggleLanguage, tr } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
-  const nav = (
-    <>
-      <NavLink
-        to="/"
-        end
-        onClick={() => setMenuOpen(false)}
-        className={({ isActive }) =>
-          `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${isActive ? "bg-slate-900 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"}`
-        }
-      >
-        Overview
-      </NavLink>
-      <p className="mt-8 px-4 text-xs font-bold uppercase tracking-widest text-slate-400">
-        Subjects
-      </p>
-      {subjects.map((subject) => (
+  const navItems = [
+    {
+      to: "/",
+      label: tr("Home", "Nyumbani"),
+      hint: tr("Start here", "Anzia hapa"),
+      icon: House,
+      end: true,
+    },
+    {
+      to: "/labs",
+      label: tr("Guided lessons", "Masomo yenye mwongozo"),
+      hint: tr("Step-by-step lab lessons", "Masomo ya maabara hatua kwa hatua"),
+      icon: BookOpen,
+      end: false,
+    },
+    {
+      to: "/workbench",
+      label: tr("Practice bench", "Benchi la mazoezi"),
+      hint: tr("Build and test freely", "Unda na ujaribu huru"),
+      icon: FlaskConical,
+      end: false,
+    },
+    {
+      to: "/progress",
+      label: tr("My progress", "Maendeleo yangu"),
+      hint: tr("Scores and badges", "Alama na beji"),
+      icon: ChartNoAxesColumn,
+      end: false,
+    },
+  ];
+  const navigation = (
+    <div className="space-y-1 pt-4">
+      {navItems.map(({ to, label, hint, icon: Icon, end }) => (
         <NavLink
-          key={subject.id}
-          to={`/${subject.id}`}
+          key={to}
+          to={to}
+          end={end}
           onClick={() => setMenuOpen(false)}
           className={({ isActive }) =>
-            `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${isActive ? "bg-slate-900 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"}`
+            `flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${isActive ? "bg-green-50 text-kenya-green dark:bg-green-950 dark:text-green-300" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"}`
           }
         >
-          <SubjectIcon icon={subject.icon} className="h-5 w-5" />
-          {subject.name}
+          <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
+          <span className="min-w-0">
+            <span className="block text-sm font-bold">{label}</span>
+            <span className="block truncate text-xs font-medium text-slate-500 dark:text-slate-400">
+              {hint}
+            </span>
+          </span>
         </NavLink>
       ))}
-    </>
+    </div>
   );
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-slate-200 bg-white px-4 py-6 dark:border-slate-800 dark:bg-slate-900 lg:flex">
-        <Link
-          to="/"
-          className="flex items-center gap-3 px-3 text-lg font-black tracking-tight"
-        >
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-500 text-white">
-            <FlaskConicalMark />
-          </span>
-          Virtual Labs
-        </Link>
-        <div className="mt-12 space-y-1">{nav}</div>
-        <div className="mt-auto rounded-2xl bg-teal-50 p-4 text-sm text-teal-900 dark:bg-teal-950 dark:text-teal-100">
-          <p className="font-bold">Explore with curiosity</p>
-          <p className="mt-1 text-teal-700 dark:text-teal-200">
-            Preview the lab. Learn the idea. Run the simulation.
-          </p>
-        </div>
-      </aside>
-      <div className="lg:pl-64">
-        <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-200 bg-white/95 px-5 backdrop-blur dark:border-slate-800 dark:bg-slate-900/95 sm:px-8">
-          <div className="flex items-center gap-3">
+    <div className="min-h-screen bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur dark:border-slate-800 dark:bg-slate-950/95">
+        <div className="flex h-16 items-center justify-between gap-4 px-4 sm:px-6">
+          <div className="flex min-w-0 items-center gap-2">
             <button
               type="button"
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
               onClick={() => setMenuOpen(!menuOpen)}
-              className="rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"
+              aria-label={
+                menuOpen
+                  ? tr("Close menu", "Funga menyu")
+                  : tr("Open menu", "Fungua menyu")
+              }
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 md:hidden"
             >
               {menuOpen ? (
                 <X className="h-5 w-5" />
@@ -73,57 +92,91 @@ export function AppLayout() {
                 <Menu className="h-5 w-5" />
               )}
             </button>
-            <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-              Your science workspace
-            </span>
+            <Link to="/" className="flex min-w-0 items-center gap-2.5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-kenya-green text-white">
+                <Atom className="h-6 w-6" aria-hidden="true" />
+              </span>
+              <span className="truncate text-base font-extrabold tracking-tight sm:text-lg">
+                Kenya Virtual Science Lab
+              </span>
+            </Link>
           </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="hidden text-xs font-semibold text-slate-500 lg:inline">
+              {tr("CBE STEM workspace", "Nafasi ya CBE STEM")}
+            </span>
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              aria-label={tr("Switch language", "Badilisha lugha")}
+              className="min-h-11 rounded-xl border border-slate-200 px-3 text-xs font-extrabold dark:border-slate-700"
+            >
+              <span
+                className={
+                  language === "en"
+                    ? "text-kenya-green dark:text-green-400"
+                    : "text-slate-400"
+                }
+              >
+                EN
+              </span>
+              <span className="mx-1 text-slate-300">/</span>
+              <span
+                className={
+                  language === "sw"
+                    ? "text-kenya-green dark:text-green-400"
+                    : "text-slate-400"
+                }
+              >
+                SW
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={tr(
+                `Switch to ${theme === "light" ? "dark" : "light"} theme`,
+                "Badilisha mandhari",
+              )}
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700"
+            >
+              {theme === "light" ? (
+                <Moon className="h-5 w-5" />
+              ) : (
+                <Sun className="h-5 w-5" />
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+      <aside className="fixed inset-y-0 left-0 top-16 z-30 hidden w-64 flex-col border-r border-slate-200 bg-white px-3 dark:border-slate-800 dark:bg-slate-900 md:flex">
+        <nav aria-label={tr("Main navigation", "Urambazaji mkuu")}>
+          {navigation}
+        </nav>
+      </aside>
+      {menuOpen && (
+        <>
           <button
             type="button"
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-            className="rounded-xl border border-slate-200 p-2.5 hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
-          >
-            {theme === "light" ? (
-              <Moon className="h-4 w-4" />
-            ) : (
-              <Sun className="h-4 w-4" />
-            )}
-          </button>
-        </header>
-        {menuOpen && (
-          <nav
-            aria-label="Mobile navigation"
-            className="absolute z-20 w-full space-y-1 border-b border-slate-200 bg-white p-4 shadow-lg dark:border-slate-800 dark:bg-slate-900 lg:hidden"
-          >
-            {nav}
-          </nav>
-        )}
+            onClick={() => setMenuOpen(false)}
+            aria-label={tr("Close navigation", "Funga urambazaji")}
+            className="fixed inset-0 top-16 z-20 bg-black/40 md:hidden"
+          />
+          <aside className="fixed inset-y-0 left-0 top-16 z-30 w-64 border-r border-slate-200 bg-white px-3 dark:border-slate-800 dark:bg-slate-900 md:hidden">
+            <nav aria-label={tr("Main navigation", "Urambazaji mkuu")}>
+              {navigation}
+            </nav>
+          </aside>
+        </>
+      )}
+      <div className="md:pl-64">
         <main
           id="main"
-          className="mx-auto max-w-7xl px-5 py-8 sm:px-8 sm:py-10"
+          className="mx-auto max-w-screen-2xl px-4 py-5 sm:px-6 sm:py-6"
         >
           <Outlet />
         </main>
-        <footer className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 border-t border-slate-200 px-5 py-6 text-xs text-slate-500 dark:border-slate-800 sm:px-8">
-          <span>Virtual Labs · Learn by doing</span>
-          <a
-            href="https://phet.colorado.edu"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 hover:text-teal-600"
-          >
-            Featured simulations by PhET <ArrowUpRight className="h-3 w-3" />
-          </a>
-        </footer>
       </div>
     </div>
-  );
-}
-
-function FlaskConicalMark() {
-  return (
-    <span aria-hidden="true" className="text-xl">
-      ✳
-    </span>
   );
 }

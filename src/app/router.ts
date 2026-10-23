@@ -17,30 +17,61 @@ export const router = createBrowserRouter([
         }),
       },
       {
-        path: ":subjectId",
+        path: "labs",
         lazy: async () => ({
-          Component: (await import("../features/catalog/pages/SubjectPage"))
+          Component: (await import("../features/catalog/pages/LabBrowserPage"))
             .default,
         }),
       },
       {
-        path: ":subjectId/learn/:lessonSlug",
+        path: "labs/:labId",
         lazy: async () => ({
-          Component: (await import("../features/learning/pages/LessonPage"))
+          Component: (await import("../features/labs/pages/GuidedLabPage"))
             .default,
         }),
       },
       {
-        path: ":subjectId/labs/:labSlug",
+        path: "labs/:labId/pre-assessment",
         lazy: async () => ({
-          Component: (await import("../features/labs/pages/LabIntroPage"))
+          Component: (await import("../features/assessment/pages/QuizPage"))
             .default,
         }),
       },
       {
-        path: ":subjectId/labs/:labSlug/run",
+        path: "workbench",
         lazy: async () => ({
-          Component: (await import("../features/labs/pages/LabRunPage"))
+          Component: (
+            await import("../features/workbench/pages/WorkbenchTopicsPage")
+          ).default,
+        }),
+      },
+      {
+        path: "workbench/:topicId",
+        lazy: async () => ({
+          Component: (
+            await import("../features/workbench/pages/TopicBenchPage")
+          ).default,
+        }),
+      },
+      {
+        path: "sandbox",
+        lazy: async () => ({
+          Component: (await import("../features/sandbox/pages/SandboxPage"))
+            .default,
+        }),
+      },
+      {
+        path: "sandbox/biology",
+        lazy: async () => ({
+          Component: (
+            await import("../features/biology-lab/pages/BiologyLabPage")
+          ).default,
+        }),
+      },
+      {
+        path: "progress",
+        lazy: async () => ({
+          Component: (await import("../features/progress/pages/ProgressPage"))
             .default,
         }),
       },

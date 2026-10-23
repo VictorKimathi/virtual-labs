@@ -1,3 +1,3 @@
-# Labs
+# Guided labs
 
-Each activity uses adjacent Introduction, Lesson, and Simulation tabs backed by separate routes. The lesson is directly before the runner. The runner embeds a curated PhET URL and gives a provider-site fallback. Keep provider URLs and attribution in catalog data; check each provider's license and embedding rules before adding it.
+The guided page has seven CBE-style steps. Ohm's Law has detailed starter content, an introduction illustration, and a lesson tab directly before its circuit simulation. Other catalog items are previews with limited content.

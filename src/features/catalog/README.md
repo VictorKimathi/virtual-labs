@@ -1,3 +1,3 @@
 # Catalog
 
-Static, typed subject and starter activity metadata lives in `data/catalog.ts`. The overview and subject pages read from it. Add curated items here until remote content is actually needed.
+`data/catalog.ts` contains the four subjects and a small, typed lesson list. The Guided lessons page (`/labs`) filters it by subject and grade band. Ohm's Law and Plant Cells have interactive content; the other entries are labelled previews.

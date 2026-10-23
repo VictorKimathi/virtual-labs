@@ -1,150 +1,155 @@
-import type { Subject, SubjectId } from "./catalog.types";
+import type { Lab, Level, Subject, SubjectId } from "./catalog.types";
 
 export const subjects: Subject[] = [
   {
-    id: "chemistry",
-    name: "Chemistry",
-    eyebrow: "MATTER & REACTIONS",
-    icon: "flask",
-    summary:
-      "Explore substances, reactions, and the evidence behind chemical change.",
-    lessons: [
-      {
-        slug: "acids-and-bases",
-        title: "Acids & bases",
-        summary:
-          "Get oriented with pH, concentration, and indicators before experimenting.",
-        duration: "5 min read",
-        keyIdeas: [
-          "The pH scale describes how acidic or basic a solution is.",
-          "Concentration and strength are different properties.",
-          "Indicators help reveal changes you cannot see directly.",
-        ],
-        labSlug: "acid-base-solutions",
-      },
-    ],
-    labs: [
-      {
-        slug: "acid-base-solutions",
-        title: "Acid–base solutions",
-        topic: "Solutions",
-        duration: "15–20 min",
-        summary:
-          "Compare common solutions and watch how concentration changes pH and conductivity.",
-        question: "How does changing concentration affect pH and conductivity?",
-        objectives: [
-          "Compare acids and bases using the pH meter.",
-          "Change concentration and observe the result.",
-          "Record a claim supported by an observation.",
-        ],
-        provider: "PhET Interactive Simulations",
-        providerUrl:
-          "https://phet.colorado.edu/en/simulations/acid-base-solutions",
-        embedUrl:
-          "https://phet.colorado.edu/sims/html/acid-base-solutions/latest/acid-base-solutions_en.html",
-        attribution:
-          "Simulation by PhET Interactive Simulations, University of Colorado Boulder, licensed under CC BY-NC 4.0 (https://phet.colorado.edu).",
-      },
-    ],
-  },
-  {
     id: "physics",
     name: "Physics",
-    eyebrow: "FORCES & MOTION",
+    nameSw: "Fizikia",
     icon: "atom",
-    summary: "Test how forces, energy, and motion shape the world around us.",
-    lessons: [
-      {
-        slug: "forces-and-motion",
-        title: "Forces & motion",
-        summary:
-          "Build an intuition for balanced forces, friction, and acceleration.",
-        duration: "5 min read",
-        keyIdeas: [
-          "Balanced forces do not change an object’s motion.",
-          "An unbalanced net force changes motion.",
-          "Friction acts against sliding motion.",
-        ],
-        labSlug: "forces-and-motion-basics",
-      },
-    ],
-    labs: [
-      {
-        slug: "forces-and-motion-basics",
-        title: "Forces and motion basics",
-        topic: "Mechanics",
-        duration: "15–20 min",
-        summary:
-          "Push, pull, and change friction to see how objects respond to forces.",
-        question: "When does a push change an object’s motion?",
-        objectives: [
-          "Identify balanced and unbalanced forces.",
-          "Compare motion with and without friction.",
-          "Explain one result using net force.",
-        ],
-        provider: "PhET Interactive Simulations",
-        providerUrl:
-          "https://phet.colorado.edu/en/simulations/forces-and-motion-basics",
-        embedUrl:
-          "https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_en.html",
-        attribution:
-          "Simulation by PhET Interactive Simulations, University of Colorado Boulder, licensed under CC BY-NC 4.0 (https://phet.colorado.edu).",
-      },
-    ],
+    colorClass: "text-subject-physics",
+    lightClass: "bg-blue-50 dark:bg-blue-950",
+  },
+  {
+    id: "chemistry",
+    name: "Chemistry",
+    nameSw: "Kemia",
+    icon: "flask",
+    colorClass: "text-subject-chemistry",
+    lightClass: "bg-orange-50 dark:bg-orange-950",
   },
   {
     id: "biology",
     name: "Biology",
-    eyebrow: "LIFE & SYSTEMS",
+    nameSw: "Biolojia",
     icon: "dna",
-    summary:
-      "Investigate living systems, adaptation, and the patterns of life.",
-    lessons: [
-      {
-        slug: "natural-selection",
-        title: "Natural selection",
-        summary:
-          "Learn how traits become more or less common across generations.",
-        duration: "5 min read",
-        keyIdeas: [
-          "Individuals in a population vary.",
-          "Inherited traits can affect survival and reproduction.",
-          "Populations change over generations.",
-        ],
-        labSlug: "natural-selection",
-      },
-    ],
-    labs: [
-      {
-        slug: "natural-selection",
-        title: "Natural selection",
-        topic: "Evolution",
-        duration: "15–20 min",
-        summary:
-          "Change environmental conditions and observe how a rabbit population evolves.",
-        question:
-          "Which traits help a population survive when its environment changes?",
-        objectives: [
-          "Identify a trait and an environmental pressure.",
-          "Observe how trait frequency changes over time.",
-          "Explain the result using natural selection.",
-        ],
-        provider: "PhET Interactive Simulations",
-        providerUrl:
-          "https://phet.colorado.edu/en/simulations/natural-selection",
-        embedUrl:
-          "https://phet.colorado.edu/sims/html/natural-selection/latest/natural-selection_en.html",
-        attribution:
-          "Simulation by PhET Interactive Simulations, University of Colorado Boulder, licensed under CC BY-NC 4.0 (https://phet.colorado.edu).",
-      },
-    ],
+    colorClass: "text-subject-biology",
+    lightClass: "bg-green-50 dark:bg-green-950",
+  },
+  {
+    id: "agriculture",
+    name: "Agriculture",
+    nameSw: "Kilimo",
+    icon: "sprout",
+    colorClass: "text-subject-agriculture",
+    lightClass: "bg-yellow-50 dark:bg-yellow-950",
   },
 ];
 
-export function getSubject(id: string | undefined): Subject | undefined {
+export const labs: Lab[] = [
+  {
+    id: "ohms-law",
+    title: "Ohm's Law",
+    titleSw: "Sheria ya Ohm",
+    subject: "physics",
+    grade: 10,
+    strand: "Electricity",
+    strandSw: "Umeme",
+    duration: "25 min",
+    intro:
+      "Build a simple circuit and investigate how voltage, current and resistance are connected.",
+    introSw:
+      "Unda sakiti rahisi na uchunguze uhusiano wa volteji, mkondo na ukinzani.",
+    available: true,
+  },
+  {
+    id: "forces-motion",
+    title: "Forces & Motion",
+    titleSw: "Nguvu na Mwendo",
+    subject: "physics",
+    grade: 8,
+    strand: "Motion",
+    strandSw: "Mwendo",
+    duration: "20 min",
+    intro: "Explore how a push or pull changes an object’s motion.",
+    introSw: "Chunguza jinsi msukumo au mvuto hubadilisha mwendo wa kitu.",
+    available: false,
+  },
+  {
+    id: "acids-bases",
+    title: "Acids & Bases",
+    titleSw: "Asidi na Besi",
+    subject: "chemistry",
+    grade: 9,
+    strand: "Matter",
+    strandSw: "Maada",
+    duration: "20 min",
+    intro: "Compare solutions using indicators and the pH scale.",
+    introSw: "Linganisha miyeyusho kwa kutumia viashiria na kipimo cha pH.",
+    available: false,
+  },
+  {
+    id: "separation",
+    title: "Separating Mixtures",
+    titleSw: "Kutenganisha Michanganyiko",
+    subject: "chemistry",
+    grade: 10,
+    strand: "Mixtures",
+    strandSw: "Michanganyiko",
+    duration: "20 min",
+    intro: "Choose methods to separate materials based on their properties.",
+    introSw: "Chagua mbinu za kutenganisha vitu kulingana na sifa zake.",
+    available: false,
+  },
+  {
+    id: "plant-cells",
+    title: "Plant Cells",
+    titleSw: "Seli za Mimea",
+    subject: "biology",
+    grade: 7,
+    strand: "Cells",
+    strandSw: "Seli",
+    duration: "15 min",
+    intro: "Identify the main structures of a plant cell.",
+    introSw: "Tambua sehemu kuu za seli ya mmea.",
+    available: true,
+  },
+  {
+    id: "photosynthesis",
+    title: "Photosynthesis",
+    titleSw: "Usanisinuru",
+    subject: "biology",
+    grade: 10,
+    strand: "Nutrition",
+    strandSw: "Lishe",
+    duration: "20 min",
+    intro: "Explore the conditions plants need to make food.",
+    introSw: "Chunguza hali ambazo mimea huhitaji kutengeneza chakula.",
+    available: false,
+  },
+  {
+    id: "soil-testing",
+    title: "Soil Testing",
+    titleSw: "Upimaji wa Udongo",
+    subject: "agriculture",
+    grade: 8,
+    strand: "Soils",
+    strandSw: "Udongo",
+    duration: "20 min",
+    intro: "Compare soil samples and the conditions they support.",
+    introSw: "Linganisha sampuli za udongo na hali zinazosaidia mimea.",
+    available: false,
+  },
+  {
+    id: "seed-germination",
+    title: "Seed Germination",
+    titleSw: "Uotaji wa Mbegu",
+    subject: "agriculture",
+    grade: 10,
+    strand: "Crop Production",
+    strandSw: "Uzalishaji wa Mazao",
+    duration: "20 min",
+    intro: "Observe what a seed needs to germinate.",
+    introSw: "Chunguza mahitaji ya mbegu ili iote.",
+    available: false,
+  },
+];
+
+export function getSubject(id: SubjectId) {
   return subjects.find((subject) => subject.id === id);
 }
-
-export function isSubjectId(value: string): value is SubjectId {
-  return subjects.some((subject) => subject.id === value);
+export function getLab(id: string | undefined) {
+  return labs.find((lab) => lab.id === id);
+}
+export function getLabLevel(lab: Lab): Level {
+  return lab.grade <= 9 ? "junior" : "senior";
 }

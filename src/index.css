@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-kenya-green: #006600;
+  --color-kenya-red: #bb0000;
+  --color-subject-physics: #2563eb;
+  --color-subject-chemistry: #ea580c;
+  --color-subject-biology: #15803d;
+  --color-subject-agriculture: #ca8a04;
+}
+@theme {
+  --animate-current-flow: current-flow 0.8s linear infinite;
+  @keyframes current-flow {
+    to {
+      stroke-dashoffset: -20;
+    }
+  }
+}
