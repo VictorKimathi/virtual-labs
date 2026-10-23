@@ -5,6 +5,7 @@ import {
   FlaskConical,
   House,
   Menu,
+  MonitorPlay,
   Moon,
   Sun,
   X,
@@ -41,6 +42,13 @@ export function AppLayout() {
       icon: FlaskConical,
       end: false,
       alsoActive: ["/chemistry", "/sandbox"],
+    },
+    {
+      to: "/simulations",
+      label: tr("PhET simulations", "Uigaji wa PhET"),
+      hint: tr("Explore science visually", "Chunguza sayansi kwa picha"),
+      icon: MonitorPlay,
+      end: false,
     },
     {
       to: "/progress",

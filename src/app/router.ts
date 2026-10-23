@@ -100,6 +100,22 @@ export const router = createBrowserRouter([
         }),
       },
       {
+        path: "simulations",
+        lazy: async () => ({
+          Component: (
+            await import("../features/phet-simulations/pages/PhetSimulationsPage")
+          ).default,
+        }),
+      },
+      {
+        path: "simulations/:simName",
+        lazy: async () => ({
+          Component: (
+            await import("../features/phet-simulations/pages/PhetSimulationPage")
+          ).default,
+        }),
+      },
+      {
         path: "progress",
         lazy: async () => ({
           Component: (await import("../features/progress/pages/ProgressPage"))

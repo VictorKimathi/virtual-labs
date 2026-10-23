@@ -2,3 +2,4 @@ node_modules
 dist
 AGENTS.md
 .claude
+src/features/phet-simulations/data/phetSnapshot.json

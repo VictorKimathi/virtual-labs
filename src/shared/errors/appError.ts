@@ -1,0 +1,57 @@
+export type AppErrorCode =
+  "network" | "server" | "invalid-data" | "not-found" | "unknown";
+
+type UserMessage = { en: string; sw: string };
+
+const userMessages: Record<AppErrorCode, UserMessage> = {
+  network: {
+    en: "We could not reach the server. Check your internet connection and try again.",
+    sw: "Hatukuweza kufikia seva. Angalia mtandao wako kisha ujaribu tena.",
+  },
+  server: {
+    en: "The server is busy right now. Please try again in a moment.",
+    sw: "Seva ina shughuli nyingi sasa. Tafadhali jaribu tena baada ya muda mfupi.",
+  },
+  "invalid-data": {
+    en: "The data we received was not in the expected format.",
+    sw: "Data tuliyopokea haikuwa katika muundo uliotarajiwa.",
+  },
+  "not-found": {
+    en: "We could not find what you were looking for.",
+    sw: "Hatukupata ulichokuwa unatafuta.",
+  },
+  unknown: {
+    en: "Something went wrong. Please try again.",
+    sw: "Hitilafu imetokea. Tafadhali jaribu tena.",
+  },
+};
+
+export class AppError extends Error {
+  readonly code: AppErrorCode;
+
+  constructor(code: AppErrorCode, message: string, options?: ErrorOptions) {
+    super(message, options);
+    this.name = "AppError";
+    this.code = code;
+  }
+
+  get retryable() {
+    return this.code === "network" || this.code === "server";
+  }
+}
+
+export function toAppError(error: unknown): AppError {
+  if (error instanceof AppError) return error;
+  if (error instanceof TypeError || error instanceof DOMException) {
+    return new AppError("network", "Request failed", { cause: error });
+  }
+  return new AppError("unknown", "Unexpected error", { cause: error });
+}
+
+export function getUserMessage(error: AppError): UserMessage {
+  return userMessages[error.code];
+}
+
+export function logError(context: string, error: unknown) {
+  console.error(`[${context}]`, error);
+}
