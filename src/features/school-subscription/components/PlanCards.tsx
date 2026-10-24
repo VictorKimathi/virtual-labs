@@ -15,7 +15,7 @@ type Props = {
 };
 
 const cardBase =
-  "relative flex flex-col rounded-2xl border p-6 transition-colors";
+  "relative flex flex-col overflow-hidden rounded-3xl border p-7 transition-all duration-300";
 
 export function PlanCards({ selected, onChoose }: Props) {
   const { tr } = useLanguage();
@@ -51,36 +51,42 @@ export function PlanCards({ selected, onChoose }: Props) {
   ];
 
   return (
-    <ul className="grid gap-4 md:grid-cols-2">
+    <ul className="grid gap-5 md:grid-cols-2">
       {plans.map((plan) => {
         const active = selected === plan.id;
         return (
           <li key={plan.id}>
             <div
-              className={`${cardBase} h-full ${active ? "border-kenya-green bg-green-50 dark:bg-green-950" : "border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"}`}
+              className={`${cardBase} h-full ${active ? "border-kenya-green bg-linear-to-br from-kenya-green to-emerald-700 text-white shadow-xl shadow-kenya-green/30" : "border-slate-200 bg-white hover:border-kenya-green dark:border-slate-800 dark:bg-slate-900"}`}
             >
               {plan.badge && (
-                <span className="absolute right-4 top-4 rounded-full bg-kenya-green px-3 py-1 text-xs font-bold text-white">
+                <span
+                  className={`absolute right-5 top-5 rounded-full px-3 py-1 text-xs font-extrabold ${active ? "bg-white text-kenya-green" : "bg-kenya-green text-white"}`}
+                >
                   {plan.badge}
                 </span>
               )}
-              <h3 className="text-lg font-extrabold">{plan.name}</h3>
+              <h3 className="text-xl font-black">{plan.name}</h3>
               <p className="mt-3 flex items-baseline gap-2">
                 <span className="text-4xl font-black tracking-tight">
                   {formatKes(plan.price)}
                 </span>
-                <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+                <span
+                  className={`text-sm font-semibold ${active ? "text-green-100" : "text-slate-500 dark:text-slate-400"}`}
+                >
                   {plan.unit}
                 </span>
               </p>
-              <p className="mt-3 flex-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
+              <p
+                className={`mt-3 flex-1 text-sm leading-6 ${active ? "text-green-50" : "text-slate-600 dark:text-slate-300"}`}
+              >
                 {plan.note}
               </p>
               <a
                 href="#subscribe"
                 onClick={() => onChoose(plan.id)}
                 aria-pressed={active}
-                className={`mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold ${active ? "bg-kenya-green text-white" : "border border-kenya-green text-kenya-green dark:text-green-400"}`}
+                className={`mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl px-5 text-sm font-extrabold transition-transform hover:-translate-y-0.5 ${active ? "bg-white text-kenya-green" : "border border-kenya-green text-kenya-green dark:text-green-400"}`}
               >
                 {active && <Check className="h-4 w-4" aria-hidden="true" />}
                 {tr(

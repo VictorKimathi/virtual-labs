@@ -28,7 +28,7 @@ const emptyValues: FormValues = {
 };
 
 const inputClass =
-  "min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-medium placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-950";
+  "min-h-12 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 text-sm font-medium outline-none transition placeholder:text-slate-400 focus:border-kenya-green focus:bg-white focus:ring-4 focus:ring-kenya-green/20 dark:border-slate-700 dark:bg-slate-950";
 
 export function SubscribeForm({ plan, onPlanChange }: Props) {
   const { language, tr } = useLanguage();
@@ -133,7 +133,7 @@ export function SubscribeForm({ plan, onPlanChange }: Props) {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="space-y-5 rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 sm:p-6"
+      className="space-y-5 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/30 sm:p-8"
     >
       <fieldset className="space-y-2">
         <legend className="text-sm font-bold">{tr("Plan", "Mpango")}</legend>
@@ -141,7 +141,7 @@ export function SubscribeForm({ plan, onPlanChange }: Props) {
           {(["monthly", "yearly"] as const).map((option) => (
             <label
               key={option}
-              className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-xl border px-4 text-sm font-bold ${plan === option ? "border-kenya-green bg-green-50 dark:bg-green-950" : "border-slate-300 dark:border-slate-700"}`}
+              className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-2xl border px-4 text-sm font-bold transition-colors ${plan === option ? "border-kenya-green bg-green-50 ring-4 ring-kenya-green/15 dark:bg-green-950" : "border-slate-300 hover:border-kenya-green dark:border-slate-700"}`}
             >
               <input
                 type="radio"
@@ -211,7 +211,7 @@ export function SubscribeForm({ plan, onPlanChange }: Props) {
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-kenya-green px-6 text-sm font-bold text-white disabled:opacity-60 sm:w-auto"
+        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-kenya-green px-6 text-sm font-extrabold text-white shadow-lg shadow-kenya-green/25 transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
       >
         {submitting && (
           <LoaderCircle

@@ -10,13 +10,13 @@ export function CatalogSkeleton() {
         {tr("Loading simulations…", "Inapakia uigaji…")}
       </span>
       <ul
-        className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+        className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5"
         aria-hidden="true"
       >
         {placeholders.map((index) => (
           <li
             key={index}
-            className="animate-pulse overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
+            className="animate-pulse overflow-hidden rounded-3xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
           >
             <div className="aspect-3/2 bg-slate-200 dark:bg-slate-800" />
             <div className="space-y-2 p-4">

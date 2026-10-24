@@ -1,0 +1,2322 @@
+[
+  {
+    "id": "hand-muscles-abductor-digiti-minimi-of-hand-left__Abductor digiti minimi of hand.l",
+    "name": "Abductor digiti minimi of hand (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-abductor-digiti-minimi-of-hand-right__Abductor digiti minimi of hand.r",
+    "name": "Abductor digiti minimi of hand (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-abductor-pollicis-brevis-left__Abductor pollicis brevis.l",
+    "name": "Abductor pollicis brevis (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-abductor-pollicis-brevis-right__Abductor pollicis brevis.r",
+    "name": "Abductor pollicis brevis (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "oculomotor-nuclei-accessory-nucleus-of-oculomotor-nerve-left__Accessory nucleus of oculomotor nerve.l",
+    "name": "Accessory nucleus of oculomotor nerve (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "oculomotor-nuclei-accessory-nucleus-of-oculomotor-nerve-right__Accessory nucleus of oculomotor nerve.r",
+    "name": "Accessory nucleus of oculomotor nerve (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "deltoid-muscles-acromial-part-of-deltoid-muscle-left__Acromial part of deltoid muscle.l",
+    "name": "Acromial part of deltoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deltoid-muscles-acromial-part-of-deltoid-muscle-right__Acromial part of deltoid muscle.r",
+    "name": "Acromial part of deltoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-anterior-axillary-nodes-left__Anterior axillary nodes.l",
+    "name": "Anterior axillary nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-anterior-axillary-nodes-right__Anterior axillary nodes.r",
+    "name": "Anterior axillary nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "neck-muscles-anterior-belly-of-digastric-muscle-left__Anterior belly of digastric muscle.l",
+    "name": "Anterior belly of digastric muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-anterior-belly-of-digastric-muscle-right__Anterior belly of digastric muscle.r",
+    "name": "Anterior belly of digastric muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-anterior-tibial-node-left__(Anterior tibial node).l",
+    "name": "Anterior tibial node) (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-anterior-tibial-node-right__(Anterior tibial node).r",
+    "name": "Anterior tibial node) (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "cerebral-aqueduct__Aqueduct of midbrain",
+    "name": "Aqueduct of midbrain",
+    "system": "nervous"
+  },
+  {
+    "id": "neck-muscles-ary-epiglottic-part-of-oblique-arytenoid-muscle-left__Ary-epiglottic part of oblique arytenoid muscle.l",
+    "name": "Ary-epiglottic part of oblique arytenoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-ary-epiglottic-part-of-oblique-arytenoid-muscle-right__Ary-epiglottic part of oblique arytenoid muscle.r",
+    "name": "Ary-epiglottic part of oblique arytenoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "large-intestine-ascending-colon__Ascending colon",
+    "name": "Ascending colon",
+    "system": "digestive"
+  },
+  {
+    "id": "skeleton-atlas-c1__Atlas (C1)",
+    "name": "Atlas (C1",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-axis-c2__Axis (C2)",
+    "name": "Axis (C2",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-body-of-sternum__Body of sternum",
+    "name": "Body of sternum",
+    "system": "skeletal"
+  },
+  {
+    "id": "lymphoid-organs-brachial-nodes-left__Brachial nodes.l",
+    "name": "Brachial nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-brachial-nodes-right__Brachial nodes.r",
+    "name": "Brachial nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "facial-expression-muscles-bucinator-left__Bucinator.l",
+    "name": "Bucinator (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-bucinator-right__Bucinator.r",
+    "name": "Bucinator (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-bucinator-node-left__Bucinator node.l",
+    "name": "Bucinator node (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-bucinator-node-right__Bucinator node.r",
+    "name": "Bucinator node (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "appendicular-skeleton-calcaneus-left__Calcaneus.l",
+    "name": "Calcaneus (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-calcaneus-right__Calcaneus.r",
+    "name": "Calcaneus (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-capitate-bone-left__Capitate bone.l",
+    "name": "Capitate bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-capitate-bone-right__Capitate bone.r",
+    "name": "Capitate bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "brain-cerebellum",
+    "name": "Cerebellum",
+    "system": "nervous"
+  },
+  {
+    "id": "brain-cerebrum",
+    "name": "Cerebrum",
+    "system": "nervous"
+  },
+  {
+    "id": "appendicular-skeleton-clavicle-left__Clavicle.l",
+    "name": "Clavicle (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-clavicle-right__Clavicle.r",
+    "name": "Clavicle (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "deltoid-muscles-clavicular-part-of-deltoid-muscle-left__Clavicular part of deltoid muscle.l",
+    "name": "Clavicular part of deltoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deltoid-muscles-clavicular-part-of-deltoid-muscle-right__Clavicular part of deltoid muscle.r",
+    "name": "Clavicular part of deltoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "skeleton-coccyx__Coccyx",
+    "name": "Coccyx",
+    "system": "skeletal"
+  },
+  {
+    "id": "facial-expression-muscles-corrugator-supercilii-left__Corrugator supercilii.l",
+    "name": "Corrugator supercilii (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-corrugator-supercilii-right__Corrugator supercilii.r",
+    "name": "Corrugator supercilii (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-cuboid-bone-left__Cuboid bone.l",
+    "name": "Cuboid bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-cuboid-bone-right__Cuboid bone.r",
+    "name": "Cuboid bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "lymphoid-organs-cystic-node__Cystic node",
+    "name": "Cystic node",
+    "system": "lymphatic"
+  },
+  {
+    "id": "hand-muscles-deep-head-of-flexor-pollicis-brevis-left__Deep head of flexor pollicis brevis.l",
+    "name": "Deep head of flexor pollicis brevis (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-deep-head-of-flexor-pollicis-brevis-right__Deep head of flexor pollicis brevis.r",
+    "name": "Deep head of flexor pollicis brevis (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-deep-popliteal-nodes-left__Deep popliteal nodes.l",
+    "name": "Deep popliteal nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-deep-popliteal-nodes-right__Deep popliteal nodes.r",
+    "name": "Deep popliteal nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "facial-expression-muscles-depressor-anguli-oris-left__Depressor anguli oris.l",
+    "name": "Depressor anguli oris (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-depressor-anguli-oris-right__Depressor anguli oris.r",
+    "name": "Depressor anguli oris (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-depressor-labii-inferioris-left__Depressor labii inferioris.l",
+    "name": "Depressor labii inferioris (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-depressor-labii-inferioris-right__Depressor labii inferioris.r",
+    "name": "Depressor labii inferioris (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-depressor-septi-nasi-left__Depressor septi nasi.l",
+    "name": "Depressor septi nasi (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-depressor-septi-nasi-right__Depressor septi nasi.r",
+    "name": "Depressor septi nasi (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "large-intestine-descending-colon__Descending colon",
+    "name": "Descending colon",
+    "system": "digestive"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-fifth-finger-of-foot-left__Distal phalanx of fifth finger of foot.l",
+    "name": "Distal phalanx of fifth finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-fifth-finger-of-foot-right__Distal phalanx of fifth finger of foot.r",
+    "name": "Distal phalanx of fifth finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-fifth-finger-of-hand-left__Distal phalanx of fifth finger of hand.l",
+    "name": "Distal phalanx of fifth finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-fifth-finger-of-hand-right__Distal phalanx of fifth finger of hand.r",
+    "name": "Distal phalanx of fifth finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-first-finger-of-foot-left__Distal phalanx of first finger of foot.l",
+    "name": "Distal phalanx of first finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-first-finger-of-foot-right__Distal phalanx of first finger of foot.r",
+    "name": "Distal phalanx of first finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-first-finger-of-hand-left__Distal phalanx of first finger of hand.l",
+    "name": "Distal phalanx of first finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-first-finger-of-hand-right__Distal phalanx of first finger of hand.r",
+    "name": "Distal phalanx of first finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-fourth-finger-of-foot-left__Distal phalanx of fourth finger of foot.l",
+    "name": "Distal phalanx of fourth finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-fourth-finger-of-foot-right__Distal phalanx of fourth finger of foot.r",
+    "name": "Distal phalanx of fourth finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-fourth-finger-of-hand-left__Distal phalanx of fourth finger of hand.l",
+    "name": "Distal phalanx of fourth finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-fourth-finger-of-hand-right__Distal phalanx of fourth finger of hand.r",
+    "name": "Distal phalanx of fourth finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-second-finger-of-foot-left__Distal phalanx of second finger of foot.l",
+    "name": "Distal phalanx of second finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-second-finger-of-foot-right__Distal phalanx of second finger of foot.r",
+    "name": "Distal phalanx of second finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-second-finger-of-hand-left__Distal phalanx of second finger of hand.l",
+    "name": "Distal phalanx of second finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-second-finger-of-hand-right__Distal phalanx of second finger of hand.r",
+    "name": "Distal phalanx of second finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-third-finger-of-foot-left__Distal phalanx of third finger of foot.l",
+    "name": "Distal phalanx of third finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-third-finger-of-foot-right__Distal phalanx of third finger of foot.r",
+    "name": "Distal phalanx of third finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-third-finger-of-hand-left__Distal phalanx of third finger of hand.l",
+    "name": "Distal phalanx of third finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-distal-phalanx-of-third-finger-of-hand-right__Distal phalanx of third finger of hand.r",
+    "name": "Distal phalanx of third finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "hand-muscles-dorsal-interossei-muscles-of-hand-left__Dorsal interossei muscles of hand.l",
+    "name": "Dorsal interossei muscles of hand (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-dorsal-interossei-muscles-of-hand-right__Dorsal interossei muscles of hand.r",
+    "name": "Dorsal interossei muscles of hand (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "small-intestine-duodenum__Duodenum",
+    "name": "Duodenum",
+    "system": "digestive"
+  },
+  {
+    "id": "skeleton-eighth-rib-left__Eighth rib.l",
+    "name": "Eighth rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-eighth-rib-right__Eighth rib.r",
+    "name": "Eighth rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-eleventh-rib-left__Eleventh rib.l",
+    "name": "Eleventh rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-eleventh-rib-right__Eleventh rib.r",
+    "name": "Eleventh rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "external-abdominal-obliques-external-abdominal-oblique-muscle-left__External abdominal oblique muscle.l",
+    "name": "External abdominal oblique muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "external-abdominal-obliques-external-abdominal-oblique-muscle-right__External abdominal oblique muscle.r",
+    "name": "External abdominal oblique muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-external-part-of-thyro-arytenoid-muscle-left__External part of thyro-arytenoid muscle.l",
+    "name": "External part of thyro-arytenoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-external-part-of-thyro-arytenoid-muscle-right__External part of thyro-arytenoid muscle.r",
+    "name": "External part of thyro-arytenoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-femur-left__Femur.l",
+    "name": "Femur (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-femur-right__Femur.r",
+    "name": "Femur (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fibula-left__Fibula.l",
+    "name": "Fibula (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fibula-right__Fibula.r",
+    "name": "Fibula (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fifth-metacarpal-bone-left__Fifth metacarpal bone.l",
+    "name": "Fifth metacarpal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fifth-metacarpal-bone-right__Fifth metacarpal bone.r",
+    "name": "Fifth metacarpal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fifth-metatarsal-bone-left__Fifth metatarsal bone.l",
+    "name": "Fifth metatarsal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fifth-metatarsal-bone-right__Fifth metatarsal bone.r",
+    "name": "Fifth metatarsal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-fifth-rib-left__Fifth rib.l",
+    "name": "Fifth rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-fifth-rib-right__Fifth rib.r",
+    "name": "Fifth rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-first-metacarpal-bone-left__First metacarpal bone.l",
+    "name": "First metacarpal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-first-metacarpal-bone-right__First metacarpal bone.r",
+    "name": "First metacarpal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-first-metatarsal-bone-left__First metatarsal bone.l",
+    "name": "First metatarsal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-first-metatarsal-bone-right__First metatarsal bone.r",
+    "name": "First metatarsal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-first-rib-left__First rib.l",
+    "name": "First rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-first-rib-right__First rib.r",
+    "name": "First rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "hand-muscles-flexor-digiti-minimi-of-hand-left__Flexor digiti minimi of hand.l",
+    "name": "Flexor digiti minimi of hand (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-flexor-digiti-minimi-of-hand-right__Flexor digiti minimi of hand.r",
+    "name": "Flexor digiti minimi of hand (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-fourth-metacarpal-bone-left__Fourth metacarpal bone.l",
+    "name": "Fourth metacarpal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fourth-metacarpal-bone-right__Fourth metacarpal bone.r",
+    "name": "Fourth metacarpal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fourth-metatarsal-bone-left__Fourth metatarsal bone.l",
+    "name": "Fourth metatarsal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-fourth-metatarsal-bone-right__Fourth metatarsal bone.r",
+    "name": "Fourth metatarsal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-fourth-rib-left__Fourth rib.l",
+    "name": "Fourth rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-fourth-rib-right__Fourth rib.r",
+    "name": "Fourth rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "fourth-ventricle__Fourth ventricle",
+    "name": "Fourth ventricle",
+    "system": "nervous"
+  },
+  {
+    "id": "gallbladder__Gallbladder",
+    "name": "Gallbladder",
+    "system": "digestive"
+  },
+  {
+    "id": "neck-muscles-geniohyoid-muscle-left__Geniohyoid muscle.l",
+    "name": "Geniohyoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-geniohyoid-muscle-right__Geniohyoid muscle.r",
+    "name": "Geniohyoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "superficial-gluteal-muscles-gluteus-maximus-muscle-left__Gluteus maximus muscle.l",
+    "name": "Gluteus maximus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "superficial-gluteal-muscles-gluteus-maximus-muscle-right__Gluteus maximus muscle.r",
+    "name": "Gluteus maximus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "superficial-gluteal-muscles-gluteus-medius-muscle-left__Gluteus medius muscle.l",
+    "name": "Gluteus medius muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "superficial-gluteal-muscles-gluteus-medius-muscle-right__Gluteus medius muscle.r",
+    "name": "Gluteus medius muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "superficial-gluteal-muscles-gluteus-minimus-muscle-left__Gluteus minimus muscle.l",
+    "name": "Gluteus minimus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "superficial-gluteal-muscles-gluteus-minimus-muscle-right__Gluteus minimus muscle.r",
+    "name": "Gluteus minimus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-hamate-bone-left__Hamate bone.l",
+    "name": "Hamate bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-hamate-bone-right__Hamate bone.r",
+    "name": "Hamate bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-hip-bone-left__Hip bone.l",
+    "name": "Hip bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-hip-bone-right__Hip bone.r",
+    "name": "Hip bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-humerus-left__Humerus.l",
+    "name": "Humerus (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-humerus-right__Humerus.r",
+    "name": "Humerus (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "inferior-colliculi-inferior-colliculus-left__Inferior colliculus.l",
+    "name": "Inferior colliculus (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "inferior-colliculi-inferior-colliculus-right__Inferior colliculus.r",
+    "name": "Inferior colliculus (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "lymphoid-organs-inferior-epigastric-nodes-left__Inferior epigastric nodes.l",
+    "name": "Inferior epigastric nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-inferior-epigastric-nodes-right__Inferior epigastric nodes.r",
+    "name": "Inferior epigastric nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "deep-gluteal-muscles-inferior-gemellus-muscle-left__Inferior gemellus muscle.l",
+    "name": "Inferior gemellus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-inferior-gemellus-muscle-right__Inferior gemellus muscle.r",
+    "name": "Inferior gemellus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lungs-inferior-lobe-of-left-lung__Inferior lobe of left lung",
+    "name": "Inferior lobe of left lung",
+    "system": "respiratory"
+  },
+  {
+    "id": "lungs-inferior-lobe-of-right-lung__Inferior lobe of right lung",
+    "name": "Inferior lobe of right lung",
+    "system": "respiratory"
+  },
+  {
+    "id": "neck-muscles-inferior-pharyngeal-constrictor-left__Inferior pharyngeal constrictor.l",
+    "name": "Inferior pharyngeal constrictor (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-inferior-pharyngeal-constrictor-right__Inferior pharyngeal constrictor.r",
+    "name": "Inferior pharyngeal constrictor (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-infra-auricular-nodes-left__Infra-auricular nodes.l",
+    "name": "Infra-auricular nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-infra-auricular-nodes-right__Infra-auricular nodes.r",
+    "name": "Infra-auricular nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-infraclavicular-nodes-left__Infraclavicular nodes.l",
+    "name": "Infraclavicular nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-infraclavicular-nodes-right__Infraclavicular nodes.r",
+    "name": "Infraclavicular nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "rotator-cuff-muscles-infraspinatus-muscle-left__Infraspinatus muscle.l",
+    "name": "Infraspinatus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "rotator-cuff-muscles-infraspinatus-muscle-right__Infraspinatus muscle.r",
+    "name": "Infraspinatus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "inguinal-ligaments-inguinal-ligament-left__Inguinal ligament.l",
+    "name": "Inguinal ligament (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "inguinal-ligaments-inguinal-ligament-right__Inguinal ligament.r",
+    "name": "Inguinal ligament (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-intermediate-cuneiform-bone-left__Intermediate cuneiform bone.l",
+    "name": "Intermediate cuneiform bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-intermediate-cuneiform-bone-right__Intermediate cuneiform bone.r",
+    "name": "Intermediate cuneiform bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "lymphoid-organs-intermediate-deep-inguinal-node-left__(Intermediate deep inguinal node).l",
+    "name": "Intermediate deep inguinal node) (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-intermediate-deep-inguinal-node-right__(Intermediate deep inguinal node).r",
+    "name": "Intermediate deep inguinal node) (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "neck-muscles-intermediate-tendon-of-digastric-muscle-left__Intermediate tendon of digastric muscle.l",
+    "name": "Intermediate tendon of digastric muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-intermediate-tendon-of-digastric-muscle-right__Intermediate tendon of digastric muscle.r",
+    "name": "Intermediate tendon of digastric muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "internal-abdominal-obliques-internal-abdominal-oblique-muscle-left__Internal abdominal oblique muscle.l",
+    "name": "Internal abdominal oblique muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "internal-abdominal-obliques-internal-abdominal-oblique-muscle-right__Internal abdominal oblique muscle.r",
+    "name": "Internal abdominal oblique muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "interpeduncular-fossae-interpeduncular-fossa-left__Interpeduncular fossa.l",
+    "name": "Interpeduncular fossa (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "interpeduncular-fossae-interpeduncular-fossa-right__Interpeduncular fossa.r",
+    "name": "Interpeduncular fossa (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "small-intestine-jejunum__Jejunum",
+    "name": "Jejunum",
+    "system": "digestive"
+  },
+  {
+    "id": "kidneys-kidney-left__Kidney.l",
+    "name": "Kidney (left)",
+    "system": "urinary"
+  },
+  {
+    "id": "kidneys-kidney-right__Kidney.r",
+    "name": "Kidney (right)",
+    "system": "urinary"
+  },
+  {
+    "id": "neck-muscles-lateral-crico-arytenoid-muscle-left__Lateral crico-arytenoid muscle.l",
+    "name": "Lateral crico-arytenoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-lateral-crico-arytenoid-muscle-right__Lateral crico-arytenoid muscle.r",
+    "name": "Lateral crico-arytenoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-lateral-cuneiform-bone-left__Lateral cuneiform bone.l",
+    "name": "Lateral cuneiform bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-lateral-cuneiform-bone-right__Lateral cuneiform bone.r",
+    "name": "Lateral cuneiform bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "heart-left-atrium__Left atrium",
+    "name": "Left atrium",
+    "system": "cardiovascular"
+  },
+  {
+    "id": "lymphoid-organs-left-lobe-of-thymus__Left lobe of thymus",
+    "name": "Left lobe of thymus",
+    "system": "lymphatic"
+  },
+  {
+    "id": "heart-left-ventricle__Left ventricle",
+    "name": "Left ventricle",
+    "system": "cardiovascular"
+  },
+  {
+    "id": "facial-expression-muscles-levator-anguli-oris-left__Levator anguli oris.l",
+    "name": "Levator anguli oris (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-levator-anguli-oris-right__Levator anguli oris.r",
+    "name": "Levator anguli oris (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-levator-labii-superioris-left__Levator labii superioris.l",
+    "name": "Levator labii superioris (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-levator-labii-superioris-right__Levator labii superioris.r",
+    "name": "Levator labii superioris (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-levator-nasolabialis-left__Levator nasolabialis.l",
+    "name": "Levator nasolabialis (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-levator-nasolabialis-right__Levator nasolabialis.r",
+    "name": "Levator nasolabialis (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "linea-alba__Linea alba",
+    "name": "Linea alba",
+    "system": "muscular"
+  },
+  {
+    "id": "liver__Liver",
+    "name": "Liver",
+    "system": "digestive"
+  },
+  {
+    "id": "neck-muscles-longus-capitis-muscle-left__Longus capitis muscle.l",
+    "name": "Longus capitis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-longus-capitis-muscle-right__Longus capitis muscle.r",
+    "name": "Longus capitis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-longus-colli-muscle-left__Longus colli muscle.l",
+    "name": "Longus colli muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-longus-colli-muscle-right__Longus colli muscle.r",
+    "name": "Longus colli muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-lumbrical-muscles-of-hand-left__Lumbrical muscles of hand.l",
+    "name": "Lumbrical muscles of hand (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-lumbrical-muscles-of-hand-right__Lumbrical muscles of hand.r",
+    "name": "Lumbrical muscles of hand (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-lunate-bone-left__Lunate bone.l",
+    "name": "Lunate bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-lunate-bone-right__Lunate bone.r",
+    "name": "Lunate bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-manubrium-of-sternum__Manubrium of sternum",
+    "name": "Manubrium of sternum",
+    "system": "skeletal"
+  },
+  {
+    "id": "lymphoid-organs-mastoid-nodes-left__Mastoid nodes.l",
+    "name": "Mastoid nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-mastoid-nodes-right__Mastoid nodes.r",
+    "name": "Mastoid nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-medial-common-iliac-nodes__Medial common iliac nodes",
+    "name": "Medial common iliac nodes",
+    "system": "lymphatic"
+  },
+  {
+    "id": "appendicular-skeleton-medial-cuneiform-bone-left__Medial cuneiform bone.l",
+    "name": "Medial cuneiform bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-medial-cuneiform-bone-right__Medial cuneiform bone.r",
+    "name": "Medial cuneiform bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "lymphoid-organs-medial-external-iliac-nodes-left__Medial external iliac nodes.l",
+    "name": "Medial external iliac nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-medial-external-iliac-nodes-right__Medial external iliac nodes.r",
+    "name": "Medial external iliac nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "brainstem-medulla-oblongata-left__Medulla oblongata.l",
+    "name": "Medulla oblongata (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "brainstem-medulla-oblongata-right__Medulla oblongata.r",
+    "name": "Medulla oblongata (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "facial-expression-muscles-mentalis-muscle-left__Mentalis muscle.l",
+    "name": "Mentalis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-mentalis-muscle-right__Mentalis muscle.r",
+    "name": "Mentalis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "brainstem-midbrain-left__Midbrain.l",
+    "name": "Midbrain (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "brainstem-midbrain-right__Midbrain.r",
+    "name": "Midbrain (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "lungs-middle-lobe-of-right-lung__Middle lobe of right lung",
+    "name": "Middle lobe of right lung",
+    "system": "respiratory"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-fifth-finger-of-foot-left__Middle phalanx of fifth finger of foot.l",
+    "name": "Middle phalanx of fifth finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-fifth-finger-of-foot-right__Middle phalanx of fifth finger of foot.r",
+    "name": "Middle phalanx of fifth finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-fifth-finger-of-hand-left__Middle phalanx of fifth finger of hand.l",
+    "name": "Middle phalanx of fifth finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-fifth-finger-of-hand-right__Middle phalanx of fifth finger of hand.r",
+    "name": "Middle phalanx of fifth finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-fourth-finger-of-foot-left__Middle phalanx of fourth finger of foot.l",
+    "name": "Middle phalanx of fourth finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-fourth-finger-of-foot-right__Middle phalanx of fourth finger of foot.r",
+    "name": "Middle phalanx of fourth finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-fourth-finger-of-hand-left__Middle phalanx of fourth finger of hand.l",
+    "name": "Middle phalanx of fourth finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-fourth-finger-of-hand-right__Middle phalanx of fourth finger of hand.r",
+    "name": "Middle phalanx of fourth finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-second-finger-of-foot-left__Middle phalanx of second finger of foot.l",
+    "name": "Middle phalanx of second finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-second-finger-of-foot-right__Middle phalanx of second finger of foot.r",
+    "name": "Middle phalanx of second finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-second-finger-of-hand-left__Middle phalanx of second finger of hand.l",
+    "name": "Middle phalanx of second finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-second-finger-of-hand-right__Middle phalanx of second finger of hand.r",
+    "name": "Middle phalanx of second finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-third-finger-of-foot-left__Middle phalanx of third finger of foot.l",
+    "name": "Middle phalanx of third finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-third-finger-of-foot-right__Middle phalanx of third finger of foot.r",
+    "name": "Middle phalanx of third finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-third-finger-of-hand-left__Middle phalanx of third finger of hand.l",
+    "name": "Middle phalanx of third finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-middle-phalanx-of-third-finger-of-hand-right__Middle phalanx of third finger of hand.r",
+    "name": "Middle phalanx of third finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "neck-muscles-middle-pharyngeal-constrictor-left__Middle pharyngeal constrictor.l",
+    "name": "Middle pharyngeal constrictor (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-middle-pharyngeal-constrictor-right__Middle pharyngeal constrictor.r",
+    "name": "Middle pharyngeal constrictor (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-motor-nuclei-motor-nucleus-of-facial-nerve-left__Motor nucleus of facial nerve.l",
+    "name": "Motor nucleus of facial nerve (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "facial-motor-nuclei-motor-nucleus-of-facial-nerve-right__Motor nucleus of facial nerve.r",
+    "name": "Motor nucleus of facial nerve (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "neck-muscles-mylohyoid-muscle-left__Mylohyoid muscle.l",
+    "name": "Mylohyoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-mylohyoid-muscle-right__Mylohyoid muscle.r",
+    "name": "Mylohyoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-nasalis-muscle-left__Nasalis muscle.l",
+    "name": "Nasalis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-nasalis-muscle-right__Nasalis muscle.r",
+    "name": "Nasalis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-navicular-bone-left__Navicular bone.l",
+    "name": "Navicular bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-navicular-bone-right__Navicular bone.r",
+    "name": "Navicular bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-ninth-rib-left__Ninth rib.l",
+    "name": "Ninth rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-ninth-rib-right__Ninth rib.r",
+    "name": "Ninth rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "abducens-nuclei-nucleus-of-abducens-nerve-left__Nucleus of abducens nerve.l",
+    "name": "Nucleus of abducens nerve (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "abducens-nuclei-nucleus-of-abducens-nerve-right__Nucleus of abducens nerve.r",
+    "name": "Nucleus of abducens nerve (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "oculomotor-nuclei-nucleus-of-oculomotor-nerve-left__Nucleus of oculomotor nerve.l",
+    "name": "Nucleus of oculomotor nerve (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "oculomotor-nuclei-nucleus-of-oculomotor-nerve-right__Nucleus of oculomotor nerve.r",
+    "name": "Nucleus of oculomotor nerve (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "hand-muscles-oblique-head-of-adductor-pollicis-left__Oblique head of adductor pollicis.l",
+    "name": "Oblique head of adductor pollicis (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-oblique-head-of-adductor-pollicis-right__Oblique head of adductor pollicis.r",
+    "name": "Oblique head of adductor pollicis (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-oblique-part-of-cricothyroid-muscle-left__Oblique part of cricothyroid muscle.l",
+    "name": "Oblique part of cricothyroid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-oblique-part-of-cricothyroid-muscle-right__Oblique part of cricothyroid muscle.r",
+    "name": "Oblique part of cricothyroid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-obturator-externus-left__Obturator externus.l",
+    "name": "Obturator externus (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-obturator-externus-right__Obturator externus.r",
+    "name": "Obturator externus (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-obturator-internus-left__Obturator internus.l",
+    "name": "Obturator internus (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-obturator-internus-right__Obturator internus.r",
+    "name": "Obturator internus (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-occipital-nodes-left__Occipital nodes.l",
+    "name": "Occipital nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-occipital-nodes-right__Occipital nodes.r",
+    "name": "Occipital nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "oesophagus__Oesophagus",
+    "name": "Oesophagus",
+    "system": "digestive"
+  },
+  {
+    "id": "medullary-olives-olive-left__Olive.l",
+    "name": "Olive (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "medullary-olives-olive-right__Olive.r",
+    "name": "Olive (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "neck-muscles-omohyoid-muscle-left__Omohyoid muscle.l",
+    "name": "Omohyoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-omohyoid-muscle-right__Omohyoid muscle.r",
+    "name": "Omohyoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-opponens-digiti-minimi-muscle-of-hand-left__Opponens digiti minimi muscle of hand.l",
+    "name": "Opponens digiti minimi muscle of hand (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-opponens-digiti-minimi-muscle-of-hand-right__Opponens digiti minimi muscle of hand.r",
+    "name": "Opponens digiti minimi muscle of hand (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-opponens-pollicis-muscle-left__Opponens pollicis muscle.l",
+    "name": "Opponens pollicis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-opponens-pollicis-muscle-right__Opponens pollicis muscle.r",
+    "name": "Opponens pollicis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-orbicularis-oris-muscle-left__Orbicularis oris muscle.l",
+    "name": "Orbicularis oris muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-orbicularis-oris-muscle-right__Orbicularis oris muscle.r",
+    "name": "Orbicularis oris muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-orbital-part-of-orbicularis-oculi-left__Orbital part of orbicularis oculi.l",
+    "name": "Orbital part of orbicularis oculi (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-orbital-part-of-orbicularis-oculi-right__Orbital part of orbicularis oculi.r",
+    "name": "Orbital part of orbicularis oculi (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-palatine-tonsil-left__Palatine tonsil.l",
+    "name": "Palatine tonsil (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-palatine-tonsil-right__Palatine tonsil.r",
+    "name": "Palatine tonsil (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "neck-muscles-palatopharyngeus-muscle-left__Palatopharyngeus muscle.l",
+    "name": "Palatopharyngeus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-palatopharyngeus-muscle-right__Palatopharyngeus muscle.r",
+    "name": "Palatopharyngeus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-palmar-interossei-muscles-left__Palmar interossei muscles.l",
+    "name": "Palmar interossei muscles (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-palmar-interossei-muscles-right__Palmar interossei muscles.r",
+    "name": "Palmar interossei muscles (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-palpebral-part-of-orbicularis-oculi-left__Palpebral part of orbicularis oculi.l",
+    "name": "Palpebral part of orbicularis oculi (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-palpebral-part-of-orbicularis-oculi-right__Palpebral part of orbicularis oculi.r",
+    "name": "Palpebral part of orbicularis oculi (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "pancreas__Pancreas",
+    "name": "Pancreas",
+    "system": "digestive"
+  },
+  {
+    "id": "appendicular-skeleton-patella-left__Patella.l",
+    "name": "Patella (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-patella-right__Patella.r",
+    "name": "Patella (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "deep-gluteal-muscles-piriformis-muscle-left__Piriformis muscle.l",
+    "name": "Piriformis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-piriformis-muscle-right__Piriformis muscle.r",
+    "name": "Piriformis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-pisiform-bone-left__Pisiform bone.l",
+    "name": "Pisiform bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-pisiform-bone-right__Pisiform bone.r",
+    "name": "Pisiform bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "neck-muscles-platysma-left__Platysma.l",
+    "name": "Platysma (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-platysma-right__Platysma.r",
+    "name": "Platysma (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "brainstem-pons-left__Pons.l",
+    "name": "Pons (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "brainstem-pons-right__Pons.r",
+    "name": "Pons (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "neck-muscles-posterior-belly-of-digastric-muscle-left__Posterior belly of digastric muscle.l",
+    "name": "Posterior belly of digastric muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-posterior-belly-of-digastric-muscle-right__Posterior belly of digastric muscle.r",
+    "name": "Posterior belly of digastric muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-posterior-crico-arytenoid-muscle-left__Posterior crico-arytenoid muscle.l",
+    "name": "Posterior crico-arytenoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-posterior-crico-arytenoid-muscle-right__Posterior crico-arytenoid muscle.r",
+    "name": "Posterior crico-arytenoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-posterior-tibial-node-left__(Posterior tibial node).l",
+    "name": "Posterior tibial node) (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-posterior-tibial-node-right__(Posterior tibial node).r",
+    "name": "Posterior tibial node) (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-postvesical-nodes__Postvesical nodes",
+    "name": "Postvesical nodes",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-precaecal-nodes__Precaecal nodes",
+    "name": "Precaecal nodes",
+    "system": "lymphatic"
+  },
+  {
+    "id": "facial-expression-muscles-procerus-muscle-left__Procerus muscle.l",
+    "name": "Procerus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-procerus-muscle-right__Procerus muscle.r",
+    "name": "Procerus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-proximal-deep-inguinal-node-left__(Proximal deep inguinal node).l",
+    "name": "Proximal deep inguinal node) (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-proximal-deep-inguinal-node-right__(Proximal deep inguinal node).r",
+    "name": "Proximal deep inguinal node) (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-fifth-finger-of-foot-left__Proximal phalanx of fifth finger of foot.l",
+    "name": "Proximal phalanx of fifth finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-fifth-finger-of-foot-right__Proximal phalanx of fifth finger of foot.r",
+    "name": "Proximal phalanx of fifth finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-fifth-finger-of-hand-left__Proximal phalanx of fifth finger of hand.l",
+    "name": "Proximal phalanx of fifth finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-fifth-finger-of-hand-right__Proximal phalanx of fifth finger of hand.r",
+    "name": "Proximal phalanx of fifth finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-first-finger-of-foot-left__Proximal phalanx of first finger of foot.l",
+    "name": "Proximal phalanx of first finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-first-finger-of-foot-right__Proximal phalanx of first finger of foot.r",
+    "name": "Proximal phalanx of first finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-first-finger-of-hand-left__Proximal phalanx of first finger of hand.l",
+    "name": "Proximal phalanx of first finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-first-finger-of-hand-right__Proximal phalanx of first finger of hand.r",
+    "name": "Proximal phalanx of first finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-fourth-finger-of-foot-left__Proximal phalanx of fourth finger of foot.l",
+    "name": "Proximal phalanx of fourth finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-fourth-finger-of-foot-right__Proximal phalanx of fourth finger of foot.r",
+    "name": "Proximal phalanx of fourth finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-fourth-finger-of-hand-left__Proximal phalanx of fourth finger of hand.l",
+    "name": "Proximal phalanx of fourth finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-fourth-finger-of-hand-right__Proximal phalanx of fourth finger of hand.r",
+    "name": "Proximal phalanx of fourth finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-second-finger-of-foot-left__Proximal phalanx of second finger of foot.l",
+    "name": "Proximal phalanx of second finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-second-finger-of-foot-right__Proximal phalanx of second finger of foot.r",
+    "name": "Proximal phalanx of second finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-second-finger-of-hand-left__Proximal phalanx of second finger of hand.l",
+    "name": "Proximal phalanx of second finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-second-finger-of-hand-right__Proximal phalanx of second finger of hand.r",
+    "name": "Proximal phalanx of second finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-third-finger-of-foot-left__Proximal phalanx of third finger of foot.l",
+    "name": "Proximal phalanx of third finger of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-third-finger-of-foot-right__Proximal phalanx of third finger of foot.r",
+    "name": "Proximal phalanx of third finger of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-third-finger-of-hand-left__Proximal phalanx of third finger of hand.l",
+    "name": "Proximal phalanx of third finger of hand (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-proximal-phalanx-of-third-finger-of-hand-right__Proximal phalanx of third finger of hand.r",
+    "name": "Proximal phalanx of third finger of hand (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "medullary-pyramids-pyramid-of-medulla-oblongata-left__Pyramid of medulla oblongata.l",
+    "name": "Pyramid of medulla oblongata (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "medullary-pyramids-pyramid-of-medulla-oblongata-right__Pyramid of medulla oblongata.r",
+    "name": "Pyramid of medulla oblongata (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "pyramidalis-muscles-pyramidalis-muscle-left__Pyramidalis muscle.l",
+    "name": "Pyramidalis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "pyramidalis-muscles-pyramidalis-muscle-right__Pyramidalis muscle.r",
+    "name": "Pyramidalis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-quadratus-femoris-muscle-left__Quadratus femoris muscle.l",
+    "name": "Quadratus femoris muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-quadratus-femoris-muscle-right__Quadratus femoris muscle.r",
+    "name": "Quadratus femoris muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "quadratus-lumborum-quadratus-lumborum-muscle-left__Quadratus lumborum muscle.l",
+    "name": "Quadratus lumborum muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "quadratus-lumborum-quadratus-lumborum-muscle-right__Quadratus lumborum muscle.r",
+    "name": "Quadratus lumborum muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-radius-left__Radius.l",
+    "name": "Radius (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-radius-right__Radius.r",
+    "name": "Radius (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "rectus-abdominis-rectus-abdominis-muscle-left__Rectus abdominis muscle.l",
+    "name": "Rectus abdominis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "rectus-abdominis-rectus-abdominis-muscle-right__Rectus abdominis muscle.r",
+    "name": "Rectus abdominis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-rectus-anterior-capitis-muscle-left__Rectus anterior capitis muscle.l",
+    "name": "Rectus anterior capitis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-rectus-anterior-capitis-muscle-right__Rectus anterior capitis muscle.r",
+    "name": "Rectus anterior capitis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-rectus-lateralis-capitis-muscle-left__Rectus lateralis capitis muscle.l",
+    "name": "Rectus lateralis capitis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-rectus-lateralis-capitis-muscle-right__Rectus lateralis capitis muscle.r",
+    "name": "Rectus lateralis capitis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "red-nuclei-red-nucleus-left__Red nucleus.l",
+    "name": "Red nucleus (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "red-nuclei-red-nucleus-right__Red nucleus.r",
+    "name": "Red nucleus (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "lymphoid-organs-retro-aortic-nodes__Retro-aortic nodes",
+    "name": "Retro-aortic nodes",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-retrocaecal-nodes__Retrocaecal nodes",
+    "name": "Retrocaecal nodes",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-retrocaval-nodes__Retrocaval nodes",
+    "name": "Retrocaval nodes",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-retropharyngeal-nodes-left__Retropharyngeal nodes.l",
+    "name": "Retropharyngeal nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-retropharyngeal-nodes-right__Retropharyngeal nodes.r",
+    "name": "Retropharyngeal nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "heart-right-atrium__Right atrium",
+    "name": "Right atrium",
+    "system": "cardiovascular"
+  },
+  {
+    "id": "lymphoid-organs-right-lobe-of-thymus__Right lobe of thymus",
+    "name": "Right lobe of thymus",
+    "system": "lymphatic"
+  },
+  {
+    "id": "heart-right-ventricle__Right ventricle",
+    "name": "Right ventricle",
+    "system": "cardiovascular"
+  },
+  {
+    "id": "facial-expression-muscles-risorius-muscle-left__Risorius muscle.l",
+    "name": "Risorius muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-risorius-muscle-right__Risorius muscle.r",
+    "name": "Risorius muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "skeleton-sacrum__Sacrum",
+    "name": "Sacrum",
+    "system": "skeletal"
+  },
+  {
+    "id": "neck-muscles-scalenus-anterior-muscle-left__Scalenus anterior muscle.l",
+    "name": "Scalenus anterior muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-scalenus-anterior-muscle-right__Scalenus anterior muscle.r",
+    "name": "Scalenus anterior muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-scalenus-medius-muscle-left__Scalenus medius muscle.l",
+    "name": "Scalenus medius muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-scalenus-medius-muscle-right__Scalenus medius muscle.r",
+    "name": "Scalenus medius muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-scalenus-posterior-muscle-left__Scalenus posterior muscle.l",
+    "name": "Scalenus posterior muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-scalenus-posterior-muscle-right__Scalenus posterior muscle.r",
+    "name": "Scalenus posterior muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-scaphoid-bone-left__Scaphoid bone.l",
+    "name": "Scaphoid bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-scaphoid-bone-right__Scaphoid bone.r",
+    "name": "Scaphoid bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-scapula-left__Scapula.l",
+    "name": "Scapula (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-scapula-right__Scapula.r",
+    "name": "Scapula (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "deltoid-muscles-scapular-spinal-part-of-deltoid-muscle-left__Scapular spinal part of deltoid muscle.l",
+    "name": "Scapular spinal part of deltoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deltoid-muscles-scapular-spinal-part-of-deltoid-muscle-right__Scapular spinal part of deltoid muscle.r",
+    "name": "Scapular spinal part of deltoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-second-metacarpal-bone-left__Second metacarpal bone.l",
+    "name": "Second metacarpal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-second-metacarpal-bone-right__Second metacarpal bone.r",
+    "name": "Second metacarpal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-second-metatarsal-bone-left__Second metatarsal bone.l",
+    "name": "Second metatarsal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-second-metatarsal-bone-right__Second metatarsal bone.r",
+    "name": "Second metatarsal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-second-rib-left__Second rib.l",
+    "name": "Second rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-second-rib-right__Second rib.r",
+    "name": "Second rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-sesamoid-bones-of-foot-left__Sesamoid bones of foot.l",
+    "name": "Sesamoid bones of foot (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-sesamoid-bones-of-foot-right__Sesamoid bones of foot.r",
+    "name": "Sesamoid bones of foot (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-seventh-rib-left__Seventh rib.l",
+    "name": "Seventh rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-seventh-rib-right__Seventh rib.r",
+    "name": "Seventh rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "large-intestine-sigmoid-colon__Sigmoid colon",
+    "name": "Sigmoid colon",
+    "system": "digestive"
+  },
+  {
+    "id": "skeleton-sixth-rib-left__Sixth rib.l",
+    "name": "Sixth rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-sixth-rib-right__Sixth rib.r",
+    "name": "Sixth rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "spleen__Spleen",
+    "name": "Spleen",
+    "system": "lymphatic"
+  },
+  {
+    "id": "neck-muscles-sternocleidomastoid-muscle-left__Sternocleidomastoid muscle.l",
+    "name": "Sternocleidomastoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-sternocleidomastoid-muscle-right__Sternocleidomastoid muscle.r",
+    "name": "Sternocleidomastoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-sternohyoid-muscle-left__Sternohyoid muscle.l",
+    "name": "Sternohyoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-sternohyoid-muscle-right__Sternohyoid muscle.r",
+    "name": "Sternohyoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-sternothyroid-muscle-left__Sternothyroid muscle.l",
+    "name": "Sternothyroid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-sternothyroid-muscle-right__Sternothyroid muscle.r",
+    "name": "Sternothyroid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "stomach__Stomach",
+    "name": "Stomach",
+    "system": "digestive"
+  },
+  {
+    "id": "neck-muscles-straight-part-of-cricothyroid-muscle-left__Straight part of cricothyroid muscle.l",
+    "name": "Straight part of cricothyroid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-straight-part-of-cricothyroid-muscle-right__Straight part of cricothyroid muscle.r",
+    "name": "Straight part of cricothyroid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-stylohyoid-muscle-left__Stylohyoid muscle.l",
+    "name": "Stylohyoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-stylohyoid-muscle-right__Stylohyoid muscle.r",
+    "name": "Stylohyoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-stylopharyngeus-muscle-left__Stylopharyngeus muscle.l",
+    "name": "Stylopharyngeus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-stylopharyngeus-muscle-right__Stylopharyngeus muscle.r",
+    "name": "Stylopharyngeus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-submandibular-nodes-left__Submandibular nodes.l",
+    "name": "Submandibular nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-submandibular-nodes-right__Submandibular nodes.r",
+    "name": "Submandibular nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-submental-nodes-left__Submental nodes.l",
+    "name": "Submental nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-submental-nodes-right__Submental nodes.r",
+    "name": "Submental nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "rotator-cuff-muscles-subscapularis-muscle-left__Subscapularis muscle.l",
+    "name": "Subscapularis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "rotator-cuff-muscles-subscapularis-muscle-right__Subscapularis muscle.r",
+    "name": "Subscapularis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-superficial-anterior-cervical-nodes__Superficial anterior cervical nodes",
+    "name": "Superficial anterior cervical nodes",
+    "system": "lymphatic"
+  },
+  {
+    "id": "hand-muscles-superficial-head-of-flexor-pollicis-brevis-left__Superficial head of flexor pollicis brevis.l",
+    "name": "Superficial head of flexor pollicis brevis (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-superficial-head-of-flexor-pollicis-brevis-right__Superficial head of flexor pollicis brevis.r",
+    "name": "Superficial head of flexor pollicis brevis (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-superficial-popliteal-nodes-left__Superficial popliteal nodes.l",
+    "name": "Superficial popliteal nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-superficial-popliteal-nodes-right__Superficial popliteal nodes.r",
+    "name": "Superficial popliteal nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "superior-colliculi-superior-colliculus-left__Superior colliculus.l",
+    "name": "Superior colliculus (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "superior-colliculi-superior-colliculus-right__Superior colliculus.r",
+    "name": "Superior colliculus (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "deep-gluteal-muscles-superior-gemellus-muscle-left__Superior gemellus muscle.l",
+    "name": "Superior gemellus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "deep-gluteal-muscles-superior-gemellus-muscle-right__Superior gemellus muscle.r",
+    "name": "Superior gemellus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lungs-superior-lobe-of-left-lung__Superior lobe of left lung",
+    "name": "Superior lobe of left lung",
+    "system": "respiratory"
+  },
+  {
+    "id": "lungs-superior-lobe-of-right-lung__Superior lobe of right lung",
+    "name": "Superior lobe of right lung",
+    "system": "respiratory"
+  },
+  {
+    "id": "lymphoid-organs-superior-pancreatic-nodes__Superior pancreatic nodes",
+    "name": "Superior pancreatic nodes",
+    "system": "lymphatic"
+  },
+  {
+    "id": "neck-muscles-superior-pharyngeal-constrictor-left__Superior pharyngeal constrictor.l",
+    "name": "Superior pharyngeal constrictor (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-superior-pharyngeal-constrictor-right__Superior pharyngeal constrictor.r",
+    "name": "Superior pharyngeal constrictor (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "superior-salivatory-nuclei-superior-salivatory-nucleus-left__Superior salivatory nucleus.l",
+    "name": "Superior salivatory nucleus (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "superior-salivatory-nuclei-superior-salivatory-nucleus-right__Superior salivatory nucleus.r",
+    "name": "Superior salivatory nucleus (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "lymphoid-organs-supraclavicular-nodes-left__Supraclavicular nodes.l",
+    "name": "Supraclavicular nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-supraclavicular-nodes-right__Supraclavicular nodes.r",
+    "name": "Supraclavicular nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "rotator-cuff-muscles-supraspinatus-muscle-left__Supraspinatus muscle.l",
+    "name": "Supraspinatus muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "rotator-cuff-muscles-supraspinatus-muscle-right__Supraspinatus muscle.r",
+    "name": "Supraspinatus muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "lymphoid-organs-supratrochlear-nodes-left__Supratrochlear nodes.l",
+    "name": "Supratrochlear nodes (left)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "lymphoid-organs-supratrochlear-nodes-right__Supratrochlear nodes.r",
+    "name": "Supratrochlear nodes (right)",
+    "system": "lymphatic"
+  },
+  {
+    "id": "appendicular-skeleton-talus-left__Talus.l",
+    "name": "Talus (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-talus-right__Talus.r",
+    "name": "Talus (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "superficial-gluteal-muscles-tensor-fasciae-latae-left__Tensor fasciae latae.l",
+    "name": "Tensor fasciae latae (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "superficial-gluteal-muscles-tensor-fasciae-latae-right__Tensor fasciae latae.r",
+    "name": "Tensor fasciae latae (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "skeleton-tenth-rib-left__Tenth rib.l",
+    "name": "Tenth rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-tenth-rib-right__Tenth rib.r",
+    "name": "Tenth rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "rotator-cuff-muscles-teres-minor-muscle-left__Teres minor muscle.l",
+    "name": "Teres minor muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "rotator-cuff-muscles-teres-minor-muscle-right__Teres minor muscle.r",
+    "name": "Teres minor muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-third-metacarpal-bone-left__Third metacarpal bone.l",
+    "name": "Third metacarpal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-third-metacarpal-bone-right__Third metacarpal bone.r",
+    "name": "Third metacarpal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-third-metatarsal-bone-left__Third metatarsal bone.l",
+    "name": "Third metatarsal bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-third-metatarsal-bone-right__Third metatarsal bone.r",
+    "name": "Third metatarsal bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-third-rib-left__Third rib.l",
+    "name": "Third rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-third-rib-right__Third rib.r",
+    "name": "Third rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "neck-muscles-thyro-epiglottic-part-of-thyro-arytenoid-muscle-left__Thyro-epiglottic part of thyro-arytenoid muscle.l",
+    "name": "Thyro-epiglottic part of thyro-arytenoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-thyro-epiglottic-part-of-thyro-arytenoid-muscle-right__Thyro-epiglottic part of thyro-arytenoid muscle.r",
+    "name": "Thyro-epiglottic part of thyro-arytenoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-thyrohyoid-muscle-left__Thyrohyoid muscle.l",
+    "name": "Thyrohyoid muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "neck-muscles-thyrohyoid-muscle-right__Thyrohyoid muscle.r",
+    "name": "Thyrohyoid muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-tibia-left__Tibia.l",
+    "name": "Tibia (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-tibia-right__Tibia.r",
+    "name": "Tibia (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "trachea__Trachea",
+    "name": "Trachea",
+    "system": "respiratory"
+  },
+  {
+    "id": "neck-muscles-transverse-arytenoid-muscle__Transverse arytenoid muscle",
+    "name": "Transverse arytenoid muscle",
+    "system": "muscular"
+  },
+  {
+    "id": "large-intestine-transverse-colon__Transverse colon",
+    "name": "Transverse colon",
+    "system": "digestive"
+  },
+  {
+    "id": "hand-muscles-transverse-head-of-adductor-pollicis-left__Transverse head of adductor pollicis.l",
+    "name": "Transverse head of adductor pollicis (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "hand-muscles-transverse-head-of-adductor-pollicis-right__Transverse head of adductor pollicis.r",
+    "name": "Transverse head of adductor pollicis (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "transversus-abdominis-transversus-abdominis-muscle-left__Transversus abdominis muscle.l",
+    "name": "Transversus abdominis muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "transversus-abdominis-transversus-abdominis-muscle-right__Transversus abdominis muscle.r",
+    "name": "Transversus abdominis muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "appendicular-skeleton-trapezium-bone-left__Trapezium bone.l",
+    "name": "Trapezium bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-trapezium-bone-right__Trapezium bone.r",
+    "name": "Trapezium bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-trapezoid-bone-left__Trapezoid bone.l",
+    "name": "Trapezoid bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-trapezoid-bone-right__Trapezoid bone.r",
+    "name": "Trapezoid bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-triquetrum-bone-left__Triquetrum bone.l",
+    "name": "Triquetrum bone (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-triquetrum-bone-right__Triquetrum bone.r",
+    "name": "Triquetrum bone (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-twelfth-rib-left__Twelfth rib.l",
+    "name": "Twelfth rib (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-twelfth-rib-right__Twelfth rib.r",
+    "name": "Twelfth rib (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-ulna-left__Ulna.l",
+    "name": "Ulna (left)",
+    "system": "skeletal"
+  },
+  {
+    "id": "appendicular-skeleton-ulna-right__Ulna.r",
+    "name": "Ulna (right)",
+    "system": "skeletal"
+  },
+  {
+    "id": "bladder__Urinary bladder",
+    "name": "Urinary bladder",
+    "system": "urinary"
+  },
+  {
+    "id": "large-intestine-vermiform-appendix__Vermiform appendix",
+    "name": "Vermiform appendix",
+    "system": "digestive"
+  },
+  {
+    "id": "skeleton-vertebra-c3__Vertebra C3",
+    "name": "Vertebra C3",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-c4__Vertebra C4",
+    "name": "Vertebra C4",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-c5__Vertebra C5",
+    "name": "Vertebra C5",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-c6__Vertebra C6",
+    "name": "Vertebra C6",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-c7__Vertebra C7",
+    "name": "Vertebra C7",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-l1__Vertebra L1",
+    "name": "Vertebra L1",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-l2__Vertebra L2",
+    "name": "Vertebra L2",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-l3__Vertebra L3",
+    "name": "Vertebra L3",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-l4__Vertebra L4",
+    "name": "Vertebra L4",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-l5__Vertebra L5",
+    "name": "Vertebra L5",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t1__Vertebra T1",
+    "name": "Vertebra T1",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t10__Vertebra T10",
+    "name": "Vertebra T10",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t11__Vertebra T11",
+    "name": "Vertebra T11",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t12__Vertebra T12",
+    "name": "Vertebra T12",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t2__Vertebra T2",
+    "name": "Vertebra T2",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t3__Vertebra T3",
+    "name": "Vertebra T3",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t4__Vertebra T4",
+    "name": "Vertebra T4",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t5__Vertebra T5",
+    "name": "Vertebra T5",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t6__Vertebra T6",
+    "name": "Vertebra T6",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t7__Vertebra T7",
+    "name": "Vertebra T7",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t8__Vertebra T8",
+    "name": "Vertebra T8",
+    "system": "skeletal"
+  },
+  {
+    "id": "skeleton-vertebra-t9__Vertebra T9",
+    "name": "Vertebra T9",
+    "system": "skeletal"
+  },
+  {
+    "id": "vestibular-nuclei-vestibular-nuclei-left__Vestibular nuclei.l",
+    "name": "Vestibular nuclei (left)",
+    "system": "nervous"
+  },
+  {
+    "id": "vestibular-nuclei-vestibular-nuclei-right__Vestibular nuclei.r",
+    "name": "Vestibular nuclei (right)",
+    "system": "nervous"
+  },
+  {
+    "id": "skeleton-xiphoid-process__Xiphoid process",
+    "name": "Xiphoid process",
+    "system": "skeletal"
+  },
+  {
+    "id": "facial-expression-muscles-zygomaticus-major-muscle-left__Zygomaticus major muscle.l",
+    "name": "Zygomaticus major muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-zygomaticus-major-muscle-right__Zygomaticus major muscle.r",
+    "name": "Zygomaticus major muscle (right)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-zygomaticus-minor-muscle-left__Zygomaticus minor muscle.l",
+    "name": "Zygomaticus minor muscle (left)",
+    "system": "muscular"
+  },
+  {
+    "id": "facial-expression-muscles-zygomaticus-minor-muscle-right__Zygomaticus minor muscle.r",
+    "name": "Zygomaticus minor muscle (right)",
+    "system": "muscular"
+  }
+]

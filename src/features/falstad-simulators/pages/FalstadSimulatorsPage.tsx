@@ -1,6 +1,7 @@
-import { ExternalLink } from "lucide-react";
+import { AudioWaveform, ExternalLink } from "lucide-react";
 import { useLanguage } from "../../../app/useLanguage";
 import { EmbeddedSimulation } from "../../../shared/ui/EmbeddedSimulation";
+import { PageHeader } from "../../../shared/ui/PageHeader";
 import { CircuitPresetSelect } from "../components/CircuitPresetSelect";
 import { SimulatorPicker } from "../components/SimulatorPicker";
 import { CIRCUITJS_SOURCE_URL, FALSTAD_HOME_URL } from "../falstad.config";
@@ -17,18 +18,20 @@ export default function FalstadSimulatorsPage() {
   const title = language === "en" ? simulator.title.en : simulator.title.sw;
 
   return (
-    <div className="space-y-5">
-      <div>
-        <h1 className="text-3xl font-black tracking-tight sm:text-4xl">
-          {tr("Falstad circuits & waves", "Mizunguko na mawimbi ya Falstad")}
-        </h1>
-        <p className="mt-1 max-w-3xl text-slate-600 dark:text-slate-300">
-          {tr(
-            "Free circuit and wave simulators by Paul Falstad. Pick one, then experiment: everything runs live in your browser.",
-            "Viigaji vya bure vya sakiti na mawimbi na Paul Falstad. Chagua kimoja kisha ujaribu: kila kitu kinaendeshwa moja kwa moja kwenye kivinjari chako.",
-          )}
-        </p>
-      </div>
+    <div className="space-y-6">
+      <PageHeader
+        icon={AudioWaveform}
+        accent="blue"
+        eyebrow={tr("Explore · Falstad", "Chunguza · Falstad")}
+        title={tr(
+          "Falstad circuits & waves",
+          "Mizunguko na mawimbi ya Falstad",
+        )}
+        description={tr(
+          "Free circuit and wave simulators by Paul Falstad. Pick one, then experiment: everything runs live in your browser.",
+          "Viigaji vya bure vya sakiti na mawimbi na Paul Falstad. Chagua kimoja kisha ujaribu: kila kitu kinaendeshwa moja kwa moja kwenye kivinjari chako.",
+        )}
+      />
 
       <SimulatorPicker selectedId={simulator.id} onSelect={selectSimulator} />
 
@@ -45,10 +48,10 @@ export default function FalstadSimulatorsPage() {
             href={src}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-300 px-4 text-sm font-bold dark:border-slate-700"
+            className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 text-sm font-bold transition-colors hover:border-kenya-green dark:border-slate-700 dark:bg-slate-900"
           >
             {tr("Open on Falstad", "Fungua kwenye Falstad")}
-            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+            <ExternalLink className="size-4" aria-hidden="true" />
           </a>
         </div>
       </div>

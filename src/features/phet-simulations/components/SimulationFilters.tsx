@@ -1,5 +1,7 @@
-import { Search, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useLanguage } from "../../../app/useLanguage";
+import { FilterChipGroup } from "../../../shared/ui/FilterChipGroup";
+import { SearchField } from "../../../shared/ui/SearchField";
 import type {
   PhetFilterOption,
   PhetFilterOptions,
@@ -19,57 +21,6 @@ type Props = {
   onClear: () => void;
 };
 
-const chipBase =
-  "inline-flex min-h-10 items-center gap-2 rounded-full border px-4 text-sm font-bold transition-colors";
-const chipOn = "border-kenya-green bg-kenya-green text-white";
-const chipOff =
-  "border-slate-300 bg-white hover:border-kenya-green dark:border-slate-700 dark:bg-slate-900";
-
-type ChipGroupProps = {
-  label: string;
-  allLabel: string;
-  options: PhetFilterOption[];
-  selected: string | null;
-  onSelect: (slug: string | null) => void;
-};
-
-function ChipGroup({
-  label,
-  allLabel,
-  options,
-  selected,
-  onSelect,
-}: ChipGroupProps) {
-  return (
-    <div role="group" aria-label={label} className="flex flex-wrap gap-2">
-      <button
-        type="button"
-        onClick={() => onSelect(null)}
-        aria-pressed={selected === null}
-        className={`${chipBase} ${selected === null ? chipOn : chipOff}`}
-      >
-        {allLabel}
-      </button>
-      {options.map((option) => (
-        <button
-          key={option.id}
-          type="button"
-          onClick={() => onSelect(option.slug)}
-          aria-pressed={selected === option.slug}
-          className={`${chipBase} ${selected === option.slug ? chipOn : chipOff}`}
-        >
-          {option.label}
-          <span
-            className={`text-xs ${selected === option.slug ? "text-green-100" : "text-slate-500 dark:text-slate-400"}`}
-          >
-            {option.count}
-          </span>
-        </button>
-      ))}
-    </div>
-  );
-}
-
 export function SimulationFilters({
   filters,
   options,
@@ -86,28 +37,25 @@ export function SimulationFilters({
     ? (options.topicsBySubject.get(filters.subject) ?? [])
     : [];
 
+  const toChips = (items: PhetFilterOption[]) =>
+    items.map((item) => ({
+      value: item.slug,
+      label: item.label,
+      count: item.count,
+    }));
+
   return (
-    <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
+    <div className="space-y-5 rounded-3xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
       <div className="flex flex-col gap-3 sm:flex-row">
-        <label className="relative block flex-1">
-          <span className="sr-only">
-            {tr("Search simulations", "Tafuta uigaji")}
-          </span>
-          <Search
-            className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
-            aria-hidden="true"
-          />
-          <input
-            type="search"
-            value={filters.query}
-            onChange={(event) => onQueryChange(event.target.value)}
-            placeholder={tr(
-              "Search by name, topic or keyword",
-              "Tafuta kwa jina, mada au neno kuu",
-            )}
-            className="min-h-11 w-full rounded-xl border border-slate-300 bg-white pl-10 pr-3 text-sm font-medium placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-950"
-          />
-        </label>
+        <SearchField
+          label={tr("Search simulations", "Tafuta uigaji")}
+          placeholder={tr(
+            "Search by name, topic or keyword",
+            "Tafuta kwa jina, mada au neno kuu",
+          )}
+          value={filters.query}
+          onChange={onQueryChange}
+        />
         <label className="flex items-center gap-2 text-sm font-bold">
           <span className="shrink-0 text-slate-600 dark:text-slate-300">
             {tr("Sort by", "Panga kwa")}
@@ -117,7 +65,7 @@ export function SimulationFilters({
             onChange={(event) =>
               onSortChange(event.target.value === "newest" ? "newest" : "title")
             }
-            className="min-h-11 flex-1 rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold dark:border-slate-700 dark:bg-slate-950 sm:flex-none"
+            className="min-h-12 flex-1 rounded-2xl border border-slate-300 bg-slate-50 px-3 text-sm font-bold outline-none focus:border-kenya-green focus:ring-4 focus:ring-kenya-green/20 dark:border-slate-700 dark:bg-slate-950 sm:flex-none"
           >
             <option value="title">{tr("Name (A–Z)", "Jina (A–Z)")}</option>
             <option value="newest">{tr("Newest first", "Mpya kwanza")}</option>
@@ -125,29 +73,29 @@ export function SimulationFilters({
         </label>
       </div>
 
-      <ChipGroup
-        label={tr("Filter by subject", "Chuja kwa somo")}
+      <FilterChipGroup
+        heading={tr("Subject", "Somo")}
         allLabel={tr("All subjects", "Masomo yote")}
-        options={options.subjects}
+        options={toChips(options.subjects)}
         selected={filters.subject}
         onSelect={onSubjectChange}
       />
 
       {topics.length > 0 && (
-        <ChipGroup
-          label={tr("Filter by topic", "Chuja kwa mada")}
+        <FilterChipGroup
+          heading={tr("Topic", "Mada")}
           allLabel={tr("All topics", "Mada zote")}
-          options={topics}
+          options={toChips(topics)}
           selected={filters.topic}
           onSelect={onTopicChange}
         />
       )}
 
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <ChipGroup
-          label={tr("Filter by level", "Chuja kwa kiwango")}
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+        <FilterChipGroup
+          heading={tr("Level", "Kiwango")}
           allLabel={tr("All levels", "Viwango vyote")}
-          options={options.levels}
+          options={toChips(options.levels)}
           selected={filters.level}
           onSelect={onLevelChange}
         />
@@ -155,9 +103,9 @@ export function SimulationFilters({
           <button
             type="button"
             onClick={onClear}
-            className="inline-flex min-h-10 shrink-0 items-center gap-1.5 self-start rounded-xl px-3 text-sm font-bold text-kenya-green dark:text-green-400"
+            className="inline-flex min-h-10 shrink-0 items-center gap-1.5 self-start rounded-xl px-3 text-sm font-bold text-kenya-green hover:bg-green-50 dark:text-green-400 dark:hover:bg-slate-800 lg:self-end"
           >
-            <X className="h-4 w-4" aria-hidden="true" />
+            <X className="size-4" aria-hidden="true" />
             {tr("Clear filters", "Futa vichujio")}
           </button>
         )}

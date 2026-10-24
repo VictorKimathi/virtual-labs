@@ -1,4 +1,4 @@
-export const MONTHLY_PRICE_KES = 5000;
+export const MONTHLY_PRICE_KES = 40_000;
 
 // A yearly plan is billed for fewer months than it covers.
 export const YEARLY_MONTHS_CHARGED = 10;

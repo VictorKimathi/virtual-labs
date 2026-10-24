@@ -1,6 +1,6 @@
 # Lab Bench
 
-A 2D circuit bench organised by topic. `/workbench` is the Practice bench hub: it lists the 2D electricity topics and links to the 3D microscope station (`/sandbox/biology`); `/workbench/:topicId` shows that topic's equipment palette, its experiments (`?experiment=<id>`), the bench, an inspector, and a readings dock with live readings, a V–I graph and a notebook.
+A 2D circuit bench organised by topic. `/workbench` is the Practice bench hub, grouped into Physics, Chemistry, and Biology. It links to the electricity circuit bench, three chemistry practicals, the 3D microscope station (`/sandbox/biology`), and the human anatomy station (`/biology/anatomy`). The hub has subject shortcuts, a text search, and a control to show or hide upcoming benches. `/workbench/:topicId` shows that topic's equipment palette, its experiments (`?experiment=<id>`), the bench, an inspector, and a readings dock with live readings, a V–I graph and a notebook.
 
 - **Equipment** — `data/equipment.ts` defines each part's size, terminals, adjustable value and electrical model.
 - **Experiments** — `data/*.experiments.ts` hold steps and goals. Goals are checks against the solved circuit and stay ticked once met.

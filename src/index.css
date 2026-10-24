@@ -10,6 +10,14 @@
 }
 @theme {
   --animate-current-flow: current-flow 0.8s linear infinite;
+  --animate-orbit: orbit-spin 24s linear infinite;
+  --animate-orbit-reverse: orbit-spin 32s linear infinite reverse;
+  --animate-orbit-slow: orbit-spin 48s linear infinite;
+  @keyframes orbit-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
   @keyframes current-flow {
     to {
       stroke-dashoffset: -20;

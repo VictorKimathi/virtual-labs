@@ -76,6 +76,13 @@ export const router = createBrowserRouter([
         }),
       },
       {
+        path: "biology/anatomy",
+        lazy: async () => ({
+          Component: (await import("../features/biology-lab/pages/AnatomyPage"))
+            .default,
+        }),
+      },
+      {
         path: "chemistry/indicators",
         lazy: async () => ({
           Component: (

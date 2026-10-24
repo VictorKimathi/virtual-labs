@@ -1,3 +1,4 @@
+import { TriangleAlert } from "lucide-react";
 import { Link, useRouteError } from "react-router-dom";
 import { useLanguage } from "../../app/useLanguage";
 
@@ -7,8 +8,8 @@ export function RouteErrorPage() {
   console.error("Route error", error);
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white p-6 text-center text-slate-950 dark:bg-slate-950 dark:text-white">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-kenya-red dark:bg-red-950">
-        !
+      <div className="flex size-16 items-center justify-center rounded-2xl bg-red-50 text-kenya-red shadow-lg shadow-kenya-red/20 dark:bg-red-950">
+        <TriangleAlert className="size-8" aria-hidden="true" />
       </div>
       <h1 className="mt-5 text-3xl font-black">
         {tr("Something went wrong", "Hitilafu imetokea")}
@@ -21,7 +22,7 @@ export function RouteErrorPage() {
       </p>
       <Link
         to="/"
-        className="mt-6 inline-flex min-h-12 items-center rounded-xl bg-kenya-green px-5 font-bold text-white"
+        className="mt-6 inline-flex min-h-12 items-center rounded-2xl bg-kenya-green px-6 font-extrabold text-white shadow-lg shadow-kenya-green/25 transition-transform hover:-translate-y-0.5"
       >
         {tr("Back to home", "Rudi nyumbani")}
       </Link>

@@ -9,10 +9,10 @@ export function PhysicshubCard({ simulation }: Props) {
   return (
     <Link
       to={`/physicshub/${simulation.id}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-colors hover:border-kenya-green dark:border-slate-800 dark:bg-slate-900"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-kenya-green hover:shadow-xl hover:shadow-kenya-green/10 focus-visible:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-black/40"
     >
       <RemoteThumbnail src={`${PHYSICSHUB_ORIGIN}${simulation.thumbnail}`} />
-      <span className="flex flex-1 flex-col p-4">
+      <span className="flex flex-1 flex-col p-5">
         <span className="text-lg font-extrabold leading-snug">
           {simulation.title}
         </span>

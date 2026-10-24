@@ -54,9 +54,9 @@ export function BusinessModel() {
         {steps.map((step, index) => (
           <li
             key={step.title}
-            className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900"
+            className="rounded-3xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-kenya-green text-sm font-black text-white">
+            <span className="flex size-10 items-center justify-center rounded-full bg-linear-to-br from-kenya-green to-emerald-700 text-sm font-black text-white shadow-md shadow-kenya-green/30">
               {index + 1}
             </span>
             <h3 className="mt-3 font-extrabold">{step.title}</h3>

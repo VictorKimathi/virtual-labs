@@ -1,16 +1,19 @@
-import { ArrowLeft, ExternalLink } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, ExternalLink, MonitorPlay, SearchX } from "lucide-react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useLanguage } from "../../../app/useLanguage";
 import { EmbeddedSimulation } from "../../../shared/ui/EmbeddedSimulation";
+import { EmptyState } from "../../../shared/ui/EmptyState";
+import { PageHeader } from "../../../shared/ui/PageHeader";
 import { CatalogError } from "../components/CatalogError";
 import { CatalogSkeleton } from "../components/CatalogSkeleton";
 import { usePhetCatalog } from "../hooks/usePhetCatalog";
 
 const backLinkClass =
-  "inline-flex min-h-10 items-center gap-1.5 text-sm font-bold text-kenya-green dark:text-green-400";
+  "group inline-flex min-h-10 items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 text-sm font-bold transition-colors hover:border-kenya-green dark:border-slate-700 dark:bg-slate-900";
 
 export default function PhetSimulationPage() {
   const { simName } = useParams();
+  const navigate = useNavigate();
   const { tr } = useLanguage();
   const { state, retry } = usePhetCatalog();
   const simulation =
@@ -19,9 +22,12 @@ export default function PhetSimulationPage() {
       : undefined;
 
   return (
-    <div className="mx-auto max-w-5xl space-y-4">
+    <div className="space-y-5">
       <Link to="/simulations" className={backLinkClass}>
-        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+        <ArrowLeft
+          className="size-4 transition-transform group-hover:-translate-x-1"
+          aria-hidden="true"
+        />
         {tr("All simulations", "Uigaji wote")}
       </Link>
       {state.status === "loading" && <CatalogSkeleton />}
@@ -29,41 +35,32 @@ export default function PhetSimulationPage() {
         <CatalogError error={state.error} onRetry={retry} />
       )}
       {state.status === "success" && !simulation && (
-        <div className="rounded-2xl border border-dashed border-slate-300 p-8 text-center dark:border-slate-700">
-          <p className="font-bold">
-            {tr("Simulation not found", "Uigaji haujapatikana")}
-          </p>
-          <Link
-            to="/simulations"
-            className="mt-3 inline-flex min-h-10 items-center rounded-xl bg-kenya-green px-4 text-sm font-bold text-white"
-          >
-            {tr("Browse simulations", "Vinjari uigaji")}
-          </Link>
-        </div>
+        <EmptyState
+          icon={SearchX}
+          title={tr("Simulation not found", "Uigaji haujapatikana")}
+          actionLabel={tr("Browse simulations", "Vinjari uigaji")}
+          onAction={() => navigate("/simulations")}
+        />
       )}
       {simulation && (
         <>
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="min-w-0">
-              <h1 className="text-3xl font-black tracking-tight">
-                {simulation.title}
-              </h1>
-              {simulation.description && (
-                <p className="mt-1 max-w-3xl text-slate-600 dark:text-slate-300">
-                  {simulation.description}
-                </p>
-              )}
-            </div>
-            <a
-              href={simulation.pageUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl border border-slate-300 px-4 text-sm font-bold dark:border-slate-700"
-            >
-              {tr("Open on PhET", "Fungua kwenye PhET")}
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
+          <PageHeader
+            icon={MonitorPlay}
+            accent="blue"
+            title={simulation.title}
+            description={simulation.description || undefined}
+            actions={
+              <a
+                href={simulation.pageUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 text-sm font-bold transition-colors hover:border-kenya-green dark:border-slate-700 dark:bg-slate-900"
+              >
+                {tr("Open on PhET", "Fungua kwenye PhET")}
+                <ExternalLink className="size-4" aria-hidden="true" />
+              </a>
+            }
+          />
           <EmbeddedSimulation
             key={simulation.name}
             title={simulation.title}

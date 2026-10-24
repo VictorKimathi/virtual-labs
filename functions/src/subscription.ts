@@ -2,7 +2,7 @@ import { HttpsError } from "firebase-functions/v2/https";
 
 // Keep in step with src/features/school-subscription/subscription.config.ts.
 // The amount is always computed here so a client can never choose its price.
-const MONTHLY_PRICE_KES = 5000;
+const MONTHLY_PRICE_KES = 40_000;
 const YEARLY_MONTHS_CHARGED = 10;
 
 export type BillingPeriod = "monthly" | "yearly";

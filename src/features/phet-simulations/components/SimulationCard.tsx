@@ -10,10 +10,10 @@ export function SimulationCard({ simulation, tags }: Props) {
   return (
     <Link
       to={`/simulations/${simulation.name}`}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition-colors hover:border-kenya-green dark:border-slate-800 dark:bg-slate-900"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-kenya-green hover:shadow-xl hover:shadow-kenya-green/10 focus-visible:-translate-y-1 dark:border-slate-800 dark:bg-slate-900 dark:hover:shadow-black/40"
     >
       <RemoteThumbnail src={simulation.thumbnailUrl} />
-      <span className="flex flex-1 flex-col p-4">
+      <span className="flex flex-1 flex-col p-5">
         <span className="flex items-start justify-between gap-2">
           <span className="text-lg font-extrabold leading-snug">
             {simulation.title}

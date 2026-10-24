@@ -1,45 +1,49 @@
-import { ArrowLeft, ExternalLink } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, ExternalLink, Orbit, SearchX } from "lucide-react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useLanguage } from "../../../app/useLanguage";
 import { EmbeddedSimulation } from "../../../shared/ui/EmbeddedSimulation";
+import { EmptyState } from "../../../shared/ui/EmptyState";
+import { PageHeader } from "../../../shared/ui/PageHeader";
 import { findPhysicshubSimulation } from "../physicshub.filters";
 import { PHYSICSHUB_ORIGIN, PHYSICSHUB_SOURCE_URL } from "../physicshub.config";
 
 const backLinkClass =
-  "inline-flex min-h-10 items-center gap-1.5 text-sm font-bold text-kenya-green dark:text-green-400";
+  "group inline-flex min-h-10 items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 text-sm font-bold transition-colors hover:border-kenya-green dark:border-slate-700 dark:bg-slate-900";
 
 export default function PhysicshubSimulationPage() {
   const { simId } = useParams();
+  const navigate = useNavigate();
   const { tr } = useLanguage();
   const simulation = findPhysicshubSimulation(simId);
 
   return (
-    <div className="mx-auto max-w-5xl space-y-4">
+    <div className="space-y-5">
       <Link to="/physicshub" className={backLinkClass}>
-        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+        <ArrowLeft
+          className="size-4 transition-transform group-hover:-translate-x-1"
+          aria-hidden="true"
+        />
         {tr("All simulations", "Uigaji wote")}
       </Link>
       {simulation ? (
         <>
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="min-w-0">
-              <h1 className="text-3xl font-black tracking-tight">
-                {simulation.title}
-              </h1>
-              <p className="mt-1 max-w-3xl text-slate-600 dark:text-slate-300">
-                {simulation.description}
-              </p>
-            </div>
-            <a
-              href={`${PHYSICSHUB_ORIGIN}/simulations/${simulation.id}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl border border-slate-300 px-4 text-sm font-bold dark:border-slate-700"
-            >
-              {tr("Open on PhysicsHub", "Fungua kwenye PhysicsHub")}
-              <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </div>
+          <PageHeader
+            icon={Orbit}
+            accent="orange"
+            title={simulation.title}
+            description={simulation.description}
+            actions={
+              <a
+                href={`${PHYSICSHUB_ORIGIN}/simulations/${simulation.id}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 text-sm font-bold transition-colors hover:border-kenya-green dark:border-slate-700 dark:bg-slate-900"
+              >
+                {tr("Open on PhysicsHub", "Fungua kwenye PhysicsHub")}
+                <ExternalLink className="size-4" aria-hidden="true" />
+              </a>
+            }
+          />
           <EmbeddedSimulation
             key={simulation.id}
             title={simulation.title}
@@ -62,17 +66,12 @@ export default function PhysicshubSimulationPage() {
           </p>
         </>
       ) : (
-        <div className="rounded-2xl border border-dashed border-slate-300 p-8 text-center dark:border-slate-700">
-          <p className="font-bold">
-            {tr("Simulation not found", "Uigaji haujapatikana")}
-          </p>
-          <Link
-            to="/physicshub"
-            className="mt-3 inline-flex min-h-10 items-center rounded-xl bg-kenya-green px-4 text-sm font-bold text-white"
-          >
-            {tr("Browse simulations", "Vinjari uigaji")}
-          </Link>
-        </div>
+        <EmptyState
+          icon={SearchX}
+          title={tr("Simulation not found", "Uigaji haujapatikana")}
+          actionLabel={tr("Browse simulations", "Vinjari uigaji")}
+          onAction={() => navigate("/physicshub")}
+        />
       )}
     </div>
   );

@@ -1,37 +1,62 @@
-import { Award, BookOpenCheck, Medal, Star } from "lucide-react";
+import {
+  Award,
+  BookOpenCheck,
+  Lock,
+  Medal,
+  Star,
+  TrendingUp,
+} from "lucide-react";
+import { motion } from "motion/react";
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../../app/useLanguage";
+import { PageHeader } from "../../../shared/ui/PageHeader";
 import { SubjectIcon } from "../../../shared/ui/SubjectIcon";
 import { labs, subjects } from "../../catalog/data/catalog";
+import { portalStyles } from "../../catalog/hero.config";
+import { ProgressBar } from "../components/ProgressBar";
+import { ProgressRing } from "../components/ProgressRing";
 
 const sampleCompleted = new Set(["plant-cells"]);
 
+function percent(done: number, total: number) {
+  return total === 0 ? 0 : Math.round((done / total) * 100);
+}
+
 export default function ProgressPage() {
   const { language, tr } = useLanguage();
+  const totalDone = labs.filter((lab) => sampleCompleted.has(lab.id)).length;
+  const overall = percent(totalDone, labs.length);
   return (
-    <div className="space-y-7">
-      <div>
-        <p className="text-sm font-bold text-kenya-green dark:text-green-400">
-          {tr("YOUR LEARNING", "MAFUNZO YAKO")}
-        </p>
-        <h1 className="mt-2 text-3xl font-black">
-          {tr("Progress", "Maendeleo")}
-        </h1>
-        <p className="mt-2 text-slate-600 dark:text-slate-300">
-          {tr(
-            "See what you have explored and where to go next.",
-            "Ona ulichojifunza na hatua inayofuata.",
-          )}
-        </p>
-        <span className="mt-3 inline-block rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-800 dark:bg-amber-950 dark:text-amber-200">
-          {tr("Sample learner data", "Takwimu za mfano")}
-        </span>
-      </div>
+    <div className="space-y-8">
+      <PageHeader
+        icon={TrendingUp}
+        eyebrow={tr("Your learning", "Mafunzo yako")}
+        title={tr("Progress", "Maendeleo")}
+        description={tr(
+          "See what you have explored and where to go next.",
+          "Ona ulichojifunza na hatua inayofuata.",
+        )}
+      >
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+          <ProgressRing percent={overall} />
+          <div>
+            <p className="text-lg font-extrabold">
+              {totalDone} / {labs.length}{" "}
+              {tr("lessons completed", "masomo yamekamilika")}
+            </p>
+            <span className="mt-2 inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-900 dark:bg-amber-950 dark:text-amber-200">
+              {tr("Sample learner data", "Takwimu za mfano")}
+            </span>
+          </div>
+        </div>
+      </PageHeader>
+
       <section aria-labelledby="completed-heading">
-        <h2 id="completed-heading" className="mb-4 text-xl font-extrabold">
+        <h2 id="completed-heading" className="mb-4 text-xl font-black">
           {tr("Completed labs by subject", "Maabara zilizokamilika kwa somo")}
         </h2>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-3">
           {subjects.map((subject) => {
             const total = labs.filter(
               (lab) => lab.subject === subject.id,
@@ -40,22 +65,27 @@ export default function ProgressPage() {
               (lab) =>
                 lab.subject === subject.id && sampleCompleted.has(lab.id),
             ).length;
+            const style = portalStyles[subject.id];
             return (
               <div
                 key={subject.id}
-                className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900"
+                className="relative isolate overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900"
               >
                 <span
-                  className={`flex h-11 w-11 items-center justify-center rounded-xl ${subject.lightClass} ${subject.colorClass}`}
+                  aria-hidden="true"
+                  className={`absolute -right-10 -top-10 -z-10 size-40 rounded-full blur-3xl ${style.glow}`}
+                />
+                <span
+                  className={`flex size-12 items-center justify-center rounded-2xl ${subject.lightClass} ${subject.colorClass}`}
                 >
-                  <SubjectIcon icon={subject.icon} className="h-6 w-6" />
+                  <SubjectIcon icon={subject.icon} className="size-6" />
                 </span>
-                <h3 className="mt-3 text-sm font-extrabold">
+                <h3 className="mt-4 font-extrabold">
                   {language === "en" ? subject.name : subject.nameSw}
                 </h3>
-                <p className="mt-1 text-2xl font-black">
+                <p className="mt-1 text-3xl font-black">
                   {done}
-                  <span className="text-base font-semibold text-slate-400">
+                  <span className="text-lg font-semibold text-slate-400">
                     {" "}
                     / {total}
                   </span>
@@ -63,24 +93,27 @@ export default function ProgressPage() {
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   {tr("labs complete", "maabara zimekamilika")}
                 </p>
-                <div className="mt-3 h-2 rounded-full bg-slate-100 dark:bg-slate-800">
-                  <div
-                    className={`h-full rounded-full bg-kenya-green ${done === 0 ? "w-0" : "w-1/2"}`}
-                  />
-                </div>
+                <ProgressBar
+                  percent={percent(done, total)}
+                  tone="bg-kenya-green"
+                  className="mt-4"
+                />
               </div>
             );
           })}
         </div>
       </section>
+
       <section
         aria-labelledby="scores-heading"
-        className="rounded-3xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 sm:p-7"
+        className="rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900 sm:p-8"
       >
-        <div className="flex items-start gap-3">
-          <BookOpenCheck className="h-6 w-6 text-kenya-green" />
+        <div className="flex items-start gap-4">
+          <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-green-50 text-kenya-green dark:bg-green-950 dark:text-green-300">
+            <BookOpenCheck className="size-6" aria-hidden="true" />
+          </span>
           <div>
-            <h2 id="scores-heading" className="text-xl font-extrabold">
+            <h2 id="scores-heading" className="text-xl font-black">
               {tr("Assessment scores", "Alama za tathmini")}
             </h2>
             <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
@@ -92,49 +125,50 @@ export default function ProgressPage() {
           </div>
         </div>
         <div className="mt-6 space-y-5">
-          <ScoreBar
+          <ScoreRow
             label={tr("Before lab", "Kabla ya maabara")}
             score={40}
-            width="w-2/5"
             tone="bg-subject-physics"
           />
-          <ScoreBar
+          <ScoreRow
             label={tr("After lab", "Baada ya maabara")}
             score={80}
-            width="w-4/5"
             tone="bg-kenya-green"
           />
         </div>
-        <p className="mt-5 text-sm font-semibold text-kenya-green dark:text-green-400">
+        <p className="mt-6 inline-flex items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-sm font-extrabold text-kenya-green dark:bg-green-950 dark:text-green-300">
+          <TrendingUp className="size-4" aria-hidden="true" />
           {tr("You improved by 40 points.", "Umeongeza alama 40.")}
         </p>
       </section>
+
       <section aria-labelledby="badges-heading">
-        <h2 id="badges-heading" className="mb-4 text-xl font-extrabold">
+        <h2 id="badges-heading" className="mb-4 text-xl font-black">
           {tr("Achievement badges", "Beji za mafanikio")}
         </h2>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid gap-4 sm:grid-cols-3">
           <Badge
-            icon={<Star className="h-7 w-7" />}
+            icon={<Star className="size-8" />}
             title={tr("First Lab", "Maabara ya Kwanza")}
             detail={tr("Earned", "Imepatikana")}
-            active
+            earned
           />
           <Badge
-            icon={<Medal className="h-7 w-7" />}
+            icon={<Medal className="size-8" />}
             title={tr("Curious Mind", "Akili Dadisi")}
             detail={tr("Next badge", "Beji inayofuata")}
           />
           <Badge
-            icon={<Award className="h-7 w-7" />}
+            icon={<Award className="size-8" />}
             title={tr("Lab Explorer", "Mgunduzi wa Maabara")}
             detail={tr("Next badge", "Beji inayofuata")}
           />
         </div>
       </section>
+
       <Link
         to="/labs"
-        className="inline-flex min-h-12 items-center rounded-xl bg-kenya-green px-5 py-3 text-sm font-bold text-white"
+        className="inline-flex min-h-12 items-center rounded-2xl bg-kenya-green px-6 text-sm font-extrabold text-white shadow-lg shadow-kenya-green/25 transition-transform hover:-translate-y-0.5"
       >
         {tr("Explore more lessons", "Chunguza masomo zaidi")}
       </Link>
@@ -142,15 +176,13 @@ export default function ProgressPage() {
   );
 }
 
-function ScoreBar({
+function ScoreRow({
   label,
   score,
-  width,
   tone,
 }: {
   label: string;
   score: number;
-  width: string;
   tone: string;
 }) {
   return (
@@ -159,30 +191,40 @@ function ScoreBar({
         <span>{label}</span>
         <span>{score}%</span>
       </div>
-      <div className="h-4 rounded-full bg-slate-100 dark:bg-slate-800">
-        <div className={`h-full rounded-full ${width} ${tone}`} />
-      </div>
+      <ProgressBar percent={score} tone={tone} size="lg" />
     </div>
   );
 }
+
 function Badge({
   icon,
   title,
   detail,
-  active = false,
+  earned = false,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   detail: string;
-  active?: boolean;
+  earned?: boolean;
 }) {
   return (
-    <div
-      className={`flex min-h-32 flex-col items-center justify-center rounded-2xl border p-3 text-center ${active ? "border-yellow-300 bg-yellow-50 text-yellow-800 dark:border-yellow-800 dark:bg-yellow-950 dark:text-yellow-200" : "border-slate-200 bg-slate-50 text-slate-400 dark:border-slate-800 dark:bg-slate-900"}`}
+    <motion.div
+      whileHover={{ y: -4 }}
+      className={`relative flex min-h-40 flex-col items-center justify-center overflow-hidden rounded-3xl border p-4 text-center ${earned ? "border-yellow-300 bg-linear-to-br from-yellow-50 to-amber-100 text-yellow-800 shadow-lg shadow-yellow-400/20 dark:border-yellow-800 dark:from-yellow-950 dark:to-amber-950 dark:text-yellow-200" : "border-slate-200 bg-slate-50 text-slate-400 dark:border-slate-800 dark:bg-slate-900"}`}
     >
-      {icon}
-      <p className="mt-2 text-sm font-extrabold leading-4">{title}</p>
-      <p className="mt-1 text-xs">{detail}</p>
-    </div>
+      {!earned && (
+        <Lock
+          className="absolute right-4 top-4 size-4 text-slate-400"
+          aria-hidden="true"
+        />
+      )}
+      <span
+        className={`flex size-16 items-center justify-center rounded-full ${earned ? "bg-white/70 dark:bg-black/20" : "bg-slate-200 dark:bg-slate-800"}`}
+      >
+        {icon}
+      </span>
+      <p className="mt-3 font-extrabold leading-4">{title}</p>
+      <p className="mt-1 text-xs font-semibold">{detail}</p>
+    </motion.div>
   );
 }

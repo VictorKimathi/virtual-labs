@@ -26,7 +26,10 @@ export function IncludedList() {
   return (
     <ul className="grid gap-3 sm:grid-cols-2">
       {items.map((item) => (
-        <li key={item} className="flex items-start gap-3">
+        <li
+          key={item}
+          className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900"
+        >
           <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-100 text-kenya-green dark:bg-green-950 dark:text-green-300">
             <Check className="h-4 w-4" aria-hidden="true" />
           </span>
