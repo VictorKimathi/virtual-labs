@@ -25,14 +25,7 @@ export const subjects: Subject[] = [
     colorClass: "text-subject-biology",
     lightClass: "bg-green-50 dark:bg-green-950",
   },
-  {
-    id: "agriculture",
-    name: "Agriculture",
-    nameSw: "Kilimo",
-    icon: "sprout",
-    colorClass: "text-subject-agriculture",
-    lightClass: "bg-yellow-50 dark:bg-yellow-950",
-  },
+  // Agriculture is currently hidden until its lab content is ready.
 ];
 
 export const labs: Lab[] = [
@@ -134,32 +127,7 @@ export const labs: Lab[] = [
     introSw: "Chunguza hali ambazo mimea huhitaji kutengeneza chakula.",
     available: false,
   },
-  {
-    id: "soil-testing",
-    title: "Soil Testing",
-    titleSw: "Upimaji wa Udongo",
-    subject: "agriculture",
-    grade: 8,
-    strand: "Soils",
-    strandSw: "Udongo",
-    duration: "20 min",
-    intro: "Compare soil samples and the conditions they support.",
-    introSw: "Linganisha sampuli za udongo na hali zinazosaidia mimea.",
-    available: false,
-  },
-  {
-    id: "seed-germination",
-    title: "Seed Germination",
-    titleSw: "Uotaji wa Mbegu",
-    subject: "agriculture",
-    grade: 10,
-    strand: "Crop Production",
-    strandSw: "Uzalishaji wa Mazao",
-    duration: "20 min",
-    intro: "Observe what a seed needs to germinate.",
-    introSw: "Chunguza mahitaji ya mbegu ili iote.",
-    available: false,
-  },
+  // Agriculture labs are currently hidden until their content is ready.
 ];
 
 export function getSubject(id: SubjectId) {

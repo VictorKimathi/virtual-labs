@@ -28,7 +28,7 @@ export function usePhetCatalog() {
   useEffect(() => {
     if (readCachedCatalog()) return;
     const controller = new AbortController();
-    fetchPhetCatalog(controller.signal).then(
+    fetchPhetCatalog().then(
       (catalog) => setState({ status: "success", catalog }),
       (error: unknown) => {
         if (controller.signal.aborted) return;

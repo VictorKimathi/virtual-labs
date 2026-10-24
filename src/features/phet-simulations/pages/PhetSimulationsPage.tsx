@@ -5,7 +5,6 @@ import { CatalogError } from "../components/CatalogError";
 import { CatalogSkeleton } from "../components/CatalogSkeleton";
 import { SimulationCard } from "../components/SimulationCard";
 import { SimulationFilters } from "../components/SimulationFilters";
-import { SnapshotNotice } from "../components/SnapshotNotice";
 import { usePhetCatalog } from "../hooks/usePhetCatalog";
 import { usePhetFilters } from "../hooks/usePhetFilters";
 import { buildFilterOptions, filterSimulations } from "../phet.filters";
@@ -13,10 +12,8 @@ import type { PhetCatalog } from "../phet.types";
 
 function CatalogBrowser({
   catalog,
-  onRetry,
 }: {
   catalog: PhetCatalog;
-  onRetry: () => void;
 }) {
   const { tr } = useLanguage();
   const {
@@ -37,7 +34,6 @@ function CatalogBrowser({
 
   return (
     <div className="space-y-5">
-      {catalog.source === "snapshot" && <SnapshotNotice onRetry={onRetry} />}
       <SimulationFilters
         filters={filters}
         options={options}
@@ -102,7 +98,7 @@ export default function PhetSimulationsPage() {
     <div className="space-y-5">
       <div>
         <h1 className="text-3xl font-black tracking-tight sm:text-4xl">
-          {tr("PhET simulations", "Uigaji wa PhET")}
+          {tr("3D Simulations", "Uigaji wa 3D")}
         </h1>
         <p className="mt-1 max-w-3xl text-slate-600 dark:text-slate-300">
           {tr(
@@ -116,7 +112,7 @@ export default function PhetSimulationsPage() {
         <CatalogError error={state.error} onRetry={retry} />
       )}
       {state.status === "success" && (
-        <CatalogBrowser catalog={state.catalog} onRetry={retry} />
+        <CatalogBrowser catalog={state.catalog} />
       )}
     </div>
   );

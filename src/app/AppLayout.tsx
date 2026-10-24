@@ -33,58 +33,51 @@ export function AppLayout() {
     },
     {
       to: "/labs",
-      label: tr("Guided lessons", "Masomo yenye mwongozo"),
-      hint: tr("Step-by-step lab lessons", "Masomo ya maabara hatua kwa hatua"),
+      label: tr("Lessons", "Masomo"),
       icon: BookOpen,
       end: false,
     },
     {
       to: "/workbench",
-      label: tr("Practice bench", "Benchi la mazoezi"),
-      hint: tr("Build and test freely", "Unda na ujaribu huru"),
+      label: tr("Workbench", "Benchi la mazoezi"),
       icon: FlaskConical,
       end: false,
       alsoActive: ["/chemistry", "/sandbox"],
     },
     {
       to: "/simulations",
-      label: tr("PhET simulations", "Uigaji wa PhET"),
-      hint: tr("Explore science visually", "Chunguza sayansi kwa picha"),
+      label: tr("3D Simulations", "Uigaji wa 3D"),
       icon: MonitorPlay,
       end: false,
     },
     {
       to: "/falstad",
-      label: tr("Falstad circuits & waves", "Mizunguko na mawimbi ya Falstad"),
-      hint: tr("Circuit and wave simulators", "Viigaji vya sakiti na mawimbi"),
+      label: tr("Circuits & Waves", "Sakiti na Mawimbi"),
       icon: AudioWaveform,
       end: false,
     },
     {
       to: "/physicshub",
-      label: tr("PhysicsHub simulations", "Uigaji wa PhysicsHub"),
-      hint: tr("Interactive physics models", "Mifano shirikishi ya fizikia"),
+      label: tr("PhysicsHub", "PhysicsHub"),
       icon: Orbit,
       end: false,
     },
     {
       to: "/progress",
-      label: tr("My progress", "Maendeleo yangu"),
-      hint: tr("Scores and badges", "Alama na beji"),
+      label: tr("Progress", "Maendeleo"),
       icon: ChartNoAxesColumn,
       end: false,
     },
     {
       to: "/schools",
-      label: tr("For schools", "Kwa shule"),
-      hint: tr("Plans from KSh 5,000/month", "Mipango kuanzia KSh 5,000/mwezi"),
+      label: tr("Schools", "Shule"),
       icon: School,
       end: false,
     },
   ];
   const navigation = (
     <div className="space-y-1 pt-4">
-      {navItems.map(({ to, label, hint, icon: Icon, end, alsoActive }) => (
+      {navItems.map(({ to, label, icon: Icon, end, alsoActive }) => (
         <NavLink
           key={to}
           to={to}
@@ -95,12 +88,7 @@ export function AppLayout() {
           }
         >
           <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
-          <span className="min-w-0">
-            <span className="block text-sm font-bold">{label}</span>
-            <span className="block truncate text-xs font-medium text-slate-500 dark:text-slate-400">
-              {hint}
-            </span>
-          </span>
+          <span className="min-w-0 truncate text-sm font-bold">{label}</span>
         </NavLink>
       ))}
     </div>
@@ -131,7 +119,7 @@ export function AppLayout() {
                 <Atom className="h-6 w-6" aria-hidden="true" />
               </span>
               <span className="truncate text-base font-extrabold tracking-tight sm:text-lg">
-                Kenya Virtual Science Lab
+                bunifu labs
               </span>
             </Link>
           </div>
