@@ -1,13 +1,12 @@
 import {
   ArrowRight,
+  Atom,
   Filter,
   FlaskConical,
   HeartPulse,
   Lightbulb,
-  Magnet,
   Microscope,
   Search,
-  Sun,
   TestTubes,
   Zap,
 } from "lucide-react";
@@ -17,9 +16,7 @@ import { useLanguage } from "../../../app/useLanguage";
 import { topics } from "../data/topics";
 
 const topicIcons: Record<string, typeof Zap> = {
-  electricity: Zap,
-  magnetism: Magnet,
-  light: Sun,
+  physics: Atom,
 };
 
 const chemistryTone =
@@ -43,8 +40,8 @@ const subjectSections = [
     id: "physics",
     name: { en: "Physics", sw: "Fizikia" },
     description: {
-      en: "Build and test circuits, then explore more physics topics as they arrive.",
-      sw: "Unda na ujaribu sakiti, kisha chunguza mada zaidi za fizikia zitakapoongezwa.",
+      en: "Measure, build circuits, bend light, heat water and more, with the full KCSE practical equipment list.",
+      sw: "Pima, unda sakiti, pinda mwanga, pasha maji na zaidi, kwa orodha kamili ya vifaa vya mazoezi ya KCSE.",
     },
     icon: Zap,
     tone: "bg-blue-50 text-subject-physics dark:bg-blue-950 dark:text-blue-300",
@@ -84,7 +81,7 @@ export default function WorkbenchTopicsPage() {
         to: `/workbench/${topic.id}`,
         icon: topicIcons[topic.id] ?? Lightbulb,
         subject: { en: "Physics", sw: "Fizikia" },
-        kind: { en: "2D circuit bench", sw: "Benchi la sakiti la 2D" },
+        kind: { en: "2D practical bench", sw: "Benchi la mazoezi la 2D" },
         name: topic.name,
         summary: topic.summary,
         detail: {

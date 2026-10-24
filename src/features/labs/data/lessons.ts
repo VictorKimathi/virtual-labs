@@ -53,7 +53,7 @@ const lessons: Record<string, Lesson> = {
     ],
     simulations: [
       {
-        to: "/workbench/electricity?experiment=ohms-law",
+        to: "/workbench/physics?experiment=ohms-law",
         label: { en: "Open simulation", sw: "Fungua jaribio" },
       },
     ],

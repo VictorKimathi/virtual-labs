@@ -1,33 +1,46 @@
 import { MousePointerClick, Trash2 } from "lucide-react";
 import { useLanguage } from "../../../app/useLanguage";
-import { formatReading } from "../circuit/formatReading";
-import {
-  bulbBrightness,
-  LIT_BRIGHTNESS,
-  OVERLOAD_BRIGHTNESS,
-  type CircuitSolution,
-} from "../circuit/solveCircuit";
-import { partDefinitions } from "../data/equipment";
+import { partDefinitions, paramReader } from "../data/equipment";
 import { partLabel } from "../hooks/useBench";
-import type { PlacedPart, Selection, Wire } from "../workbench.types";
+import type {
+  BenchEnv,
+  Outcome,
+  PlacedPart,
+  Selection,
+  Tone,
+  Wire,
+} from "../workbench.types";
+import { ControlField } from "./ControlField";
+import { PartGraphic } from "./PartGraphic";
+import { ReadingTasks } from "./ReadingTasks";
+import { RulerZoom } from "./RulerZoom";
 
 type InspectorPanelProps = {
   parts: PlacedPart[];
   wires: Wire[];
   selection: Selection | null;
-  solution: CircuitSolution;
-  onSetValue: (id: string, value: number) => void;
-  onToggleSwitch: (id: string) => void;
+  env: BenchEnv;
+  outcomes: Map<string, Outcome>;
+  onSetParam: (id: string, param: string, value: number) => void;
+  onPress: (id: string, control: string) => void;
   onRemove: () => void;
+};
+
+const toneClass: Record<Tone | "tip", string> = {
+  ok: "bg-green-50 text-green-800 dark:bg-green-950 dark:text-green-300",
+  warn: "bg-amber-50 text-amber-900 dark:bg-amber-950 dark:text-amber-200",
+  bad: "bg-red-50 text-red-800 dark:bg-red-950 dark:text-red-300",
+  tip: "bg-sky-50 text-sky-900 dark:bg-sky-950 dark:text-sky-200",
 };
 
 export function InspectorPanel({
   parts,
   wires,
   selection,
-  solution,
-  onSetValue,
-  onToggleSwitch,
+  env,
+  outcomes,
+  onSetParam,
+  onPress,
   onRemove,
 }: InspectorPanelProps) {
   const { language, tr } = useLanguage();
@@ -47,132 +60,122 @@ export function InspectorPanel({
       className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-lg border border-red-200 px-3 text-sm font-bold text-red-700 hover:bg-red-50 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
     >
       <Trash2 className="h-4 w-4" />
-      {tr("Remove", "Ondoa")}
+      {tr("Remove from bench", "Ondoa kwenye benchi")}
     </button>
   );
 
-  return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
-      <h2 className="text-xs font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">
-        {tr("Inspector", "Ukaguzi")}
-      </h2>
-      {part && renderPartDetails(part)}
-      {wire && (
-        <>
-          <p className="mt-3 text-lg font-bold">{tr("Wire", "Waya")}</p>
-          <dl>
-            <Stat
-              label={tr("Current", "Mkondo")}
-              value={formatReading(
-                Math.abs(solution.wires.get(wire.id) ?? 0),
-                "A",
-              )}
-            />
-          </dl>
-          {removeButton}
-        </>
-      )}
-      {!part && !wire && (
-        <div className="mt-6 flex flex-col items-center gap-2 pb-4 text-center">
-          <MousePointerClick className="h-8 w-8 text-slate-400" />
-          <p className="text-sm font-bold">
-            {tr("Select something on the bench", "Chagua kitu kwenye benchi")}
-          </p>
-          <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
-            {tr(
-              "Place equipment from the palette, then click two terminals to run a wire.",
-              "Weka vifaa kutoka orodha, kisha bofya ncha mbili kuweka waya.",
-            )}
-          </p>
-        </div>
-      )}
-    </section>
-  );
-
-  function renderPartDetails(part: PlacedPart) {
+  if (part) {
     const definition = partDefinitions[part.kind];
-    const state = solution.parts.get(part.id);
-    const brightness = bulbBrightness(solution, part.id);
+    const outcome = outcomes.get(part.id) ?? {};
+    const p = paramReader(part);
     return (
-      <>
-        <p className="mt-3 text-lg font-bold">
+      <div>
+        <p className="text-lg font-bold">
           {partLabel(parts, part, definition.name[language])}
         </p>
         <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
           {definition.description[language]}
         </p>
-        {definition.adjustable && (
-          <label className="mt-4 block">
-            <span className="flex justify-between text-sm font-bold">
-              {definition.adjustable.label[language]}
-              <span className="font-mono">
-                {part.value} {definition.adjustable.unit}
-              </span>
-            </span>
-            <input
-              type="range"
-              min={definition.adjustable.min}
-              max={definition.adjustable.max}
-              step={definition.adjustable.step}
-              value={part.value}
-              onChange={(event) =>
-                onSetValue(part.id, Number(event.target.value))
-              }
-              className="mt-2 w-full accent-sky-600"
-            />
-          </label>
+        <svg
+          viewBox={`-8 -8 ${definition.width + 16} ${definition.height + 16}`}
+          role="img"
+          aria-label={tr("Close-up", "Karibu")}
+          className="mt-3 max-h-56 w-full rounded-lg bg-slate-50 p-2 dark:bg-slate-800"
+        >
+          <PartGraphic part={part} env={env} outcome={outcome} />
+        </svg>
+
+        {definition.controls.length > 0 && (
+          <div className="mt-4 space-y-3">
+            {definition.controls
+              .filter((control) => !control.when || control.when(part.params))
+              .map((control) => (
+                <ControlField
+                  key={control.id}
+                  control={control}
+                  value={p(control.id)}
+                  onChange={(value) => onSetParam(part.id, control.id, value)}
+                  onPress={() => onPress(part.id, control.id)}
+                />
+              ))}
+          </div>
         )}
-        {part.kind === "switch" && (
-          <button
-            type="button"
-            onClick={() => onToggleSwitch(part.id)}
-            aria-pressed={part.closed}
-            className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-sky-600 px-4 text-sm font-bold text-white hover:bg-sky-700"
-          >
-            {part.closed
-              ? tr("Open switch", "Fungua swichi")
-              : tr("Close switch", "Funga swichi")}
-          </button>
+
+        {outcome.issues && outcome.issues.length > 0 && (
+          <ul className="mt-4 space-y-2" aria-label={tr("Notes", "Maelezo")}>
+            {outcome.issues.map((item) => (
+              <li
+                key={item.id}
+                role={item.tone === "bad" ? "alert" : undefined}
+                className={`rounded-lg p-3 text-sm leading-5 ${toneClass[item.tone]}`}
+              >
+                {item.text[language]}
+              </li>
+            ))}
+          </ul>
         )}
-        {state && (
+
+        {outcome.visual?.ruler === 1 && (
+          <RulerZoom start={outcome.visual.start} seen={outcome.visual.seen} />
+        )}
+
+        {outcome.readouts && outcome.readouts.length > 0 && (
           <dl className="mt-4 grid grid-cols-2 gap-2">
-            <Stat
-              label={tr("Voltage", "Volteji")}
-              value={formatReading(Math.abs(state.voltage), "V")}
-            />
-            <Stat
-              label={tr("Current", "Mkondo")}
-              value={formatReading(Math.abs(state.current), "A")}
-            />
+            {outcome.readouts.map((item) => (
+              <div
+                key={item.label.en}
+                className="rounded-lg bg-slate-50 p-2 dark:bg-slate-800"
+              >
+                <dt className="text-xs font-bold text-slate-500 dark:text-slate-400">
+                  {item.label[language]}
+                </dt>
+                <dd
+                  className={`font-mono text-sm font-bold ${item.tone === "bad" ? "text-red-700 dark:text-red-400" : item.tone === "warn" ? "text-amber-700 dark:text-amber-400" : item.tone === "ok" ? "text-green-700 dark:text-green-400" : ""}`}
+                >
+                  {item.value}
+                </dd>
+              </div>
+            ))}
           </dl>
         )}
-        {part.kind === "bulb" && (
-          <p
-            className={`mt-3 text-sm font-bold ${brightness > OVERLOAD_BRIGHTNESS ? "text-red-700 dark:text-red-400" : "text-slate-600 dark:text-slate-300"}`}
-          >
-            {brightness > OVERLOAD_BRIGHTNESS
-              ? tr(
-                  "Overloaded — this bulb would burn out.",
-                  "Imezidiwa — balbu hii ingeungua.",
-                )
-              : brightness > LIT_BRIGHTNESS
-                ? `${tr("Brightness", "Mwangaza")}: ${Math.round(Math.min(brightness, 1) * 100)}%`
-                : tr("Not glowing", "Haiwaki")}
-          </p>
-        )}
+
+        <ReadingTasks tasks={outcome.tasks ?? []} />
         {removeButton}
-      </>
+      </div>
     );
   }
-}
 
-function Stat({ label, value }: { label: string; value: string }) {
+  if (wire) {
+    return (
+      <div>
+        <p className="text-lg font-bold">{tr("Wire", "Waya")}</p>
+        <dl className="mt-2">
+          <div className="rounded-lg bg-slate-50 p-2 dark:bg-slate-800">
+            <dt className="text-xs font-bold text-slate-500 dark:text-slate-400">
+              {tr("Current", "Mkondo")}
+            </dt>
+            <dd className="font-mono text-sm font-bold">
+              {Math.abs(env.solution.wires.get(wire.id) ?? 0).toFixed(3)} A
+            </dd>
+          </div>
+        </dl>
+        {removeButton}
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-2 rounded-lg bg-slate-50 p-2 dark:bg-slate-800">
-      <dt className="text-xs font-bold text-slate-500 dark:text-slate-400">
-        {label}
-      </dt>
-      <dd className="font-mono text-sm font-bold">{value}</dd>
+    <div className="mt-6 flex flex-col items-center gap-2 pb-4 text-center">
+      <MousePointerClick className="h-8 w-8 text-slate-400" />
+      <p className="text-sm font-bold">
+        {tr("Select something on the bench", "Chagua kitu kwenye benchi")}
+      </p>
+      <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+        {tr(
+          "Click a piece of equipment to see its settings and readings. Click two terminals to run a wire.",
+          "Bofya kifaa kuona mipangilio na vipimo vyake. Bofya ncha mbili kuweka waya.",
+        )}
+      </p>
     </div>
   );
 }

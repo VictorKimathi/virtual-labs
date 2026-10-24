@@ -2,17 +2,18 @@ import { ArrowLeft, RotateCcw, TriangleAlert } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useLanguage } from "../../../app/useLanguage";
-import { meterReading, solveCircuit } from "../circuit/solveCircuit";
 import { BenchCanvas } from "../components/BenchCanvas";
 import { EquipmentPalette } from "../components/EquipmentPalette";
 import { ExperimentPanel } from "../components/ExperimentPanel";
 import { InspectorPanel } from "../components/InspectorPanel";
 import { ReadingsDock } from "../components/ReadingsDock";
-import { partDefinitions } from "../data/equipment";
+import { SandboxPanel, type PanelTab } from "../components/SandboxPanel";
+import { analyseAll, makeEnv, partDefinitions } from "../data/equipment";
 import { findTopic } from "../data/topics";
 import { partLabel, useBench } from "../hooks/useBench";
+import { useBenchClock } from "../hooks/useBenchClock";
 import { useExperimentProgress } from "../hooks/useExperimentProgress";
-import type { MeterReading } from "../workbench.types";
+import type { MeterReading, Selection } from "../workbench.types";
 
 export default function TopicBenchPage() {
   const { topicId } = useParams();
@@ -20,67 +21,77 @@ export default function TopicBenchPage() {
   const { language, tr } = useLanguage();
   const [bench, dispatch] = useBench();
   const [attempt, setAttempt] = useState(0);
+  const [tab, setTab] = useState<PanelTab>(
+    searchParams.get("experiment") ? "experiment" : "equipment",
+  );
+  const now = useBenchClock(bench.parts);
   const topic = findTopic(topicId);
   const experiment = topic?.experiments.find(
     (item) => item.id === searchParams.get("experiment"),
   );
-  const solution = useMemo(
-    () => solveCircuit(bench.parts, bench.wires),
-    [bench.parts, bench.wires],
+  const env = useMemo(
+    () => makeEnv(bench.parts, bench.wires, bench.solution, now),
+    [bench.parts, bench.wires, bench.solution, now],
   );
+  const outcomes = useMemo(() => analyseAll(env), [env]);
   const readings: MeterReading[] = bench.parts.flatMap((part) => {
-    const meter = partDefinitions[part.kind].meter;
-    return meter
-      ? [
-          {
-            partId: part.id,
-            label: partLabel(
-              bench.parts,
-              part,
-              partDefinitions[part.kind].name[language],
-            ),
-            unit: meter.unit,
-            value: meterReading(solution, part),
-          },
-        ]
-      : [];
+    const measures = outcomes.get(part.id)?.measures ?? [];
+    const name = partLabel(
+      bench.parts,
+      part,
+      partDefinitions[part.kind].name[language],
+    );
+    return measures.map((measure) => ({
+      partId: part.id,
+      measureId: measure.id,
+      label:
+        measures.length > 1 ? `${name} · ${measure.label[language]}` : name,
+      unit: measure.unit,
+      digits: measure.digits,
+      value: measure.value,
+    }));
   });
   const achieved = useExperimentProgress(
     experiment,
     {
       parts: bench.parts,
       wires: bench.wires,
-      solution,
+      solution: bench.solution,
       records: bench.records,
+      outcomes,
     },
     `${experiment?.id ?? "free"}:${attempt}`,
   );
 
-  if (!topic || topic.experiments.length === 0)
+  if (!topic)
     return (
       <div className="mx-auto max-w-lg py-16 text-center">
         <h1 className="text-2xl font-black">
-          {topic
-            ? tr("This topic is coming soon", "Mada hii inakuja hivi karibuni")
-            : tr("Topic not found", "Mada haikupatikana")}
+          {tr("Bench not found", "Benchi haikupatikana")}
         </h1>
         <Link
           to="/workbench"
           className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-kenya-green px-5 text-sm font-bold text-white"
         >
           <ArrowLeft className="h-4 w-4" />
-          {tr("Back to topics", "Rudi kwenye mada")}
+          {tr("Back to benches", "Rudi kwenye mabenchi")}
         </Link>
       </div>
     );
 
   function chooseExperiment(id: string | null) {
     setSearchParams(id ? { experiment: id } : {});
+    if (id) setTab("experiment");
   }
 
   function resetBench() {
     dispatch({ type: "reset" });
     setAttempt((value) => value + 1);
+  }
+
+  function select(selection: Selection | null) {
+    dispatch({ type: "select", selection });
+    if (selection) setTab("inspector");
   }
 
   return (
@@ -109,65 +120,77 @@ export default function TopicBenchPage() {
         </button>
       </div>
 
-      <nav
-        aria-label={tr("Experiments", "Majaribio")}
-        className="rounded-2xl border border-slate-200 bg-white p-2 dark:border-slate-800 dark:bg-slate-900"
-      >
-        <span className="block px-2 pb-1 pt-0.5 text-xs font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">
-          {tr("Experiment", "Jaribio")}
-        </span>
-        <ul className="flex flex-wrap gap-1">
-          {[undefined, ...topic.experiments].map((item) => {
-            const active = item?.id === experiment?.id;
-            return (
-              <li key={item?.id ?? "free"} className="shrink-0">
-                <button
-                  type="button"
-                  onClick={() => chooseExperiment(item?.id ?? null)}
-                  aria-pressed={active}
-                  title={item?.summary[language]}
-                  className={`min-h-9 rounded-lg px-3 text-sm font-bold transition-colors ${active ? "bg-sky-600 text-white" : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"}`}
-                >
-                  {item ? item.title[language] : tr("Free build", "Unda huru")}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-
-      <div className="grid gap-4 xl:grid-cols-12">
-        <div className="relative min-h-96 xl:col-span-2 xl:min-h-0">
-          <EquipmentPalette
-            equipment={topic.equipment}
-            needed={experiment?.equipment ?? []}
-            onAdd={(kind) => dispatch({ type: "add-part", kind })}
+      <div className="grid gap-4 xl:grid-cols-12 xl:items-start">
+        <div className="xl:sticky xl:top-4 xl:col-span-4 2xl:col-span-3">
+          <SandboxPanel
+            tab={tab}
+            onTab={setTab}
+            goalsDone={achieved.length}
+            goalsTotal={experiment?.goals.length ?? 0}
+            equipment={
+              <EquipmentPalette
+                needed={experiment?.equipment ?? []}
+                onAdd={(kind) => dispatch({ type: "add-part", kind })}
+              />
+            }
+            inspector={
+              <InspectorPanel
+                parts={bench.parts}
+                wires={bench.wires}
+                selection={bench.selection}
+                env={env}
+                outcomes={outcomes}
+                onSetParam={(id, param, value) =>
+                  dispatch({ type: "set-param", id, param, value })
+                }
+                onPress={(id, control) =>
+                  dispatch({ type: "press", id, control, now: Date.now() })
+                }
+                onRemove={() => dispatch({ type: "remove-selected" })}
+              />
+            }
+            experiment={
+              <ExperimentPanel
+                experiments={topic.experiments}
+                experiment={experiment}
+                achieved={achieved}
+                onChoose={chooseExperiment}
+              />
+            }
           />
         </div>
-        <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 xl:col-span-7">
+
+        <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 xl:col-span-8 2xl:col-span-9">
           <BenchCanvas
             parts={bench.parts}
             wires={bench.wires}
-            solution={solution}
+            env={env}
+            outcomes={outcomes}
             selection={bench.selection}
             pendingTerminal={bench.pendingTerminal}
             onAddPart={(kind, x, y) =>
               dispatch({ type: "add-part", kind, x, y })
             }
             onMovePart={(id, x, y) => dispatch({ type: "move-part", id, x, y })}
-            onSelect={(selection) => dispatch({ type: "select", selection })}
+            onSelect={select}
             onTerminal={(terminal) => dispatch({ type: "terminal", terminal })}
-            onToggleSwitch={(id) => dispatch({ type: "toggle-switch", id })}
+            onTap={(id) => dispatch({ type: "tap", id })}
             onRemoveSelected={() => dispatch({ type: "remove-selected" })}
           />
-          <div className="flex items-center gap-4 border-t border-slate-200 px-3 py-2 text-xs font-bold text-slate-500 dark:border-slate-800 dark:text-slate-400">
+          <div className="flex flex-wrap items-center gap-4 border-t border-slate-200 px-3 py-2 text-xs font-bold text-slate-500 dark:border-slate-800 dark:text-slate-400">
             <span>
               {tr("Parts", "Vifaa")} {bench.parts.length}
             </span>
             <span>
               {tr("Wires", "Waya")} {bench.wires.length}
             </span>
-            {solution.shortCircuit ? (
+            {bench.solution.ac && (
+              <span className="text-sky-700 dark:text-sky-300">
+                {tr("a.c.", "a.c.")}{" "}
+                {Math.round(bench.solution.frequency * 10) / 10} Hz
+              </span>
+            )}
+            {bench.solution.shortCircuit ? (
               <span
                 role="alert"
                 className="ml-auto inline-flex items-center gap-1 text-red-700 dark:text-red-400"
@@ -192,20 +215,6 @@ export default function TopicBenchPage() {
             onClearRecords={() => dispatch({ type: "clear-records" })}
           />
         </section>
-        <div className="space-y-4 xl:col-span-3">
-          <ExperimentPanel experiment={experiment} achieved={achieved} />
-          <InspectorPanel
-            parts={bench.parts}
-            wires={bench.wires}
-            selection={bench.selection}
-            solution={solution}
-            onSetValue={(id, value) =>
-              dispatch({ type: "set-value", id, value })
-            }
-            onToggleSwitch={(id) => dispatch({ type: "toggle-switch", id })}
-            onRemove={() => dispatch({ type: "remove-selected" })}
-          />
-        </div>
       </div>
     </div>
   );

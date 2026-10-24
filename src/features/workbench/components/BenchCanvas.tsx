@@ -1,13 +1,10 @@
 import { useRef, useState, type DragEvent, type PointerEvent } from "react";
 import { useLanguage } from "../../../app/useLanguage";
-import {
-  bulbBrightness,
-  meterReading,
-  type CircuitSolution,
-} from "../circuit/solveCircuit";
 import { isPartKind, partDefinitions } from "../data/equipment";
 import { BENCH_HEIGHT, BENCH_WIDTH, partLabel } from "../hooks/useBench";
 import type {
+  BenchEnv,
+  Outcome,
   PartKind,
   PlacedPart,
   Selection,
@@ -23,14 +20,15 @@ type Point = { x: number; y: number };
 type BenchCanvasProps = {
   parts: PlacedPart[];
   wires: Wire[];
-  solution: CircuitSolution;
+  env: BenchEnv;
+  outcomes: Map<string, Outcome>;
   selection: Selection | null;
   pendingTerminal: TerminalRef | null;
   onAddPart: (kind: PartKind, x: number, y: number) => void;
   onMovePart: (id: string, x: number, y: number) => void;
   onSelect: (selection: Selection | null) => void;
   onTerminal: (terminal: TerminalRef) => void;
-  onToggleSwitch: (id: string) => void;
+  onTap: (id: string) => void;
   onRemoveSelected: () => void;
 };
 
@@ -61,17 +59,49 @@ function wireColour(wire: Wire) {
   return "stroke-blue-500";
 }
 
+function IssueBadge({
+  x,
+  issues,
+}: {
+  x: number;
+  issues: NonNullable<Outcome["issues"]>;
+}) {
+  const worst = issues.some((item) => item.tone === "bad")
+    ? "bad"
+    : issues.some((item) => item.tone === "warn")
+      ? "warn"
+      : undefined;
+  if (!worst) return null;
+  return (
+    <g transform={`translate(${x} -4)`} className="pointer-events-none">
+      <circle
+        r="11"
+        className={worst === "bad" ? "fill-red-600" : "fill-amber-500"}
+      />
+      <text
+        textAnchor="middle"
+        y="5"
+        fontSize="15"
+        className="fill-white font-black"
+      >
+        !
+      </text>
+    </g>
+  );
+}
+
 export function BenchCanvas({
   parts,
   wires,
-  solution,
+  env,
+  outcomes,
   selection,
   pendingTerminal,
   onAddPart,
   onMovePart,
   onSelect,
   onTerminal,
-  onToggleSwitch,
+  onTap,
   onRemoveSelected,
 }: BenchCanvasProps) {
   const { language, tr } = useLanguage();
@@ -128,7 +158,7 @@ export function BenchCanvas({
 
   function endPartDrag(part: PlacedPart) {
     if (!drag) return;
-    if (!drag.moved && part.kind === "switch") onToggleSwitch(part.id);
+    if (!drag.moved && partDefinitions[part.kind].tapToggles) onTap(part.id);
     onSelect({ type: "part", id: part.id });
     setDrag(null);
   }
@@ -192,7 +222,7 @@ export function BenchCanvas({
           const from = terminalPoint(parts, wire.from);
           const to = terminalPoint(parts, wire.to);
           if (!from || !to) return null;
-          const current = solution.wires.get(wire.id) ?? 0;
+          const current = env.solution.wires.get(wire.id) ?? 0;
           const flowing = Math.abs(current) > 0.001;
           const selected =
             selection?.type === "wire" && selection.id === wire.id;
@@ -269,7 +299,7 @@ export function BenchCanvas({
                     onMovePart(part.id, part.x + step[0], part.y + step[1]);
                   } else if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault();
-                    if (part.kind === "switch") onToggleSwitch(part.id);
+                    if (partDefinitions[part.kind].tapToggles) onTap(part.id);
                     onSelect({ type: "part", id: part.id });
                   } else if (
                     event.key === "Delete" ||
@@ -293,8 +323,12 @@ export function BenchCanvas({
                 />
                 <PartGraphic
                   part={part}
-                  reading={meterReading(solution, part)}
-                  brightness={bulbBrightness(solution, part.id)}
+                  env={env}
+                  outcome={outcomes.get(part.id) ?? {}}
+                />
+                <IssueBadge
+                  x={definition.width}
+                  issues={outcomes.get(part.id)?.issues ?? []}
                 />
               </g>
               {definition.terminals.map((terminal) => {

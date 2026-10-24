@@ -1,19 +1,15 @@
-import {
-  bulbBrightness,
-  LIT_BRIGHTNESS,
-  meterReading,
-  solveCircuit,
-  terminalKey,
-} from "../circuit/solveCircuit";
+import { solveCircuit } from "../circuit/solveCircuit";
+import { elementState, terminalKey } from "../circuit/solution";
 import type {
   Experiment,
   GoalContext,
   PartKind,
   PlacedPart,
 } from "../workbench.types";
+import { bulbBrightness, LIT_BRIGHTNESS } from "./catalogue/electricity";
 import { partDefinitions } from "./equipment";
 
-const SOURCES: PartKind[] = ["cell", "battery", "power-supply"];
+const SOURCES: PartKind[] = ["dry-cell", "cell-holder", "power-supply"];
 
 function partsOf(context: GoalContext, kind: PartKind) {
   return context.parts.filter((part) => part.kind === kind);
@@ -21,16 +17,16 @@ function partsOf(context: GoalContext, kind: PartKind) {
 
 function litBulbs(context: GoalContext) {
   return partsOf(context, "bulb").filter(
-    (bulb) => bulbBrightness(context.solution, bulb.id) > LIT_BRIGHTNESS,
+    (bulb) => bulbBrightness(context.solution, bulb) > LIT_BRIGHTNESS,
   );
 }
 
 function current(context: GoalContext, part: PlacedPart) {
-  return context.solution.parts.get(part.id)?.current ?? 0;
+  return elementState(context.solution, part.id).current;
 }
 
 function voltage(context: GoalContext, part: PlacedPart) {
-  return context.solution.parts.get(part.id)?.voltage ?? 0;
+  return elementState(context.solution, part.id).voltage;
 }
 
 function potentials(context: GoalContext, part: PlacedPart) {
@@ -61,7 +57,7 @@ function pairs<T>(items: T[]) {
 
 function measuresCurrentOf(context: GoalContext, kind: PartKind) {
   return partsOf(context, "ammeter").some((meter) => {
-    const reading = meterReading(context.solution, meter);
+    const reading = current(context, meter);
     return (
       reading > 0.005 &&
       partsOf(context, kind).some(
@@ -73,7 +69,7 @@ function measuresCurrentOf(context: GoalContext, kind: PartKind) {
 
 function measuresVoltageAcross(context: GoalContext, kind: PartKind) {
   return partsOf(context, "voltmeter").some((meter) => {
-    const reading = meterReading(context.solution, meter);
+    const reading = voltage(context, meter);
     return (
       reading > 0.1 &&
       partsOf(context, kind).some((part) => inParallel(context, meter, part))
@@ -84,12 +80,13 @@ function measuresVoltageAcross(context: GoalContext, kind: PartKind) {
 export const electricityExperiments: Experiment[] = [
   {
     id: "light-a-bulb",
+    section: "electricity",
     title: { en: "Light a bulb", sw: "Washa balbu" },
     summary: {
       en: "Build a complete circuit so current can flow through a bulb.",
       sw: "Unda sakiti kamili ili mkondo upite kwenye balbu.",
     },
-    equipment: ["cell", "bulb"],
+    equipment: ["dry-cell", "bulb"],
     steps: [
       {
         en: "Drag a dry cell and a light bulb onto the bench.",
@@ -134,6 +131,7 @@ export const electricityExperiments: Experiment[] = [
   },
   {
     id: "switch-control",
+    section: "electricity",
     title: {
       en: "Control a bulb with a switch",
       sw: "Dhibiti balbu kwa swichi",
@@ -142,7 +140,7 @@ export const electricityExperiments: Experiment[] = [
       en: "Add a switch in series and use it to turn the bulb on and off.",
       sw: "Ongeza swichi mfululizo na uitumie kuwasha na kuzima balbu.",
     },
-    equipment: ["cell", "switch", "bulb"],
+    equipment: ["dry-cell", "switch", "bulb"],
     steps: [
       {
         en: "Build the bulb circuit with a knife switch in the loop.",
@@ -166,7 +164,7 @@ export const electricityExperiments: Experiment[] = [
           sw: "Washa balbu swichi ikiwa imefungwa",
         },
         check: (context) =>
-          partsOf(context, "switch").some((part) => part.closed) &&
+          partsOf(context, "switch").some((part) => part.params.closed === 1) &&
           litBulbs(context).length > 0,
       },
       {
@@ -180,7 +178,12 @@ export const electricityExperiments: Experiment[] = [
             const withSwitch = (closed: boolean) =>
               solveCircuit(
                 context.parts.map((part) =>
-                  part.id === target.id ? { ...part, closed } : part,
+                  part.id === target.id
+                    ? {
+                        ...part,
+                        params: { ...part.params, closed: closed ? 1 : 0 },
+                      }
+                    : part,
                 ),
                 context.wires,
               );
@@ -188,8 +191,8 @@ export const electricityExperiments: Experiment[] = [
             const open = withSwitch(false);
             return partsOf(context, "bulb").some(
               (bulb) =>
-                bulbBrightness(closed, bulb.id) > LIT_BRIGHTNESS &&
-                bulbBrightness(open, bulb.id) <= LIT_BRIGHTNESS,
+                bulbBrightness(closed, bulb) > LIT_BRIGHTNESS &&
+                bulbBrightness(open, bulb) <= LIT_BRIGHTNESS,
             );
           }),
       },
@@ -197,12 +200,13 @@ export const electricityExperiments: Experiment[] = [
   },
   {
     id: "measure-current",
+    section: "electricity",
     title: { en: "Measure current", sw: "Pima mkondo" },
     summary: {
       en: "Use an ammeter in series to measure the current through a bulb.",
       sw: "Tumia amita mfululizo kupima mkondo unaopita kwenye balbu.",
     },
-    equipment: ["cell", "bulb", "ammeter"],
+    equipment: ["dry-cell", "bulb", "ammeter"],
     steps: [
       {
         en: "Break the bulb circuit and insert the ammeter into the loop.",
@@ -231,12 +235,13 @@ export const electricityExperiments: Experiment[] = [
   },
   {
     id: "measure-voltage",
+    section: "electricity",
     title: { en: "Measure voltage", sw: "Pima volteji" },
     summary: {
       en: "Connect a voltmeter across a glowing bulb.",
       sw: "Unganisha voltimita sambamba na balbu inayowaka.",
     },
-    equipment: ["cell", "bulb", "voltmeter"],
+    equipment: ["dry-cell", "bulb", "voltmeter"],
     steps: [
       {
         en: "Light a bulb with a cell.",
@@ -265,12 +270,19 @@ export const electricityExperiments: Experiment[] = [
   },
   {
     id: "ohms-law",
+    section: "electricity",
     title: { en: "Ohm's law", sw: "Sheria ya Ohm" },
     summary: {
       en: "Vary the voltage across a resistor and plot V against I.",
       sw: "Badilisha volteji kwenye kikinzani na uchore V dhidi ya I.",
     },
-    equipment: ["power-supply", "resistor", "ammeter", "voltmeter"],
+    equipment: [
+      "power-supply",
+      "resistor",
+      "ammeter",
+      "voltmeter",
+      "connecting-lead",
+    ],
     steps: [
       {
         en: "Connect the power supply, ammeter and resistor in series.",
@@ -307,6 +319,27 @@ export const electricityExperiments: Experiment[] = [
         check: (context) => measuresVoltageAcross(context, "resistor"),
       },
       {
+        id: "zeroed",
+        label: {
+          en: "Zero both meters with their adjusting screws",
+          sw: "Weka mita zote mbili sifuri kwa skrubu zake",
+        },
+        check: (context) => {
+          const meters = [
+            ...partsOf(context, "ammeter"),
+            ...partsOf(context, "voltmeter"),
+          ];
+          return (
+            meters.length >= 2 &&
+            meters.every(
+              (meter) =>
+                Math.abs(context.outcomes.get(meter.id)?.visual?.offset ?? 99) <
+                1,
+            )
+          );
+        },
+      },
+      {
         id: "records",
         label: {
           en: "Record readings at 5 different voltages",
@@ -326,6 +359,7 @@ export const electricityExperiments: Experiment[] = [
   },
   {
     id: "series-parallel",
+    section: "electricity",
     title: {
       en: "Series and parallel bulbs",
       sw: "Balbu mfululizo na sambamba",
@@ -334,7 +368,7 @@ export const electricityExperiments: Experiment[] = [
       en: "Compare how brightly two bulbs glow in series and in parallel.",
       sw: "Linganisha mwangaza wa balbu mbili mfululizo na sambamba.",
     },
-    equipment: ["battery", "bulb"],
+    equipment: ["cell-holder", "bulb"],
     steps: [
       {
         en: "Connect two bulbs one after the other with a battery holder.",

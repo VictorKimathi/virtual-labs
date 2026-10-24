@@ -1,45 +1,18 @@
+import { allKinds } from "./kinds";
 import type { Topic } from "../workbench.types";
 import { electricityExperiments } from "./electricity.experiments";
+import { physicsExperiments } from "./physics.experiments";
 
 export const topics: Topic[] = [
   {
-    id: "electricity",
-    name: { en: "Electricity", sw: "Umeme" },
+    id: "physics",
+    name: { en: "Physics virtual lab", sw: "Maabara pepe ya fizikia" },
     summary: {
-      en: "Build circuits with cells, switches, bulbs, resistors and meters.",
-      sw: "Unda sakiti kwa seli, swichi, balbu, vikinzani na mita.",
+      en: "A full physics practical bench: measurement, mechanics, fluids, heat, light, waves, electricity, magnetism and modern physics.",
+      sw: "Benchi kamili la mazoezi ya fizikia: vipimo, mekanika, vimiminika, joto, mwanga, mawimbi, umeme, sumaku na fizikia ya kisasa.",
     },
-    equipment: [
-      "cell",
-      "battery",
-      "power-supply",
-      "switch",
-      "ammeter",
-      "voltmeter",
-      "bulb",
-      "resistor",
-    ],
-    experiments: electricityExperiments,
-  },
-  {
-    id: "magnetism",
-    name: { en: "Magnetism", sw: "Sumaku" },
-    summary: {
-      en: "Magnets, compasses and electromagnets.",
-      sw: "Sumaku, dira na sumaku-umeme.",
-    },
-    equipment: [],
-    experiments: [],
-  },
-  {
-    id: "light",
-    name: { en: "Light", sw: "Mwanga" },
-    summary: {
-      en: "Mirrors, lenses, and how light reflects and refracts.",
-      sw: "Vioo, lenzi, na jinsi mwanga unavyoakisi na kupinda.",
-    },
-    equipment: [],
-    experiments: [],
+    equipment: allKinds,
+    experiments: [...physicsExperiments, ...electricityExperiments],
   },
 ];
 
