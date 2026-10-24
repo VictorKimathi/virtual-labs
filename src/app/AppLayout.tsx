@@ -18,79 +18,144 @@ import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useLanguage } from "./useLanguage";
 import { useTheme } from "./useTheme";
 
+type NavItem = {
+  to: string;
+  label: string;
+  icon: typeof House;
+  alsoActive?: string[];
+};
+
+type NavSection = {
+  id: string;
+  label: string;
+  items: NavItem[];
+};
+
 export function AppLayout() {
   const { language, toggleLanguage, tr } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
-  const navItems = [
+  const navSections: NavSection[] = [
     {
-      to: "/",
-      label: tr("Home", "Nyumbani"),
-      hint: tr("Start here", "Anzia hapa"),
-      icon: House,
-      end: true,
+      id: "learn",
+      label: tr("Learn", "Jifunze"),
+      items: [
+        {
+          to: "/labs",
+          label: tr("Guided lessons", "Masomo yenye mwongozo"),
+          icon: BookOpen,
+        },
+      ],
     },
     {
-      to: "/labs",
-      label: tr("Lessons", "Masomo"),
-      icon: BookOpen,
-      end: false,
+      id: "practice",
+      label: tr("Practice", "Fanya mazoezi"),
+      items: [
+        {
+          to: "/workbench",
+          label: tr("Practice bench", "Benchi la mazoezi"),
+          icon: FlaskConical,
+          alsoActive: ["/chemistry", "/sandbox"],
+        },
+      ],
     },
     {
-      to: "/workbench",
-      label: tr("Workbench", "Benchi la mazoezi"),
-      icon: FlaskConical,
-      end: false,
-      alsoActive: ["/chemistry", "/sandbox"],
-    },
-    {
-      to: "/simulations",
-      label: tr("3D Simulations", "Uigaji wa 3D"),
-      icon: MonitorPlay,
-      end: false,
-    },
-    {
-      to: "/falstad",
-      label: tr("Circuits & Waves", "Sakiti na Mawimbi"),
-      icon: AudioWaveform,
-      end: false,
-    },
-    {
-      to: "/physicshub",
-      label: tr("PhysicsHub", "PhysicsHub"),
-      icon: Orbit,
-      end: false,
-    },
-    {
-      to: "/progress",
-      label: tr("Progress", "Maendeleo"),
-      icon: ChartNoAxesColumn,
-      end: false,
-    },
-    {
-      to: "/schools",
-      label: tr("Schools", "Shule"),
-      icon: School,
-      end: false,
+      id: "explore",
+      label: tr("Explore", "Chunguza"),
+      items: [
+        {
+          to: "/simulations",
+          label: tr("PhET simulations", "Uigaji wa PhET"),
+          icon: MonitorPlay,
+        },
+        {
+          to: "/falstad",
+          label: tr("Circuits & waves", "Sakiti na mawimbi"),
+          icon: AudioWaveform,
+        },
+        {
+          to: "/physicshub",
+          label: tr("PhysicsHub", "PhysicsHub"),
+          icon: Orbit,
+        },
+      ],
     },
   ];
+  const linkClass = (isActive: boolean) =>
+    `flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${isActive ? "bg-green-50 text-kenya-green dark:bg-green-950 dark:text-green-300" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"}`;
   const navigation = (
-    <div className="space-y-1 pt-4">
-      {navItems.map(({ to, label, icon: Icon, end, alsoActive }) => (
-        <NavLink
-          key={to}
-          to={to}
-          end={end}
-          onClick={() => setMenuOpen(false)}
-          className={({ isActive }) =>
-            `flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors ${isActive || alsoActive?.some((prefix) => pathname.startsWith(prefix)) ? "bg-green-50 text-kenya-green dark:bg-green-950 dark:text-green-300" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"}`
-          }
-        >
-          <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
-          <span className="min-w-0 truncate text-sm font-bold">{label}</span>
-        </NavLink>
+    <div className="space-y-5 pt-4">
+      <NavLink
+        to="/"
+        end
+        onClick={() => setMenuOpen(false)}
+        className={({ isActive }) => linkClass(isActive)}
+      >
+        <House className="h-5 w-5 shrink-0" aria-hidden="true" />
+        <span className="min-w-0 truncate text-sm font-bold">
+          {tr("Home", "Nyumbani")}
+        </span>
+      </NavLink>
+      {navSections.map(({ id, label: sectionLabel, items }) => (
+        <section key={id} aria-labelledby={`${id}-nav`}>
+          <h2
+            id={`${id}-nav`}
+            className="px-3 text-xs font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500"
+          >
+            {sectionLabel}
+          </h2>
+          <div className="mt-1 space-y-1">
+            {items.map(({ to, label, icon: Icon, alsoActive }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  linkClass(
+                    isActive ||
+                      Boolean(
+                        alsoActive?.some((prefix) =>
+                          pathname.startsWith(prefix),
+                        ),
+                      ),
+                  )
+                }
+              >
+                <Icon className="h-5 w-5 shrink-0" aria-hidden="true" />
+                <span className="min-w-0 truncate text-sm font-bold">
+                  {label}
+                </span>
+              </NavLink>
+            ))}
+          </div>
+        </section>
       ))}
+      <div className="border-t border-slate-200 pt-3 dark:border-slate-800">
+        <NavLink
+          to="/progress"
+          end
+          onClick={() => setMenuOpen(false)}
+          className={({ isActive }) => linkClass(isActive)}
+        >
+          <ChartNoAxesColumn className="h-5 w-5 shrink-0" aria-hidden="true" />
+          <span className="min-w-0 truncate text-sm font-bold">
+            {tr("Progress", "Maendeleo")}
+          </span>
+        </NavLink>
+        <NavLink
+          to="/schools"
+          end
+          onClick={() => setMenuOpen(false)}
+          className={({ isActive }) => linkClass(isActive)}
+        >
+          <School className="h-5 w-5 shrink-0" aria-hidden="true" />
+          <span className="min-w-0 truncate text-sm font-bold">
+            {tr("School plans", "Mipango ya shule")}
+          </span>
+        </NavLink>
+      </div>
     </div>
   );
   return (
@@ -119,14 +184,11 @@ export function AppLayout() {
                 <Atom className="h-6 w-6" aria-hidden="true" />
               </span>
               <span className="truncate text-base font-extrabold tracking-tight sm:text-lg">
-                bunifu labs
+                Bunifu Labz
               </span>
             </Link>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <span className="hidden text-xs font-semibold text-slate-500 lg:inline">
-              {tr("CBE STEM workspace", "Nafasi ya CBE STEM")}
-            </span>
             <button
               type="button"
               onClick={toggleLanguage}
