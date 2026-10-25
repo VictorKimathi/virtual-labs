@@ -6,6 +6,11 @@ export type AppErrorCode =
   | "rate-limited"
   | "forbidden"
   | "sign-in"
+  | "credentials"
+  | "account-exists"
+  | "weak-password"
+  | "too-many-attempts"
+  | "wrong-role"
   | "unknown";
 
 type UserMessage = { en: string; sw: string };
@@ -38,6 +43,26 @@ const userMessages: Record<AppErrorCode, UserMessage> = {
   "sign-in": {
     en: "Sign-in did not finish. Please try again.",
     sw: "Kuingia hakukukamilika. Tafadhali jaribu tena.",
+  },
+  credentials: {
+    en: "That email and password do not match an account. Check them and try again.",
+    sw: "Barua pepe na nenosiri hilo haviendani na akaunti yoyote. Viangalie kisha ujaribu tena.",
+  },
+  "account-exists": {
+    en: "An account with this email already exists. Log in instead.",
+    sw: "Akaunti yenye barua pepe hii tayari ipo. Ingia badala yake.",
+  },
+  "weak-password": {
+    en: "Choose a longer password: at least 8 characters.",
+    sw: "Chagua nenosiri refu zaidi: angalau herufi 8.",
+  },
+  "too-many-attempts": {
+    en: "Too many tries. Wait a few minutes, then try again.",
+    sw: "Majaribio mengi mno. Subiri dakika chache kisha ujaribu tena.",
+  },
+  "wrong-role": {
+    en: "This account is not an educator account. Use the sign-in option for your account type.",
+    sw: "Akaunti hii si ya mwalimu. Tumia chaguo la kuingia linalolingana na aina ya akaunti yako.",
   },
   unknown: {
     en: "Something went wrong. Please try again.",

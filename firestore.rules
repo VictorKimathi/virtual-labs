@@ -17,8 +17,17 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function profilePath(uid) {
+      return /databases/$(database)/documents/users/$(uid);
+    }
+
+    // Educators have a profile with the teacher role. Accounts made before
+    // profiles existed have none and count as educators, as they always did.
     function isTeacherAccount() {
-      return signedIn() && request.auth.token.firebase.sign_in_provider != 'anonymous';
+      return signedIn()
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
+        && (!exists(profilePath(request.auth.uid))
+          || get(profilePath(request.auth.uid)).data.role == 'teacher');
     }
 
     function text(value, min, max) {
@@ -267,6 +276,22 @@ service cloud.firestore {
         && request.resource.data.classId is string
         && request.resource.data.nickname
           == getAfter(studentPath(request.resource.data.classId, uid)).data.nickname;
+    }
+
+    // Each account's role, chosen when the account is made and never changed.
+    match /users/{uid} {
+      allow read: if signedIn() && uid == request.auth.uid;
+      allow create: if signedIn()
+        && uid == request.auth.uid
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
+        && request.resource.data.keys().hasOnly(['role', 'name', 'createdAt'])
+        && request.resource.data.role in ['teacher', 'student', 'personal']
+        && text(request.resource.data.name, 1, 60)
+        && request.resource.data.createdAt == request.time;
+      allow update: if signedIn()
+        && uid == request.auth.uid
+        && changed().hasOnly(['name'])
+        && text(request.resource.data.name, 1, 60);
     }
 
     match /{document=**} {

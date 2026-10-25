@@ -53,12 +53,6 @@ export type Submission = {
 /** The class a student device belongs to, kept at `learners/{uid}`. */
 export type LearnerLink = { classId: string; nickname: string };
 
-export type SignedInUser = {
-  uid: string;
-  anonymous: boolean;
-  displayName: string | null;
-};
-
 export type ActivityLab = "physics" | "chemistry";
 
 /** A lab experiment that can be assigned; it opens at `path`. */

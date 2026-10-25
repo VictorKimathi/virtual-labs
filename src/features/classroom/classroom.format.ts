@@ -9,7 +9,7 @@ export function subjectLabel(subject: ClassSubject, tr: Translate) {
 }
 
 export function studentJoinLink(code: string) {
-  return `${window.location.origin}/student?code=${code}`;
+  return `${window.location.origin}/login/class?code=${code}`;
 }
 
 export function formatCode(code: string) {

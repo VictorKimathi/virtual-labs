@@ -32,7 +32,7 @@ export function PortalLayout() {
             className="hidden min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-bold text-slate-600 transition-colors hover:bg-white/70 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white sm:flex"
           >
             <ArrowLeft className="size-4" aria-hidden="true" />
-            {tr("Back to labs", "Rudi maabara")}
+            {tr("Home", "Nyumbani")}
           </Link>
           <HeaderControls />
         </div>

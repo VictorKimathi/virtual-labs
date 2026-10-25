@@ -1,6 +1,6 @@
 # Practice bench
 
-`/workbench` shows the virtual labs as large cards (`components/LabShowcase.tsx`, also used on the home page): the **Physics Lab** at `/workbench/physics`, the **Chemistry Lab** at `/workbench/chemistry` (`src/features/chemistry-bench/`), the **Biology Lab** at `/workbench/biology` (`src/features/biology-bench/`) and the 3D **Human Anatomy** model at `/biology/anatomy`. The Physics Lab is a 2D bench with the full KCSE practical equipment list (125 items in nine sections).
+`/workbench` shows the virtual labs as large cards (`components/LabShowcase.tsx`, also used on the dashboard; the card data is in `data/showcase.ts` and is shared with the landing page): the **Physics Lab** at `/workbench/physics`, the **Chemistry Lab** at `/workbench/chemistry` (`src/features/chemistry-bench/`), the **Biology Lab** at `/workbench/biology` (`src/features/biology-bench/`) and the 3D **Human Anatomy** model at `/biology/anatomy`. The Physics Lab is a 2D bench with the full KCSE practical equipment list (125 items in nine sections).
 
 The chemistry and biology labs share the wire-free bench components in `components/`: `LabCanvas`, `LabPalette`, `LabInspector`, `LabControlField` and `LabSafetyPanel`. Each lab wraps them with its own definitions and drawings. `SandboxPanel` and `ExperimentPanel` are shared by all three labs.
 

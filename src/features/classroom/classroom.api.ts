@@ -1,12 +1,5 @@
 import { FirebaseError } from "firebase/app";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  onAuthStateChanged,
-  signInAnonymously,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { getAuth, signInAnonymously, signOut } from "firebase/auth";
 import {
   arrayRemove,
   arrayUnion,
@@ -51,7 +44,6 @@ import type {
   ClassSubject,
   LearnerLink,
   SharingMode,
-  SignedInUser,
   Student,
   StudentStatus,
   Submission,
@@ -201,33 +193,6 @@ async function lookupCode(code: string, kind: "student" | "teacher") {
 }
 
 // Accounts
-
-export function watchUser(
-  onData: OnData<SignedInUser | null>,
-  onError: OnError,
-): Unsubscribe {
-  try {
-    return onAuthStateChanged(
-      auth(),
-      (user) =>
-        onData(
-          user && {
-            uid: user.uid,
-            anonymous: user.isAnonymous,
-            displayName: user.displayName,
-          },
-        ),
-      (cause) => onError(normalise(cause)),
-    );
-  } catch (cause) {
-    onError(normalise(cause));
-    return () => undefined;
-  }
-}
-
-export async function signInTeacher() {
-  await attempt(() => signInWithPopup(auth(), new GoogleAuthProvider()));
-}
 
 /** Students get an anonymous account: no email, only the nickname they choose. */
 export async function signInStudent(): Promise<string> {

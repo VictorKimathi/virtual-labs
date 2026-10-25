@@ -1,21 +1,40 @@
-import { createElement } from "react";
+import { createElement, type ComponentType } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { RouteErrorPage } from "../shared/errors/RouteErrorPage";
 import { AppLayout } from "./AppLayout";
 import { PortalLayout } from "./PortalLayout";
 
+const page = (load: () => Promise<{ default: ComponentType }>) => async () => ({
+  Component: (await load()).default,
+});
+
 export const router = createBrowserRouter([
+  {
+    path: "/",
+    errorElement: createElement(RouteErrorPage),
+    lazy: page(() => import("../features/catalog/pages/LandingPage")),
+  },
   {
     element: createElement(PortalLayout),
     errorElement: createElement(RouteErrorPage),
     children: [
       {
+        path: "/login",
+        lazy: page(() => import("../features/account/pages/LoginPage")),
+      },
+      {
+        path: "/login/:method",
+        lazy: page(() => import("../features/account/pages/LoginMethodPage")),
+      },
+      {
+        path: "/signup",
+        lazy: page(() => import("../features/account/pages/SignupPage")),
+      },
+      {
         path: "/student",
-        lazy: async () => ({
-          Component: (
-            await import("../features/classroom/pages/StudentDashboardPage")
-          ).default,
-        }),
+        lazy: page(
+          () => import("../features/account/pages/StudentLinkRedirect"),
+        ),
       },
       {
         path: "/teacher",
@@ -36,16 +55,12 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
     element: createElement(AppLayout),
     errorElement: createElement(RouteErrorPage),
     children: [
       {
-        index: true,
-        lazy: async () => ({
-          Component: (await import("../features/catalog/pages/HomePage"))
-            .default,
-        }),
+        path: "dashboard",
+        lazy: page(() => import("../features/account/pages/DashboardPage")),
       },
       {
         path: "labs",

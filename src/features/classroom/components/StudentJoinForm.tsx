@@ -16,7 +16,19 @@ import {
   sectionTitle,
 } from "./styles";
 
-export function StudentJoinForm({ initialCode }: { initialCode: string }) {
+type StudentJoinFormProps = {
+  initialCode: string;
+  /** Runs once the student has joined. */
+  onJoined?: () => void;
+  /** Leave out the card and heading, for use inside another card. */
+  bare?: boolean;
+};
+
+export function StudentJoinForm({
+  initialCode,
+  onJoined,
+  bare,
+}: StudentJoinFormProps) {
   const { tr } = useLanguage();
   const action = useAction("classroom-student-join");
   const [code, setCode] = useState(initialCode);
@@ -33,20 +45,31 @@ export function StudentJoinForm({ initialCode }: { initialCode: string }) {
       return;
     }
     setErrors({});
-    void action.run(async () => joinClass(parsed.data, await signInStudent()));
+    void action.run(async () => {
+      await joinClass(parsed.data, await signInStudent());
+      onJoined?.();
+    });
   };
 
   return (
-    <form onSubmit={submit} className={`${card} w-full`} noValidate>
-      <h2 className={sectionTitle}>
-        {tr("Join your class", "Jiunge na darasa lako")}
-      </h2>
-      <p className={hint}>
-        {tr(
-          "Your teacher gives you the class code. Pick a nickname: no email or password needed.",
-          "Mwalimu wako hukupa msimbo wa darasa. Chagua jina la utani: hakuna barua pepe wala nenosiri.",
-        )}
-      </p>
+    <form
+      onSubmit={submit}
+      className={bare ? "w-full" : `${card} w-full`}
+      noValidate
+    >
+      {!bare && (
+        <>
+          <h2 className={sectionTitle}>
+            {tr("Join your class", "Jiunge na darasa lako")}
+          </h2>
+          <p className={hint}>
+            {tr(
+              "Your teacher gives you the class code. Pick a nickname: no email or password needed.",
+              "Mwalimu wako hukupa msimbo wa darasa. Chagua jina la utani: hakuna barua pepe wala nenosiri.",
+            )}
+          </p>
+        </>
+      )}
       <div className="mt-4 space-y-4">
         <div>
           <label htmlFor="join-code" className={label}>

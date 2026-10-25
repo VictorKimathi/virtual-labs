@@ -20,12 +20,10 @@ import type {
 } from "../classroom.types";
 import { useAction } from "../hooks/useAction";
 import { useLiveData, type Subscribe } from "../hooks/useLiveData";
-import { AuthScreen } from "./AuthScreen";
 import { ClassGallery } from "./ClassGallery";
 import { ActionFeedback, ErrorPanel, LoadingPanel } from "./StatusPanels";
 import { StudentAssignmentCard } from "./StudentAssignmentCard";
 import { StudentJoinForm } from "./StudentJoinForm";
-import { StudentQuickLinks } from "./StudentQuickLinks";
 import { card, secondaryButton, sectionTitle } from "./styles";
 
 type Props = { uid: string; initialCode: string };
@@ -110,17 +108,15 @@ function ActiveClass({ uid, link }: { uid: string; link: LearnerLink }) {
           <p className="text-xs font-extrabold uppercase tracking-widest text-kenya-green dark:text-green-400">
             {subjectLabel(room.subject, tr)}
           </p>
-          <h1 className="mt-1 text-3xl font-black tracking-tight">
+          <h2 className="mt-1 text-2xl font-black tracking-tight">
             {room.name}
-          </h1>
+          </h2>
           <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-slate-400">
             {tr("Signed in as", "Umeingia kama")} {link.nickname}
           </p>
         </div>
         <LeaveButton uid={uid} />
       </section>
-
-      <StudentQuickLinks />
 
       <section aria-labelledby="assignments-heading" className="space-y-4">
         <h2 id="assignments-heading" className={sectionTitle}>
@@ -229,11 +225,7 @@ export function StudentClassView({ uid, initialCode }: Props) {
   }
   if (link.status === "error") return <ErrorPanel error={link.error} />;
   if (!link.data) {
-    return (
-      <AuthScreen role="student">
-        <StudentJoinForm initialCode={initialCode} />
-      </AuthScreen>
-    );
+    return <StudentJoinForm initialCode={initialCode} />;
   }
   return (
     <Membership

@@ -3,7 +3,7 @@ import {
   Atom,
   ChartNoAxesColumn,
   FlaskConical,
-  House,
+  LayoutDashboard,
   Menu,
   Microscope,
   MonitorPlay,
@@ -11,17 +11,19 @@ import {
   PersonStanding,
   School,
   X,
+  type LucideIcon,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { AccountMenu } from "../features/account/components/AccountMenu";
 import { BrandLink, HeaderControls, iconButton } from "./HeaderControls";
 import { useLanguage } from "./useLanguage";
 
 type NavItem = {
   to: string;
   label: string;
-  icon: typeof House;
+  icon: LucideIcon;
 };
 
 type NavSection = {
@@ -144,9 +146,9 @@ export function AppLayout() {
   const navigation = (
     <div className="space-y-5 pt-4">
       <SideLink
-        to="/"
-        label={tr("Home", "Nyumbani")}
-        icon={House}
+        to="/dashboard"
+        label={tr("Dashboard", "Dashibodi")}
+        icon={LayoutDashboard}
         onNavigate={closeMenu}
       />
       {navSections.map(({ id, label: sectionLabel, items }) => (
@@ -201,7 +203,12 @@ export function AppLayout() {
             </button>
             <BrandLink />
           </div>
-          <HeaderControls />
+          <div className="flex items-center gap-2">
+            <div className="hidden sm:block">
+              <HeaderControls />
+            </div>
+            <AccountMenu />
+          </div>
         </div>
       </header>
       {!immersive && (
