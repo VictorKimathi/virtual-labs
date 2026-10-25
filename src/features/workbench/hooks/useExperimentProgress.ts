@@ -1,10 +1,13 @@
 import { useState } from "react";
-import type { Experiment, GoalContext } from "../workbench.types";
+
+type Checkable<Context> = {
+  goals: { id: string; check: (context: Context) => boolean }[];
+};
 
 /** Goals stay ticked once met, until the experiment or attempt changes. */
-export function useExperimentProgress(
-  experiment: Experiment | undefined,
-  context: GoalContext,
+export function useExperimentProgress<Context>(
+  experiment: Checkable<Context> | undefined,
+  context: Context,
   attempt: string,
 ) {
   const [progress, setProgress] = useState({

@@ -52,12 +52,6 @@ export function EquipmentPalette({ needed, onAdd }: EquipmentPaletteProps) {
           className="min-h-10 w-full rounded-lg border border-slate-200 bg-slate-50 pl-9 pr-3 text-sm dark:border-slate-700 dark:bg-slate-800"
         />
       </label>
-      <p className="px-1 text-xs text-slate-500 dark:text-slate-400">
-        {tr(
-          "Drag to the bench, or click an item to add it.",
-          "Buruta kwenye benchi, au bofya kifaa kukiongeza.",
-        )}
-      </p>
       {sections.length === 0 && (
         <p className="px-1 text-sm text-slate-500 dark:text-slate-400">
           {tr("No equipment matches.", "Hakuna kifaa kinacholingana.")}

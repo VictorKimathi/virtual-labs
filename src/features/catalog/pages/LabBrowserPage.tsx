@@ -73,7 +73,7 @@ export default function LabBrowserPage() {
               to="/workbench"
               className="font-bold text-kenya-green underline dark:text-green-400"
             >
-              {tr("Practice bench", "Benchi la mazoezi")}
+              {tr("Virtual labs", "Maabara pepe")}
             </Link>
             .
           </>

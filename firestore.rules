@@ -9,6 +9,266 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Classroom. Teachers sign in with Google; students sign in anonymously
+    // and become members by presenting the class's current join code.
+    // Field limits match src/features/classroom/classroom.schema.ts.
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isTeacherAccount() {
+      return signedIn() && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+
+    function text(value, min, max) {
+      return value is string && value.size() >= min && value.size() <= max;
+    }
+
+    function isCode(value) {
+      return value is string && value.matches('^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$');
+    }
+
+    function classPath(classId) {
+      return /databases/$(database)/documents/classes/$(classId);
+    }
+
+    function secretPath(classId) {
+      return /databases/$(database)/documents/classSecrets/$(classId);
+    }
+
+    function codePath(code) {
+      return /databases/$(database)/documents/classCodes/$(code);
+    }
+
+    function studentPath(classId, uid) {
+      return /databases/$(database)/documents/classes/$(classId)/students/$(uid);
+    }
+
+    function teacherJoinPath(classId, uid) {
+      return /databases/$(database)/documents/classes/$(classId)/teacherJoins/$(uid);
+    }
+
+    function classData(classId) {
+      return get(classPath(classId)).data;
+    }
+
+    function isTeacherOf(classId) {
+      return signedIn() && request.auth.uid in classData(classId).teacherIds;
+    }
+
+    function isActiveStudent(classId) {
+      return signedIn()
+        && exists(studentPath(classId, request.auth.uid))
+        && get(studentPath(classId, request.auth.uid)).data.status == 'active';
+    }
+
+    function changed() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+
+    function namesDiff() {
+      return request.resource.data.teacherNames.diff(resource.data.teacherNames);
+    }
+
+    match /classes/{classId} {
+      allow get: if signedIn()
+        && (request.auth.uid in resource.data.teacherIds || isActiveStudent(classId));
+      allow list: if signedIn() && request.auth.uid in resource.data.teacherIds;
+
+      allow create: if isTeacherAccount()
+        && request.resource.data.keys().hasOnly(['name', 'subject', 'ownerId', 'teacherIds',
+          'teacherNames', 'joinCode', 'joinOpen', 'sharing', 'createdAt'])
+        && text(request.resource.data.name, 2, 60)
+        && request.resource.data.subject in ['physics', 'chemistry', 'mixed']
+        && request.resource.data.ownerId == request.auth.uid
+        && request.resource.data.teacherIds == [request.auth.uid]
+        && request.resource.data.teacherNames.keys().hasOnly([request.auth.uid])
+        && text(request.resource.data.teacherNames[request.auth.uid], 1, 100)
+        && isCode(request.resource.data.joinCode)
+        && request.resource.data.joinOpen == true
+        && request.resource.data.sharing == 'private'
+        && request.resource.data.createdAt == request.time
+        && getAfter(codePath(request.resource.data.joinCode)).data.classId == classId;
+
+      allow update: if signedIn() && (
+        // A teacher changes the class settings or issues a new join code.
+        (request.auth.uid in resource.data.teacherIds
+          && changed().hasOnly(['name', 'joinOpen', 'sharing', 'joinCode'])
+          && text(request.resource.data.name, 2, 60)
+          && request.resource.data.joinOpen is bool
+          && request.resource.data.sharing in ['private', 'class']
+          && (!changed().hasAny(['joinCode'])
+            || (isCode(request.resource.data.joinCode)
+              && getAfter(codePath(request.resource.data.joinCode)).data.classId == classId
+              && !existsAfter(codePath(resource.data.joinCode)))))
+        // A signed-in teacher joins as co-teacher with the teacher code.
+        || (isTeacherAccount()
+          && !(request.auth.uid in resource.data.teacherIds)
+          && changed().hasOnly(['teacherIds', 'teacherNames'])
+          && request.resource.data.teacherIds == resource.data.teacherIds.concat([request.auth.uid])
+          && namesDiff().affectedKeys().hasOnly([request.auth.uid])
+          && text(request.resource.data.teacherNames[request.auth.uid], 1, 100)
+          && getAfter(teacherJoinPath(classId, request.auth.uid)).data.code
+            == get(secretPath(classId)).data.teacherCode)
+        // A co-teacher leaves.
+        || (request.auth.uid in resource.data.teacherIds
+          && request.auth.uid != resource.data.ownerId
+          && changed().hasOnly(['teacherIds', 'teacherNames'])
+          && request.resource.data.teacherIds == resource.data.teacherIds.removeAll([request.auth.uid])
+          && namesDiff().affectedKeys() == [request.auth.uid].toSet()
+          && namesDiff().removedKeys() == [request.auth.uid].toSet()
+          && !existsAfter(teacherJoinPath(classId, request.auth.uid)))
+        // The owner removes one co-teacher.
+        || (request.auth.uid == resource.data.ownerId
+          && changed().hasOnly(['teacherIds', 'teacherNames'])
+          && request.resource.data.teacherIds.hasAll([request.auth.uid])
+          && resource.data.teacherIds.hasAll(request.resource.data.teacherIds)
+          && resource.data.teacherIds.removeAll(request.resource.data.teacherIds).size() == 1
+          && namesDiff().affectedKeys()
+            == resource.data.teacherIds.removeAll(request.resource.data.teacherIds).toSet()
+          && namesDiff().removedKeys() == namesDiff().affectedKeys()
+          && !existsAfter(teacherJoinPath(classId,
+            resource.data.teacherIds.removeAll(request.resource.data.teacherIds)[0])))
+      );
+
+      // Proof that a co-teacher presented the current teacher code.
+      match /teacherJoins/{uid} {
+        allow create: if isTeacherAccount()
+          && uid == request.auth.uid
+          && request.resource.data.keys().hasOnly(['code'])
+          && isCode(request.resource.data.code)
+          && request.resource.data.code == get(secretPath(classId)).data.teacherCode
+          && request.auth.uid in getAfter(classPath(classId)).data.teacherIds;
+        allow delete: if signedIn()
+          && (uid == request.auth.uid || request.auth.uid == classData(classId).ownerId);
+      }
+
+      match /students/{studentId} {
+        allow get: if signedIn() && (studentId == request.auth.uid || isTeacherOf(classId));
+        allow list: if isTeacherOf(classId);
+        allow create: if signedIn()
+          && studentId == request.auth.uid
+          && request.resource.data.keys().hasOnly(['nickname', 'code', 'status', 'joinedAt'])
+          && text(request.resource.data.nickname, 2, 24)
+          && request.resource.data.status == 'active'
+          && request.resource.data.joinedAt == request.time
+          && classData(classId).joinOpen == true
+          && request.resource.data.code == classData(classId).joinCode;
+        // Block or restore access. Students cannot change their own record.
+        allow update: if isTeacherOf(classId)
+          && changed().hasOnly(['status'])
+          && request.resource.data.status in ['active', 'blocked'];
+        allow delete: if isTeacherOf(classId);
+      }
+
+      match /assignments/{assignmentId} {
+        allow read: if isTeacherOf(classId) || isActiveStudent(classId);
+        allow create: if isTeacherOf(classId)
+          && request.resource.data.keys().hasOnly(['title', 'instructions', 'activityId',
+            'createdBy', 'createdAt'])
+          && text(request.resource.data.title, 2, 100)
+          && text(request.resource.data.instructions, 0, 2000)
+          && (request.resource.data.activityId == null
+            || text(request.resource.data.activityId, 1, 100))
+          && request.resource.data.createdBy == request.auth.uid
+          && request.resource.data.createdAt == request.time;
+        allow delete: if isTeacherOf(classId);
+      }
+
+      match /submissions/{submissionId} {
+        function validWork() {
+          return request.resource.data.status in ['draft', 'submitted']
+            && text(request.resource.data.answer, 0, 4000)
+            && request.resource.data.shared is bool
+            && (request.resource.data.shared == false || classData(classId).sharing == 'class')
+            && request.resource.data.updatedAt == request.time;
+        }
+
+        allow read: if isTeacherOf(classId)
+          || (signedIn() && resource.data.studentId == request.auth.uid)
+          || (resource.data.shared == true
+            && classData(classId).sharing == 'class'
+            && isActiveStudent(classId));
+
+        allow create: if isActiveStudent(classId)
+          && submissionId == request.resource.data.assignmentId + '_' + request.auth.uid
+          && request.resource.data.keys().hasOnly(['studentId', 'assignmentId', 'nickname',
+            'status', 'answer', 'shared', 'feedback', 'updatedAt'])
+          && request.resource.data.studentId == request.auth.uid
+          && request.resource.data.feedback == null
+          && request.resource.data.nickname
+            == get(studentPath(classId, request.auth.uid)).data.nickname
+          && exists(/databases/$(database)/documents/classes/$(classId)/assignments/$(request.resource.data.assignmentId))
+          && validWork();
+
+        allow update: if
+          // The student edits, hands in or shares their own work.
+          (isActiveStudent(classId)
+            && resource.data.studentId == request.auth.uid
+            && changed().hasOnly(['status', 'answer', 'shared', 'updatedAt'])
+            && validWork())
+          // A teacher reviews, returns, or takes work out of the gallery.
+          || (isTeacherOf(classId)
+            && changed().hasOnly(['feedback', 'status', 'reviewedBy', 'reviewedAt', 'shared'])
+            && (request.resource.data.feedback == null
+              || text(request.resource.data.feedback, 1, 2000))
+            && request.resource.data.status in ['draft', 'submitted', 'reviewed']
+            && (request.resource.data.shared == false
+              || request.resource.data.shared == resource.data.shared)
+            && (!changed().hasAny(['reviewedBy'])
+              || request.resource.data.reviewedBy == request.auth.uid)
+            && (!changed().hasAny(['reviewedAt'])
+              || request.resource.data.reviewedAt == request.time));
+      }
+    }
+
+    // The co-teacher code, readable only by the class's teachers.
+    match /classSecrets/{classId} {
+      allow read: if isTeacherOf(classId);
+      allow create: if isTeacherAccount()
+        && !exists(classPath(classId))
+        && getAfter(classPath(classId)).data.ownerId == request.auth.uid
+        && request.resource.data.keys().hasOnly(['teacherCode'])
+        && isCode(request.resource.data.teacherCode)
+        && getAfter(codePath(request.resource.data.teacherCode)).data.classId == classId;
+      allow update: if isTeacherOf(classId)
+        && request.resource.data.keys().hasOnly(['teacherCode'])
+        && isCode(request.resource.data.teacherCode)
+        && getAfter(codePath(request.resource.data.teacherCode)).data.classId == classId
+        && !existsAfter(codePath(resource.data.teacherCode));
+    }
+
+    // Code lookup: anyone signed in may fetch one code, never list them.
+    // Codes are never overwritten, so a collision fails and the client retries.
+    match /classCodes/{code} {
+      allow get: if signedIn();
+      allow create: if signedIn()
+        && isCode(code)
+        && request.resource.data.keys().hasOnly(['classId', 'kind'])
+        && request.resource.data.kind in ['student', 'teacher']
+        && request.auth.uid in getAfter(classPath(request.resource.data.classId)).data.teacherIds
+        && (request.resource.data.kind == 'student'
+          ? getAfter(classPath(request.resource.data.classId)).data.joinCode == code
+          : getAfter(secretPath(request.resource.data.classId)).data.teacherCode == code);
+      allow delete: if signedIn()
+        && request.auth.uid in get(classPath(resource.data.classId)).data.teacherIds
+        && (resource.data.kind == 'student'
+          ? getAfter(classPath(resource.data.classId)).data.joinCode != code
+          : getAfter(secretPath(resource.data.classId)).data.teacherCode != code);
+    }
+
+    // Which class a student device belongs to.
+    match /learners/{uid} {
+      allow read, delete: if signedIn() && uid == request.auth.uid;
+      allow create, update: if signedIn()
+        && uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['classId', 'nickname'])
+        && request.resource.data.classId is string
+        && request.resource.data.nickname
+          == getAfter(studentPath(request.resource.data.classId, uid)).data.nickname;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

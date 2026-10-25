@@ -1,12 +1,22 @@
 import { CircleCheck, Circle, PartyPopper, Wrench } from "lucide-react";
 import { useLanguage } from "../../../app/useLanguage";
-import { sectionNames } from "../data/equipment";
-import { sectionOrder } from "../data/kinds";
-import type { Experiment } from "../workbench.types";
+import type { LocalizedText } from "../workbench.types";
+
+/** What the panel needs from an experiment on any bench. */
+export type ExperimentSummary = {
+  id: string;
+  section: string;
+  title: LocalizedText;
+  summary: LocalizedText;
+  steps: LocalizedText[];
+  goals: { id: string; label: LocalizedText }[];
+};
 
 type ExperimentPanelProps = {
-  experiments: Experiment[];
-  experiment: Experiment | undefined;
+  experiments: ExperimentSummary[];
+  experiment: ExperimentSummary | undefined;
+  /** The sections to group experiments under, in order. */
+  sections: { id: string; name: LocalizedText }[];
   achieved: string[];
   onChoose: (id: string | null) => void;
 };
@@ -14,6 +24,7 @@ type ExperimentPanelProps = {
 export function ExperimentPanel({
   experiments,
   experiment,
+  sections,
   achieved,
   onChoose,
 }: ExperimentPanelProps) {
@@ -34,12 +45,12 @@ export function ExperimentPanel({
           className="mt-1 min-h-10 w-full rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm dark:border-slate-700 dark:bg-slate-800"
         >
           <option value="">{tr("Free build", "Unda huru")}</option>
-          {sectionOrder.map((section) => {
+          {sections.map((section) => {
             const group = experiments.filter(
-              (item) => item.section === section,
+              (item) => item.section === section.id,
             );
             return group.length === 0 ? null : (
-              <optgroup key={section} label={sectionNames[section][language]}>
+              <optgroup key={section.id} label={section.name[language]}>
                 {group.map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.title[language]}

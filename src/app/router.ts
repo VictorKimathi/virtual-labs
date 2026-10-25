@@ -2,8 +2,39 @@ import { createElement } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { RouteErrorPage } from "../shared/errors/RouteErrorPage";
 import { AppLayout } from "./AppLayout";
+import { PortalLayout } from "./PortalLayout";
 
 export const router = createBrowserRouter([
+  {
+    element: createElement(PortalLayout),
+    errorElement: createElement(RouteErrorPage),
+    children: [
+      {
+        path: "/student",
+        lazy: async () => ({
+          Component: (
+            await import("../features/classroom/pages/StudentDashboardPage")
+          ).default,
+        }),
+      },
+      {
+        path: "/teacher",
+        lazy: async () => ({
+          Component: (
+            await import("../features/classroom/pages/TeacherDashboardPage")
+          ).default,
+        }),
+      },
+      {
+        path: "/teacher/classes/:classId",
+        lazy: async () => ({
+          Component: (
+            await import("../features/classroom/pages/TeacherClassPage")
+          ).default,
+        }),
+      },
+    ],
+  },
   {
     path: "/",
     element: createElement(AppLayout),
@@ -49,6 +80,22 @@ export const router = createBrowserRouter([
         lazy: async () => ({
           Component: (
             await import("../features/workbench/pages/WorkbenchTopicsPage")
+          ).default,
+        }),
+      },
+      {
+        path: "workbench/chemistry",
+        lazy: async () => ({
+          Component: (
+            await import("../features/chemistry-bench/pages/ChemistryBenchPage")
+          ).default,
+        }),
+      },
+      {
+        path: "workbench/biology",
+        lazy: async () => ({
+          Component: (
+            await import("../features/biology-bench/pages/BiologyBenchPage")
           ).default,
         }),
       },

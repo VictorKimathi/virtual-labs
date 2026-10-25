@@ -4,6 +4,8 @@ export type AppErrorCode =
   | "invalid-data"
   | "not-found"
   | "rate-limited"
+  | "forbidden"
+  | "sign-in"
   | "unknown";
 
 type UserMessage = { en: string; sw: string };
@@ -28,6 +30,14 @@ const userMessages: Record<AppErrorCode, UserMessage> = {
   "rate-limited": {
     en: "A payment prompt was just sent to this number. Wait a minute, then try again.",
     sw: "Ombi la malipo limetumwa kwa nambari hii sasa hivi. Subiri dakika moja kisha ujaribu tena.",
+  },
+  forbidden: {
+    en: "You do not have access to this. If you are a student, ask your teacher for help.",
+    sw: "Huna ruhusa ya kufikia hili. Kama wewe ni mwanafunzi, muulize mwalimu wako akusaidie.",
+  },
+  "sign-in": {
+    en: "Sign-in did not finish. Please try again.",
+    sw: "Kuingia hakukukamilika. Tafadhali jaribu tena.",
   },
   unknown: {
     en: "Something went wrong. Please try again.",

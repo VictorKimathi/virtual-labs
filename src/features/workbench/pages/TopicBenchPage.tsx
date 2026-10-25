@@ -1,4 +1,11 @@
-import { ArrowLeft, RotateCcw, TriangleAlert } from "lucide-react";
+import {
+  ArrowLeft,
+  Boxes,
+  ClipboardList,
+  RotateCcw,
+  SlidersHorizontal,
+  TriangleAlert,
+} from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useLanguage } from "../../../app/useLanguage";
@@ -7,13 +14,21 @@ import { EquipmentPalette } from "../components/EquipmentPalette";
 import { ExperimentPanel } from "../components/ExperimentPanel";
 import { InspectorPanel } from "../components/InspectorPanel";
 import { ReadingsDock } from "../components/ReadingsDock";
-import { SandboxPanel, type PanelTab } from "../components/SandboxPanel";
-import { analyseAll, makeEnv, partDefinitions } from "../data/equipment";
+import { SandboxPanel } from "../components/SandboxPanel";
+import {
+  analyseAll,
+  makeEnv,
+  partDefinitions,
+  sectionNames,
+} from "../data/equipment";
+import { sectionOrder } from "../data/kinds";
 import { findTopic } from "../data/topics";
 import { partLabel, useBench } from "../hooks/useBench";
 import { useBenchClock } from "../hooks/useBenchClock";
 import { useExperimentProgress } from "../hooks/useExperimentProgress";
 import type { MeterReading, Selection } from "../workbench.types";
+
+const sections = sectionOrder.map((id) => ({ id, name: sectionNames[id] }));
 
 export default function TopicBenchPage() {
   const { topicId } = useParams();
@@ -21,7 +36,7 @@ export default function TopicBenchPage() {
   const { language, tr } = useLanguage();
   const [bench, dispatch] = useBench();
   const [attempt, setAttempt] = useState(0);
-  const [tab, setTab] = useState<PanelTab>(
+  const [tab, setTab] = useState<"equipment" | "inspector" | "experiment">(
     searchParams.get("experiment") ? "experiment" : "equipment",
   );
   const now = useBenchClock(bench.parts);
@@ -103,7 +118,7 @@ export default function TopicBenchPage() {
             className="inline-flex items-center gap-1 text-sm font-bold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
-            {tr("Practice bench", "Benchi la mazoezi")}
+            {tr("Virtual labs", "Maabara pepe")}
           </Link>
           <span className="text-slate-300 dark:text-slate-600">/</span>
           <h1 className="text-2xl font-black tracking-tight">
@@ -125,38 +140,56 @@ export default function TopicBenchPage() {
           <SandboxPanel
             tab={tab}
             onTab={setTab}
-            goalsDone={achieved.length}
-            goalsTotal={experiment?.goals.length ?? 0}
-            equipment={
-              <EquipmentPalette
-                needed={experiment?.equipment ?? []}
-                onAdd={(kind) => dispatch({ type: "add-part", kind })}
-              />
-            }
-            inspector={
-              <InspectorPanel
-                parts={bench.parts}
-                wires={bench.wires}
-                selection={bench.selection}
-                env={env}
-                outcomes={outcomes}
-                onSetParam={(id, param, value) =>
-                  dispatch({ type: "set-param", id, param, value })
-                }
-                onPress={(id, control) =>
-                  dispatch({ type: "press", id, control, now: Date.now() })
-                }
-                onRemove={() => dispatch({ type: "remove-selected" })}
-              />
-            }
-            experiment={
-              <ExperimentPanel
-                experiments={topic.experiments}
-                experiment={experiment}
-                achieved={achieved}
-                onChoose={chooseExperiment}
-              />
-            }
+            tabs={[
+              {
+                id: "equipment",
+                label: tr("Equipment", "Vifaa"),
+                icon: Boxes,
+                content: (
+                  <EquipmentPalette
+                    needed={experiment?.equipment ?? []}
+                    onAdd={(kind) => dispatch({ type: "add-part", kind })}
+                  />
+                ),
+              },
+              {
+                id: "inspector",
+                label: tr("Inspector", "Ukaguzi"),
+                icon: SlidersHorizontal,
+                content: (
+                  <InspectorPanel
+                    parts={bench.parts}
+                    wires={bench.wires}
+                    selection={bench.selection}
+                    env={env}
+                    outcomes={outcomes}
+                    onSetParam={(id, param, value) =>
+                      dispatch({ type: "set-param", id, param, value })
+                    }
+                    onPress={(id, control) =>
+                      dispatch({ type: "press", id, control, now: Date.now() })
+                    }
+                    onRemove={() => dispatch({ type: "remove-selected" })}
+                  />
+                ),
+              },
+              {
+                id: "experiment",
+                label: experiment
+                  ? `${tr("Experiment", "Jaribio")} ${achieved.length}/${experiment.goals.length}`
+                  : tr("Experiment", "Jaribio"),
+                icon: ClipboardList,
+                content: (
+                  <ExperimentPanel
+                    experiments={topic.experiments}
+                    experiment={experiment}
+                    sections={sections}
+                    achieved={achieved}
+                    onChoose={chooseExperiment}
+                  />
+                ),
+              },
+            ]}
           />
         </div>
 

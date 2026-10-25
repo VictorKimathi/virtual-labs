@@ -11,6 +11,7 @@ import type {
   TerminalRef,
   Wire,
 } from "../workbench.types";
+import { BenchEmptyGuide } from "./BenchEmptyGuide";
 import { PartGraphic } from "./PartGraphic";
 
 export const EQUIPMENT_DRAG_TYPE = "application/x-virtual-lab-part";
@@ -398,19 +399,12 @@ export function BenchCanvas({
       </svg>
 
       {parts.length === 0 && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-6 text-center">
-          <div>
-            <p className="text-base font-bold text-slate-700 dark:text-slate-200">
-              {tr("Your bench is empty", "Benchi lako ni tupu")}
-            </p>
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-              {tr(
-                "Drag equipment from the left, or click an item to add it.",
-                "Buruta vifaa kutoka kushoto, au bofya kifaa kukiongeza.",
-              )}
-            </p>
-          </div>
-        </div>
+        <BenchEmptyGuide
+          tip={tr(
+            "Tip: click two terminals to join them with a wire.",
+            "Kidokezo: bofya ncha mbili kuziunganisha kwa waya.",
+          )}
+        />
       )}
       {pendingTerminal && (
         <p className="pointer-events-none absolute left-1/2 top-3 -translate-x-1/2 rounded-full bg-sky-600 px-4 py-1.5 text-xs font-bold text-white shadow">

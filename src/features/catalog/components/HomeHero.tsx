@@ -1,4 +1,4 @@
-import { ArrowRight, FlaskConical, Sparkles } from "lucide-react";
+import { ArrowRight, MonitorPlay, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -6,7 +6,7 @@ import { useLanguage } from "../../../app/useLanguage";
 import { useTheme } from "../../../app/useTheme";
 import { SceneErrorBoundary } from "../../../shared/errors/SceneErrorBoundary";
 import { SubjectIcon } from "../../../shared/ui/SubjectIcon";
-import { labs, subjects } from "../data/catalog";
+import { subjects } from "../data/catalog";
 import type { SubjectId } from "../data/catalog.types";
 import { orbits } from "../hero.config";
 import { HeroBackdrop } from "./HeroBackdrop";
@@ -35,8 +35,10 @@ export function HomeHero() {
   const [container, setContainer] = useState<HTMLElement | null>(null);
   const [active, setActive] = useState<SubjectId | null>(null);
   const visible = useIsVisible(container);
-  const orbitSubjects = subjects.filter((subject) =>
-    orbits.some((orbit) => orbit.subject === subject.id),
+  const labSubjects = subjects.filter(
+    (subject) =>
+      (subject.id === "physics" || subject.id === "chemistry") &&
+      orbits.some((orbit) => orbit.subject === subject.id),
   );
   return (
     <section
@@ -104,8 +106,8 @@ export function HomeHero() {
           className="mt-4 max-w-xl text-pretty text-base leading-7 text-slate-700 dark:text-slate-300 sm:text-lg"
         >
           {tr(
-            "Run real experiments in Physics, Chemistry and Biology. No equipment, no limits, right from your browser.",
-            "Fanya majaribio halisi ya Fizikia, Kemia na Biolojia. Bila vifaa, bila mipaka, moja kwa moja kwenye kivinjari chako.",
+            "Real physics and chemistry practicals. No equipment needed.",
+            "Majaribio halisi ya fizikia na kemia. Bila kuhitaji vifaa.",
           )}
         </motion.p>
         <motion.div
@@ -115,21 +117,21 @@ export function HomeHero() {
           className="mt-6 flex flex-wrap gap-3"
         >
           <Link
-            to="/labs"
+            to="/workbench"
             className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-kenya-green sm:w-auto px-6 text-sm font-extrabold text-white shadow-xl shadow-kenya-green/30 transition-transform hover:-translate-y-0.5"
           >
-            {tr("Start learning", "Anza kujifunza")}
+            {tr("Enter the labs", "Ingia maabara")}
             <ArrowRight
               className="size-4 transition-transform group-hover:translate-x-1"
               aria-hidden="true"
             />
           </Link>
           <Link
-            to="/workbench"
+            to="/simulations"
             className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white/70 sm:w-auto px-6 text-sm font-extrabold backdrop-blur-md transition-transform hover:-translate-y-0.5 dark:border-slate-700 dark:bg-slate-900/70"
           >
-            <FlaskConical className="size-4" aria-hidden="true" />
-            {tr("Open the bench", "Fungua benchi")}
+            <MonitorPlay className="size-4" aria-hidden="true" />
+            {tr("Simulations", "Uigaji")}
           </Link>
         </motion.div>
         <motion.ul
@@ -138,10 +140,10 @@ export function HomeHero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-6 flex flex-wrap gap-2"
         >
-          {orbitSubjects.map((subject) => (
+          {labSubjects.map((subject) => (
             <li key={subject.id}>
               <Link
-                to={`/labs?subject=${subject.id}`}
+                to={`/workbench/${subject.id}`}
                 onPointerEnter={() => setActive(subject.id)}
                 onPointerLeave={() => setActive(null)}
                 onFocus={() => setActive(subject.id)}
@@ -154,9 +156,6 @@ export function HomeHero() {
                   <SubjectIcon icon={subject.icon} className="size-4" />
                 </span>
                 {language === "en" ? subject.name : subject.nameSw}
-                <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
-                  {labs.filter((lab) => lab.subject === subject.id).length}
-                </span>
               </Link>
             </li>
           ))}

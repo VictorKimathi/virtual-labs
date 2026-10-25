@@ -1,17 +1,25 @@
 import { MotionConfig } from "motion/react";
-import { ContinueBanner } from "../components/ContinueBanner";
+import { useLanguage } from "../../../app/useLanguage";
+import { LabShowcase } from "../../workbench/components/LabShowcase";
 import { HomeHero } from "../components/HomeHero";
-import { LearningPaths } from "../components/LearningPaths";
-import { SubjectPortals } from "../components/SubjectPortals";
+import { RolePicker } from "../components/RolePicker";
 
 export default function HomePage() {
+  const { tr } = useLanguage();
   return (
     <MotionConfig reducedMotion="user">
-      <div className="space-y-12">
+      <div className="space-y-10">
         <HomeHero />
-        <ContinueBanner />
-        <LearningPaths />
-        <SubjectPortals />
+        <RolePicker />
+        <section aria-labelledby="labs-heading">
+          <h2
+            id="labs-heading"
+            className="mb-4 text-2xl font-black tracking-tight"
+          >
+            {tr("Choose your lab", "Chagua maabara yako")}
+          </h2>
+          <LabShowcase />
+        </section>
       </div>
     </MotionConfig>
   );

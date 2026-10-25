@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+/* The equipment drawings build opacity classes at runtime in steps of 5. */
+@source inline("opacity-{0..100..5}");
 @theme {
   --color-kenya-green: #006600;
   --color-kenya-red: #bb0000;
@@ -13,6 +15,28 @@
   --animate-orbit: orbit-spin 24s linear infinite;
   --animate-orbit-reverse: orbit-spin 32s linear infinite reverse;
   --animate-orbit-slow: orbit-spin 48s linear infinite;
+  --animate-bubble-fast: bubble-rise 1.1s ease-in infinite;
+  --animate-bubble: bubble-rise 1.5s ease-in infinite;
+  --animate-bubble-slow: bubble-rise 1.9s ease-in infinite;
+  --animate-flicker: flicker 0.5s ease-in-out infinite alternate;
+  @keyframes bubble-rise {
+    from {
+      transform: translateY(0);
+      opacity: 0.9;
+    }
+    to {
+      transform: translateY(-36px);
+      opacity: 0;
+    }
+  }
+  @keyframes flicker {
+    from {
+      opacity: 0.75;
+    }
+    to {
+      opacity: 1;
+    }
+  }
   @keyframes orbit-spin {
     to {
       transform: rotate(360deg);

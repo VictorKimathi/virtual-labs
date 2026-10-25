@@ -1,6 +1,8 @@
 # Practice bench
 
-`/workbench` is the Practice bench hub, grouped into Physics, Chemistry and Biology. The Physics card opens the **Physics virtual lab** at `/workbench/physics`: a 2D bench with the full KCSE practical equipment list (125 items in nine sections).
+`/workbench` shows the virtual labs as large cards (`components/LabShowcase.tsx`, also used on the home page): the **Physics Lab** at `/workbench/physics`, the **Chemistry Lab** at `/workbench/chemistry` (`src/features/chemistry-bench/`), the **Biology Lab** at `/workbench/biology` (`src/features/biology-bench/`) and the 3D **Human Anatomy** model at `/biology/anatomy`. The Physics Lab is a 2D bench with the full KCSE practical equipment list (125 items in nine sections).
+
+The chemistry and biology labs share the wire-free bench components in `components/`: `LabCanvas`, `LabPalette`, `LabInspector`, `LabControlField` and `LabSafetyPanel`. Each lab wraps them with its own definitions and drawings. `SandboxPanel` and `ExperimentPanel` are shared by all three labs.
 
 ## Layout
 
@@ -45,3 +47,7 @@ For the scale-reading instruments (rules, vernier, micrometer, cylinder, liquid 
 - Heating in the calorimeter uses a heating-time slider rather than a running clock. Only the stopwatch and released trolleys use the live bench clock.
 - Support equipment such as the lens holder, tripod, wire gauze, pins and drawing board has simple behaviour (alignment, heat spreading, accuracy) rather than a full model.
 - Some equipment is placed over other equipment to work together: an immersion heater over a calorimeter, a thermometer in a calorimeter, a soft iron core over a solenoid.
+
+## Layout
+
+On `/workbench/*` routes `AppLayout` hides the fixed sidebar and trims the page padding so the bench uses the full width. The header menu button opens the navigation as a drawer (close it with the scrim, a link, or Escape).
